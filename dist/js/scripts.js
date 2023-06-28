@@ -32,6 +32,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 // Create a MutationObserver instance and pass a callback function
+let working = false;
 
 const observer = new MutationObserver(function (mutations) {
   // Loop through the mutations list and check for attribute changes
@@ -43,18 +44,28 @@ const observer = new MutationObserver(function (mutations) {
       var newClass = $(element).attr("class");
       // do something with element and newClass
       setTimeout(function() {
-        if (element.classList.contains('active')) {
-          $("nav .project-child").attr("hidden", false);
-          setTimeout(() => {
-              $("nav .project-child").css({visibility:'visible', opacity:'1', transitionDelay:'0s'})
-          }, 100)
+          if (element.classList.contains('active')) {
+            if (!working) {
+                working = true;
+              $("nav .project-child").attr("hidden", false);
+              setTimeout(() => {
+                  $("nav .project-child").css({visibility:'visible', opacity:'1', transitionDelay:'0s'})
+                  working = false;
+              }, 100)
+            }
         } else {
-            $("nav .project-child").css({visibility:'hidden', opacity:'0', 
-            transition:'visibility 0s 0.3s, opacity 0.3s linear'
-          })
-            setTimeout(() => { $("nav .project-child").attr("hidden", true); }, 500)
+            if (!working) {
+                working = true
+                $("nav .project-child").css({visibility:'hidden', opacity:'0', 
+                transition:'visibility 0.3s 0.3s, opacity 0.3s linear', transitionDelay:'1s'
+              })
+                setTimeout(() => { $("nav .project-child").attr("hidden", true); 
+                working = false;
+            }, 1500)
+
+            }
         }
-      }, 500);
+      }, 100);
 
     }
   });
