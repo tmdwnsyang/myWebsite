@@ -43,8 +43,6 @@ const observer = new MutationObserver(function (mutations) {
       var newClass = $(element).attr("class");
       // do something with element and newClass
       if (element.classList.contains('active')) {
-        // console.log("This worked?");
-        // console.log($("#project-dropdown").nextAll());
         $(".project-child").attr("hidden", false);
         console.log("should show")
       } else {
@@ -64,6 +62,3 @@ const options = {
 
 // Start observing the element
 observer.observe(target, options);
-
-// You can stop observing the element later if you want
-//   observer.disconnect
