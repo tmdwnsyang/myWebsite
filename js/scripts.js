@@ -42,13 +42,20 @@ const observer = new MutationObserver(function (mutations) {
       var element = mutation.target;
       var newClass = $(element).attr("class");
       // do something with element and newClass
-      if (element.classList.contains('active')) {
-        $(".project-child").attr("hidden", false);
-        console.log("should show")
-      } else {
-        $(".project-child").attr("hidden", true);
-        console.log("should not show")
-      }
+      setTimeout(function() {
+        if (element.classList.contains('active')) {
+          $("nav .project-child").attr("hidden", false);
+          setTimeout(() => {
+              $("nav .project-child").css({visibility:'visible', opacity:'1', transitionDelay:'0s'})
+          }, 100)
+        } else {
+            $("nav .project-child").css({visibility:'hidden', opacity:'0', 
+            transition:'visibility 0s 0.3s, opacity 0.3s linear'
+          })
+            setTimeout(() => { $("nav .project-child").attr("hidden", true); }, 500)
+        }
+      }, 500);
+
     }
   });
 });
