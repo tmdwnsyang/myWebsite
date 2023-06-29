@@ -123,9 +123,11 @@ function backgroundChange() {
 
         setTimeout( ()=> {
           $('span.text-primary').css({opacity: 1})
-
-        }, 1000)
-      }, 1000)
+          setTimeout( ()=> {
+            $('.name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)'})
+          }, 500)
+        }, 500)
+      }, 500)
       document.querySelector(':root').style.setProperty('--bs-primary-rgb',  PRIMARY_BLUE)
       document.querySelector(':root').style.setProperty('--bs-link-hover-color',  PRIMARY_DARK_BLUE_H)
     }

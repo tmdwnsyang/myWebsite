@@ -7220,13 +7220,18 @@ fieldset:disabled .btn {
     transform: none;
   }
 }
-
+/* For mobile display */
 @media (max-width: 991.98px) {
 
   .offcanvas-lg.showing,
   .offcanvas-lg.hiding,
   .offcanvas-lg.show {
     visibility: visible;
+  }
+
+  /* To hide the collapsed project items */
+  .nav.navbar-nav, .nav.navbar-nav > * {
+    height: 0;
   }
 }
 
@@ -12791,13 +12796,14 @@ section.resume-section .resume-section-content {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
+
 }
 
 /* Custom made by me */
 
 
 #hidden-nav {
-  /* visibility: hidden; */
+  visibility: hidden;
   height: 0;
   transition: 1s;
 }
@@ -12838,14 +12844,8 @@ span.text-primary {
 h1.mb-0 {
   opacity:0;
 }
-/* 
-#email-and-address-container{
-  transition: 1s;
-  visibility: collapsed;
-} */
 
-
-
+/* For About page hovering effects and animations */
 .subheading.mb-5 {
   
   visibility: hidden;
@@ -12864,6 +12864,13 @@ section.name-phone-email:hover > h1 ~ #email-and-address-container {
 section.name-phone-email:hover >h1 ~ #email-and-address-container>.subheading.mb-5{
   visibility: visible;
   transform: scale(1,1);
-  /* height:10px; */
-  transition: 0.5s;
+  transition: 1s;
 }
+
+.name-phone-email~p, .name-phone-email~.social-icons {
+  opacity: 0;
+  transition: 2s; 
+  transform: translateY(20em) 
+}
+
+
