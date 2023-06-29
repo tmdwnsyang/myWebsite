@@ -72,7 +72,7 @@ function initializeNav() {
     
   })
 
-  /* Removals */
+  /* Dropdown effect when mouse is hovered away  */
   projectDropdown.addEventListener('mouseout', () => {
     $('#hidden-nav').css({height: '0', transition: '1s'})
     $('.project-child > a').css(projectChildHidden)
