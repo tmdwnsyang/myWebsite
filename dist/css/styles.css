@@ -4347,7 +4347,7 @@ textarea.form-control-lg {
   --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   --bs-accordion-btn-icon-width: 1.25rem;
   --bs-accordion-btn-icon-transform: rotate(-180deg);
-  --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
+  --bs-accordion-btn-icon-transition: transform 0.1s ease-in-out;
   --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23aa5432'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   --bs-accordion-btn-focus-border-color: #deae9c;
   --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(189, 93, 56, 0.25);
@@ -6628,7 +6628,7 @@ textarea.form-control-lg {
 }
 
 .placeholder-glow .placeholder {
-  animation: placeholder-glow 2s ease-in-out infinite;
+  animation: placeholder-glow 1s ease-in-out infinite;
 }
 
 @keyframes placeholder-glow {
@@ -6641,7 +6641,7 @@ textarea.form-control-lg {
           mask-image: linear-gradient(130deg, #000 55%, rgba(0, 0, 0, 0.8) 75%, #000 95%);
   -webkit-mask-size: 200% 100%;
           mask-size: 200% 100%;
-  animation: placeholder-wave 2s linear infinite;
+  animation: placeholder-wave 1s linear infinite;
 }
 
 @keyframes placeholder-wave {
@@ -10892,10 +10892,11 @@ p.lead {
     flex-direction: column;
     width: 17rem;
     height: 100vh;
+    justify-content: center;
   }
   #sideNav .navbar-brand {
     display: flex;
-    margin: auto auto 0;
+    /* margin: auto auto 0; */
     padding: 0.5rem;
   }
   #sideNav .navbar-brand .img-profile {
@@ -10908,7 +10909,7 @@ p.lead {
     align-items: flex-start;
     flex-grow: 0;
     width: 100%;
-    margin-bottom: auto;
+    /* margin-bottom: auto; */
   }
   #sideNav .navbar-collapse .navbar-nav {
     flex-direction: column;
@@ -10969,4 +10970,37 @@ section.resume-section .resume-section-content {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
+}
+
+/* Custom made by me */
+
+
+#hidden-nav {
+  height: 0;
+  transition: 1s;
+  /* transform: scale(0) */
+}
+#project-dropdown:hover ~ #hidden-nav{
+  height: 8em;
+  transition: 1s;
+  /* transform: (1); */
+}
+#hidden-nav:hover{
+  height: 8em;
+  transition: 1s;
+  /* transform: (1); */
+}
+
+#hidden-nav .project-child > a{
+  visibility: hidden;
+  transition: 0.7s;
+  transform: scaleY(0) 
+}
+#hidden-nav:hover .project-child > a, 
+#project-dropdown:hover ~ nav .project-child > a,
+section#projects:hover .project-child > a
+{
+  visibility: visible;
+  transition: 0.7s;
+  transform: scaleY(1)
 }
