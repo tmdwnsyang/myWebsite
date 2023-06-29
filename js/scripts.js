@@ -29,54 +29,46 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
+
+
 });
 
-// Create a MutationObserver instance and pass a callback function
-let working = false;
+window.addEventListener('load', function() {
 
-const observer = new MutationObserver(function (mutations) {
-  // Loop through the mutations list and check for attribute changes
-  mutations.forEach(function (mutation) {
-    // If the class attribute has changed, do something
-    if (mutation.attributeName === "class") {
-      // You can access the element and the new class value like this
-      var element = mutation.target;
-      var newClass = $(element).attr("class");
-      // do something with element and newClass
-      setTimeout(function() {
-          if (element.classList.contains('active')) {
-            if (!working) {
-                working = true;
-              $("nav .project-child").attr("hidden", false);
-              setTimeout(() => {
-                  $("nav .project-child").css({visibility:'visible', opacity:'1', transitionDelay:'0s'})
-                  working = false;
-              }, 100)
-            }
-        } else {
-            if (!working) {
-                working = true
-                $("nav .project-child").css({visibility:'hidden', opacity:'0', 
-                transition:'visibility 0.3s 0.3s, opacity 0.3s linear', transitionDelay:'1s'
-              })
-                setTimeout(() => { $("nav .project-child").attr("hidden", true); 
-                working = false;
-            }, 1500)
+  let allProjectsSection = document.querySelector('#all-projects');
+  let projectDropdown = document.querySelector('#project-dropdown');
+  let hiddenNav = document.querySelector('#hidden-nav');
 
-            }
-        }
-      }, 100);
+  /* adds */
+  projectDropdown.addEventListener('mouseover', () => {
+    console.log('hovered!')
+    $('#hidden-nav').css({height: '8em', transition: '1s'})
+    $('.project-child > a').css({visibility: 'visible', transition: '0.7s', transform: 'scaleY(1)'})
+  })
 
-    }
-  });
-});
+   hiddenNav.addEventListener('mouseover', () => {
+    console.log('hovered!')
+    $('#hidden-nav').css({height: '8em', transition: '1s'})
+    $('.project-child > a').css({visibility: 'visible', transition: '0.7s', transform: 'scaleY(1)'})
+  })
 
-// Select the element to observe and specify the options
-const target = $("#project-dropdown")[0];
-const options = {
-  attributes: true, // observe attribute changes
-  attributeFilter: ["class"], // only observe class changes
-};
 
-// Start observing the element
-observer.observe(target, options);
+  allProjectsSection.addEventListener('mouseover', () => {
+    console.log('hovered!')
+    $('#hidden-nav').css({height: '8em', transition: '1s'})
+    $('.project-child > a').css({visibility: 'visible', transition: '0.7s', transform: 'scaleY(1)'})
+    
+  })
+
+
+  /* Removals */
+  projectDropdown.addEventListener('mouseout', () => {
+    $('#hidden-nav').css({height: '0', transition: '1s'})
+    $('.project-child > a').css({visibility: 'hidden', transition: '0.7s', transform: 'scaleY(0)'})
+  })
+  allProjectsSection.addEventListener('mouseout', () => {
+    $('#hidden-nav').css({height: '0', transition: '1s'})
+    $('.project-child > a').css({visibility: 'hidden', transition: '0.7s', transform: 'scaleY(0)'})
+  })
+
+})
