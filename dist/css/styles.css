@@ -12793,36 +12793,39 @@ section.resume-section .resume-section-content {
 
 
 #hidden-nav {
+  /* visibility: hidden; */
   height: 0;
   transition: 1s;
-  /* transform: scale(0) */
 }
 
-#project-dropdown:hover~#hidden-nav {
-  height: 8em;
-  transition: 1s;
-  /* transform: (1); */
-}
-
-#hidden-nav:hover {
-  height: 8em;
-  transition: 1s;
-  /* transform: (1); */
-}
-
-#hidden-nav .project-child>a {
+#hidden-nav .project-child>a
+{
   visibility: hidden;
   transition: 0.7s;
   transform: scaleY(0)
 }
 
+
+/* 
+#project-dropdown:hover~#hidden-nav {
+  height: 8em;
+  transition: 1s;
+}
+
+#hidden-nav:hover {
+  height: 8em;
+  transition: 1s;
+}
+
+
 #hidden-nav:hover .project-child>a,
 #project-dropdown:hover~nav .project-child>a,
-section#projects:hover .project-child>a {
+section#projects:hover .project-child>a,
+.project-child>a:hover{
   visibility: visible;
   transition: 0.7s;
   transform: scaleY(1)
-}
+} */
 
 span.text-primary {
   opacity:0;

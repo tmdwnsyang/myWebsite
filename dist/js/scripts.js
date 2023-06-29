@@ -30,14 +30,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
   });
 
-
-});
-
-window.addEventListener('load', function() {
   initializeNav();
   initializeHiddenFonts();
   backgroundChange();
-})
+});
+
 
 function initializeHiddenFonts() {
   // $('span.text-primary').css({opacity: 0})
@@ -49,6 +46,7 @@ function initializeNav() {
   let allProjectsSection = document.querySelector('#all-projects');
   let projectDropdown = document.querySelector('#project-dropdown');
   let hiddenNav = document.querySelector('#hidden-nav');
+  // let allResumes = document.querySelector('#all-resumes');
 
   /* adds */
   projectDropdown.addEventListener('mouseover', () => {
@@ -80,6 +78,11 @@ function initializeNav() {
     $('.project-child > a').css(projectChildHidden)
   })
   allProjectsSection.addEventListener('mouseout', () => {
+    $('#hidden-nav').css({height: '0', transition: '1s'})
+    $('.project-child > a').css(projectChildHidden)
+  })
+
+  hiddenNav.addEventListener('mouseout', () => {
     $('#hidden-nav').css({height: '0', transition: '1s'})
     $('.project-child > a').css(projectChildHidden)
   })
