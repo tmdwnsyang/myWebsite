@@ -78,6 +78,7 @@
   --bs-link-hover-color: #974a2d;
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
+  --padding-sm: 2em;
 }
 
 *,
@@ -199,6 +200,7 @@ h6,
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+  transition: 1s;
 }
 
 abbr[title] {
@@ -282,6 +284,7 @@ sup {
 a {
   color: var(--bs-link-color);
   text-decoration: underline;
+  transition: 0.5s;
 }
 
 a:hover {
@@ -4372,7 +4375,7 @@ fieldset:disabled .btn {
   color: var(--bs-navbar-color);
   background-color: transparent;
   border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
-  border-radius: var(--bs-navbar-toggler-border-radius);
+  /* border-radius: var(--bs-navbar-toggler-border-radius); */
   transition: var(--bs-navbar-toggler-transition);
 }
 
@@ -12681,7 +12684,7 @@ p.lead {
 @media (min-width: 992px) {
   #sideNav {
     padding-left: 0;
-    padding-right: 0;
+    padding-right: var(--padding-sm);
     text-align: center;
     position: fixed;
     top: 0;
@@ -12703,6 +12706,8 @@ p.lead {
     max-width: 10rem;
     max-height: 10rem;
     border: 0.5rem solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    margin: 0;
   }
 
   #sideNav .navbar-collapse {
@@ -12719,7 +12724,10 @@ p.lead {
   }
 
   #sideNav .navbar-collapse .navbar-nav .nav-item {
-    display: block;
+    /* display: block; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
@@ -12814,4 +12822,12 @@ section#projects:hover .project-child>a {
   visibility: visible;
   transition: 0.7s;
   transform: scaleY(1)
+}
+
+span.text-primary {
+  opacity:0;
+}
+
+h1.mb-0 {
+  opacity:0;
 }
