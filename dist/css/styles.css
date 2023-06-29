@@ -12803,7 +12803,6 @@ section.resume-section .resume-section-content {
 
 
 #hidden-nav {
-  visibility: hidden;
   height: 0;
   transition: 1s;
 }
@@ -12873,4 +12872,30 @@ section.name-phone-email:hover >h1 ~ #email-and-address-container>.subheading.mb
   transform: translateY(20em) 
 }
 
+/* Projects page */
+
+@keyframes shimmy{
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, 1em);
+  }
+}
+
+.fa-arrow-down {
+  height: 2em;
+  display: flex;
+  animation: shimmy 2s infinite;
+  animation-timing-function: cubic-bezier(0.49, 0.02, 0.41, 0.99);
+  animation-direction: alternate;
+}
+
+section.scroll-down-disclaimer{
+  margin: 2em 0 2em 0;
+  opacity: 0;
+  transition: 2s;
+  /* color: white; */
+
+}
 

@@ -115,7 +115,16 @@ function backgroundChange() {
           // each.style.setProperty('color', 'white')
           each.style.setProperty('color', '#343a40')
         }
+
+
       }
+
+      /* Hide back the arrow animation */
+      $('section.scroll-down-disclaimer').css({
+        filter: 'drop-shadow(1px 0px 2px rgb(171, 171, 171))',
+        opacity: 0,
+  
+      })
     }
     if (text === 'About') {
       setTimeout(() => {
@@ -154,7 +163,7 @@ function backgroundChange() {
         bsCollapse.hide();
 
       }
-
+      /* Everything that happens once user is in the projects page. */
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_DARK_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '0')
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
@@ -162,16 +171,17 @@ function backgroundChange() {
       for (each of headings) {
         if (each.parentElement === $('#projects > div.resume-section-content')[0]){
           setTimeout(() => {
-            $('#projects > div.resume-section-content>h2')[0].style.setProperty('opacity', '1')
-            $('#projects > div.resume-section-content>h2')[0].style.setProperty('color', 'white')
+            $('#projects > div.resume-section-content>h2').css(whiteAndOpacity)
             setTimeout(() => {
-              $('#projects > div.resume-section-content>h3')[0].style.setProperty('opacity', '1')
-              $('#projects > div.resume-section-content>h3')[0].style.setProperty('color', 'white')
+              $('#projects > div.resume-section-content>h3').css(whiteAndOpacity)
               setTimeout(() => {
-                $('#projects > div.resume-section-content>p')[0].style.setProperty('opacity', '1')
-                $('#projects > div.resume-section-content>p')[0].style.setProperty('color', 'white')
-              }, 750)
-            }, 750)
+                $('#projects > div.resume-section-content>p').css(whiteAndOpacity)
+                  /* For the arrows */
+                setTimeout(() => {
+                  $('section.scroll-down-disclaimer').css(arrowDisplayEffect)
+                }, 1200);
+              }, 1000)
+            }, 1000)
           }, 750)
         }
         else{
@@ -196,14 +206,25 @@ const PRIMARY_WHITE_H = '#ffffff'
 const PRIMARY_DARK_BLUE_H ='#18759a'
 
 /* styles */
-let projectChildVisible = {
+const projectChildVisible = {
   visibility: 'visible', transition: '0.7s', transform: 'scaleY(1)'
 }
-let projectChildHidden = {
+const projectChildHidden = {
   visibility: 'hidden', transition: '0.7s', transform: 'scaleY(0)'
 }
+const whiteAndOpacity = {
+  opacity: '1',
+  color: 'white'
+}
+const arrowDisplayEffect = {
+  filter: 'drop-shadow(1px 0px 2px rgb(171, 171, 171))',
+  opacity: 1,
+  color: 'white',
+  transition: '2s'
 
-let bgNoOpacity = {
+}
+
+const bgNoOpacity = {
   '--bs-bg-opacity': 0,
   'transition': '1s',
   'background-color': 'rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important'
