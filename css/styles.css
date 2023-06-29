@@ -12669,6 +12669,8 @@ p.lead {
 #sideNav {
   padding-left: 1rem;
   padding-right: 1rem;
+  transition: 0.5s;
+  filter: drop-shadow(1px 0px 4px rgb(171, 171, 171));
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {
@@ -12694,6 +12696,7 @@ p.lead {
     width: 17rem;
     height: 100vh;
     justify-content: center;
+    filter: drop-shadow(1px 0px 4px rgb(171, 171, 171));
   }
 
   #sideNav .navbar-brand {
@@ -12743,7 +12746,7 @@ p.lead {
   width: 3.5rem;
   background-color: #495057;
   color: #fff;
-  border-radius: 100%;
+  border-radius: 0;
   font-size: 1.5rem;
   margin-right: 1.5rem;
 }
@@ -12754,6 +12757,7 @@ p.lead {
 
 .social-icons .social-icon:hover {
   background-color: #bd5d38;
+  background-color: rgba(var(--bs-primary-rgb));
 }
 
 .dev-icons {
@@ -12833,4 +12837,33 @@ span.text-primary {
 
 h1.mb-0 {
   opacity:0;
+}
+/* 
+#email-and-address-container{
+  transition: 1s;
+  visibility: collapsed;
+} */
+
+
+
+.subheading.mb-5 {
+  
+  visibility: hidden;
+  transform: scale(0, 0)
+}
+#email-and-address-container {
+  height: 2em;
+  transition: 1s
+}
+
+section.name-phone-email:hover > h1 ~ #email-and-address-container {
+  height: 4em;
+  transition: 1s
+} 
+
+section.name-phone-email:hover >h1 ~ #email-and-address-container>.subheading.mb-5{
+  visibility: visible;
+  transform: scale(1,1);
+  /* height:10px; */
+  transition: 0.5s;
 }
