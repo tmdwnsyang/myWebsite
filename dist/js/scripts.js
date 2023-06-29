@@ -35,9 +35,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 window.addEventListener('load', function() {
   initializeNav();
+  initializeHiddenFonts();
   backgroundChange();
 })
 
+function initializeHiddenFonts() {
+  // $('span.text-primary').css({opacity: 0})
+
+}
 
 
 function initializeNav() {
@@ -48,18 +53,22 @@ function initializeNav() {
   /* adds */
   projectDropdown.addEventListener('mouseover', () => {
     // console.log('hovered!')
+    // e.stopPropagation();
     $('#hidden-nav').css({height: '8em', transition: '1s'})
     $('.project-child > a').css(projectChildVisible)
   })
 
    hiddenNav.addEventListener('mouseover', () => {
     // console.log('hovered!')
+    
     $('#hidden-nav').css({height: '8em', transition: '1s'})
     $('.project-child > a').css(projectChildVisible)
   })
 
 
-  allProjectsSection.addEventListener('mouseover', () => {
+  allProjectsSection.addEventListener('mouseover', (e) => {
+    // console.log('mouseHover!');
+
     $('#hidden-nav').css({height: '8em', transition: '1s'})
     $('.project-child > a').css(projectChildVisible)
     
@@ -76,22 +85,31 @@ function initializeNav() {
   })
 }
 
+let bsCollapse = new bootstrap.Collapse( $('div.navbar-collapse')[0])
 
 function backgroundChange() {
   $(window).on('activate.bs.scrollspy', function( e) {
     let text = e.relatedTarget.textContent;
     let element = e.relatedTarget;
-    if (element.parentElement != $('li .project-child')[0] && 
-    text != 'Projects') {
+    /* If the project page is naviaged out */
+    if (element.parentElement !== $('li .project-child')[0] && 
+    text !== 'Projects') {
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_WHITE_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '1')
       console.log('not projects')
+      
+      if ($('#navbarResponsive').css('display') === 'flex') {
+
+        bsCollapse.show();
+      }
+
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
 
       for (each of headings) {
         if (each.parentElement === $('#projects > div.resume-section-content')[0]){
-        $('#projects > div.resume-section-content>h2')[0].style.setProperty('opacity', '0')
+          $('#projects > div.resume-section-content>h2')[0].style.setProperty('opacity', '0')
           $('#projects > div.resume-section-content>h3')[0].style.setProperty('opacity', '0')
+          $('#projects > div.resume-section-content>p')[0].style.setProperty('opacity', '0')
         }
         else{
           // each.style.setProperty('color', 'white')
@@ -100,7 +118,16 @@ function backgroundChange() {
       }
     }
     if (text === 'About') {
+      setTimeout(() => {
+        $('h1.mb-0').css({opacity: 1})
+
+        setTimeout( ()=> {
+          $('span.text-primary').css({opacity: 1})
+
+        }, 1000)
+      }, 1000)
       document.querySelector(':root').style.setProperty('--bs-primary-rgb',  PRIMARY_BLUE)
+      document.querySelector(':root').style.setProperty('--bs-link-hover-color',  PRIMARY_DARK_BLUE_H)
     }
     else if (text === 'Experience') {
         document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_PURPLE)
@@ -108,15 +135,21 @@ function backgroundChange() {
     else if (text === 'Education') {
       document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_ORANGE)
     }
+    else if (text === 'Skills') {
+      document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_RED)
+    }
     else if (text === 'Interests') {
+      
+     
       document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_GREEN)
     }
     /* Note the background uses HEX */
     else if (element.parentElement === $('li .project-child')[0] || 
-            text == 'Projects') {
-      // console.log('here')
-      // document.querySelector(':root').style.setProperty('--bs-bg-opacity', '0')
-      // document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_DARK_BROWN)
+            text === 'Projects') {
+      /* Hide only for mobiles  */
+      if ($('#navbarResponsive').css('display') !== 'flex'){
+        bsCollapse.hide();
+      }
 
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_DARK_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '0')
@@ -126,13 +159,16 @@ function backgroundChange() {
         if (each.parentElement === $('#projects > div.resume-section-content')[0]){
           setTimeout(() => {
             $('#projects > div.resume-section-content>h2')[0].style.setProperty('opacity', '1')
-        
             $('#projects > div.resume-section-content>h2')[0].style.setProperty('color', 'white')
-          }, 1500)
-          setTimeout(() => {
-            $('#projects > div.resume-section-content>h3')[0].style.setProperty('opacity', '1')
-            $('#projects > div.resume-section-content>h3')[0].style.setProperty('color', 'white')
-          }, 3000)
+            setTimeout(() => {
+              $('#projects > div.resume-section-content>h3')[0].style.setProperty('opacity', '1')
+              $('#projects > div.resume-section-content>h3')[0].style.setProperty('color', 'white')
+              setTimeout(() => {
+                $('#projects > div.resume-section-content>p')[0].style.setProperty('opacity', '1')
+                $('#projects > div.resume-section-content>p')[0].style.setProperty('color', 'white')
+              }, 750)
+            }, 750)
+          }, 750)
         }
         else{
           each.style.setProperty('color', 'white')
@@ -153,7 +189,7 @@ const PRIMARY_DARK = '24, 26, 27'
 const PRIMARY_DARK_BROWN = '46, 41, 40'
 const PRIMARY_DARK_H = '#181a1b'
 const PRIMARY_WHITE_H = '#ffffff'
-
+const PRIMARY_DARK_BLUE_H ='#18759a'
 
 /* styles */
 let projectChildVisible = {
