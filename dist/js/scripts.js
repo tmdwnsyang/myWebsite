@@ -94,15 +94,12 @@ function backgroundChange() {
     /* If the project page is naviaged out */
     if (element.parentElement !== $('li .project-child')[0] && 
     text !== 'Projects') {
+      $('button.navbar-toggler').css('visibility', 'visible')
+
+
+      /* Reset the bg to white and the nav opacity back to 1 */
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_WHITE_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '1')
-      console.log('not projects')
-      
-      if ($('#navbarResponsive').css('display') === 'flex') {
-
-        bsCollapse.show();
-      }
-
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
 
       for (each of headings) {
@@ -148,7 +145,9 @@ function backgroundChange() {
             text === 'Projects') {
       /* Hide only for mobiles  */
       if ($('#navbarResponsive').css('display') !== 'flex'){
+        $('button.navbar-toggler').css('visibility', 'collapse')
         bsCollapse.hide();
+
       }
 
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_DARK_H)
