@@ -12900,25 +12900,24 @@ section.scroll-down-disclaimer{
 
 }
 
-.name-phone-email> .name-phone-email> h1{
-  padding-left: 2em;
+.name-phone-email> h1>span{
+  padding-left: 0.5em;
 }
-h1 span.text-primary::after{
+.name-phone-email h1::before{
   content: '';
   width: 0.4em;
-  height: 0.12em;
+  height: 0.11em;
   position: relative;
   left: 3.58em;
-  bottom: 0.15em;
+  top: 0.84em;
   background-color: rgb(52, 58, 64);
   animation: blink 530ms infinite;
-  animation-direction: alternate
+  animation-direction: alternate;
+  display:flex;
 }
 
 @keyframes blink {
   0% {
-    /* transition: 0.005s; */
-    /* transition-duration: 6ms; */
     opacity: 1;
   }
   40% {
@@ -12928,7 +12927,6 @@ h1 span.text-primary::after{
     opacity: 0;
   }
   100% {
-    /* transition-duration: 60ms; */
     opacity: 0;
 
   }
