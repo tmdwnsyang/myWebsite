@@ -22,6 +22,7 @@
 <body id="page-top" data-spy="scroll">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <div id="sideNav-divider"></div>
         <a class="navbar-brand js-scroll-trigger" href="#page-top">
             <!-- <span class="d-block d-lg-none">SeungJoon Yang</span> -->
             <!-- <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2"
@@ -59,8 +60,12 @@
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <section class="name-phone-email">
-                        <h1 class="mb-0">SeungJoon<span class="text-primary">Yang</span>
-                        </h1>
+                        <div class="name-only">
+                            <h1 class="mb-0">SeungJoon
+                                <div id="blinking-cursor"></div>
+                            </h1>
+                            <h1 class="mb-0 text-primary">Yang</h1>
+                        </div>
                         <div id="email-and-address-container">
                             <div class="subheading mb-5">
                                 San Jose, CA· (626) 660-5126 ·
@@ -116,8 +121,8 @@
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Santa Clara University</h3>
                             <div class="subheading mb-3">Bachelor of Science in Computer Engineering</div>
-                            <div>Computer Science - Software Development Track</div>
-                            <div>Upsilon Pi Epsilon &amp; Magna Cum Laude</div>
+                            <p>Computer Science - Software Development Track</p>
+                            <p>Upsilon Pi Epsilon &amp; Magna Cum Laude</p>
                             <p>GPA: 3.75</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">September 2021 - June 2023</span></div>
@@ -390,12 +395,7 @@
                     <p>YouTubeIList is a Python script that keeps an eye
                         on your playlists and notifies you when videos become unavailable. It also helps you share and
                         sync
-                        your playlists with others on Google Sheets.</p><img src="./assets/img/live_demo.gif" style="
-                            align-self: center;
-                            width: 80%;
-                            padding: 3%;
-                            max-width: 800px;
-                        ">
+                        your playlists with others on Google Sheets.</p><img id='youtubeilist-demo-gif' src="./assets/img/live_demo.gif" >
                     <p>You can check out the project
                         <a href="https://github.com/tmdwnsyang/YouTubeIList">here</a>.
                     </p>
