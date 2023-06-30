@@ -29,18 +29,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
-
+  
   initializeNav();
-  initializeHiddenFonts();
   backgroundChange();
 });
-
-
-function initializeHiddenFonts() {
-  // $('span.text-primary').css({opacity: 0})
-
-}
-
 
 function initializeNav() {
   let allProjectsSection = document.querySelector('#all-projects');
@@ -87,8 +79,6 @@ function initializeNav() {
     $('.project-child > a').css(projectChildHidden)
   })
 }
-
-let bsCollapse = new bootstrap.Collapse( $('div.navbar-collapse')[0])
 
 function backgroundChange() {
   $(window).on('activate.bs.scrollspy', function( e) {
@@ -159,7 +149,7 @@ function backgroundChange() {
       /* Hide only for mobiles  */
       if ($('#navbarResponsive').css('display') !== 'flex'){
         $('button.navbar-toggler').css('visibility', 'collapse')
-        bsCollapse.hide();
+        $('#navbarResponsive').collapse('hide');
 
       }
       $('#projects.resume-section-content').css({opacity: 1})
