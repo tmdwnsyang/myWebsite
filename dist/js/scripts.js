@@ -83,12 +83,12 @@ function initializeNav() {
 function backgroundChange() {
   $(window).on('activate.bs.scrollspy', function( e) {
 
-    let text = e.relatedTarget.textContent;
+    let text = e.relatedTarget.getAttribute('href').toLowerCase().slice(1);
     console.log(text);
     let element = e.relatedTarget;
     /* If the project page is naviaged out */
     if (element.parentElement !== $('li .project-child')[0] && 
-    text !== 'Projects') {
+    text !== 'projects') {
       $('button.navbar-toggler').css('visibility', 'visible')
 
 
@@ -98,16 +98,29 @@ function backgroundChange() {
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
 
       for (head of headings) {
-        head.style.setProperty('color', '#343a40')
+        head.style.setProperty('color', PRIMARY_DARK_BLUE_H_H1)
         head.style.setProperty('transition', '1s')
         head.style.setProperty('transition-delay', 'none')
       }
-      
-      $('#projects > div.resume-section-content>h2').css(noOpacity)
-      $('#projects > div.resume-section-content>h3').css(noOpacity)
-      $('#projects > div.resume-section-content>p').css(noOpacity)
-        // head.style.setProperty('color', 'white')
+      /* Resetting all text opacities under Projects section*/
+      $('#projects > div.resume-section-content>h2').css(noOpacityAndTrans)
+      $('#projects > div.resume-section-content>h3').css(noOpacityAndTrans)
+      $('#projects > div.resume-section-content>p').css(noOpacityAndTrans)
 
+      $(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+      $(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
+      $(`#${PROJECT_1_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
+      $(`#${PROJECT_1_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+
+      $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+      $(`#${PROJECT_3_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
+      $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
+      $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
       /* Hide back the arrow animation */
       
       console.log('reset arrow.') 
@@ -115,7 +128,7 @@ function backgroundChange() {
       $('section.scroll-down-disclaimer').css(arrowHideEffect)
       
     }
-    if (text === 'About') {
+    if (text === 'about') {
       setTimeout(() => {
         $('h1.mb-0').css({opacity: 1})
 
@@ -129,50 +142,101 @@ function backgroundChange() {
       document.querySelector(':root').style.setProperty('--bs-primary-rgb',  PRIMARY_BLUE)
       document.querySelector(':root').style.setProperty('--bs-link-hover-color',  PRIMARY_DARK_BLUE_H)
     }
-    else if (text === 'Experience') {
+    else if (text === 'experience') {
         document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_PURPLE)
     }
-    else if (text === 'Education') {
+    else if (text === 'education') {
       document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_ORANGE)
     }
-    else if (text === 'Skills') {
+    else if (text === 'skills') {
       document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_RED)
     }
-    else if (text === 'Interests') {
+    else if (text === 'interests') {
       
      
       document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_GREEN)
     }
     /* Note the background uses HEX */
-    else if (element.parentElement === $('li .project-child')[0] || 
-            text === 'Projects') {
+    else if (element.parentElement === $('li .project-child')[0] || text === 'projects') {
       /* Hide only for mobiles  */
       if ($('#navbarResponsive').css('display') !== 'flex'){
         $('button.navbar-toggler').css('visibility', 'collapse')
         $('#navbarResponsive').collapse('hide');
 
       }
-      $('#projects.resume-section-content').css({opacity: 1})
-
-      /* Everything that happens once user is in the projects page. */
+      /* Everything that should apply to ALL project subsections once user is in the projects page. */
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_DARK_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '0')
-      let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
-      
-      for (head of headings) {
-          head.style.setProperty('color', 'white')
+      /* Now per page behavior */
+      if (text === 'projects'){
+        projectsIntroAnimate();
       }
-      $('#projects > div.resume-section-content>h2').css(whiteAndOpacityInstantD1)
-      $('#projects > div.resume-section-content>h3').css(whiteAndOpacityInstantD2)
-      $('#projects > div.resume-section-content>p').css(whiteAndOpacityInstantD3)
-      /* The arrow container and the arrow itself */
-      $('section.scroll-down-disclaimer').css(arrowDisplayEffect)
-      $('section.scroll-down-disclaimer>*').css(arrowDisplayEffect)
-     
+      else if (text === PROJECT_1_NAME){
+        project1Animate();
+      }
+      else if (text === PROJECT_2_NAME){
+        project2Animate();
+      }
+      else if (text === PROJECT_3_NAME){
+        project3Animate();
+      }
     }
+    
 
   })
 }
+
+function projectsIntroAnimate(){
+  
+  $('#projects.resume-section-content').css({opacity: 1})
+  $('#projects > div.resume-section-content>h2').css(whiteAndOpacityD1)
+  $('#projects > div.resume-section-content>h3').css(whiteAndOpacityD2)
+  $('#projects > div.resume-section-content>p').css(whiteAndOpacityD3)
+  /* The arrow container and the arrow itself */
+  $('section.scroll-down-disclaimer').css(arrowDisplayEffect)
+  $('section.scroll-down-disclaimer>*').css(arrowDisplayEffect)
+ 
+}
+
+function project1Animate(){
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).css(whiteAndOpacityD1_5)
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>p:first-of-type`).css(whiteAndOpacityD2)
+
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>p:first-of-type+p`).css(whiteAndOpacityD3)
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
+
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+}
+
+function project2Animate(){
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>h3`).css(whiteAndOpacityD1_5)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>p:first-of-type`).css(whiteAndOpacityD2)
+
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>p:first-of-type+p`).css(whiteAndOpacityD3)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
+
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+}
+
+function project3Animate(){
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>h3`).css(whiteAndOpacityD1_5)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>p:first-of-type`).css(whiteAndOpacityD2)
+
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>p:first-of-type+p`).css(whiteAndOpacityD3)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
+
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+}
+
+
+/* Note all names will be processed in lower case */
+const PROJECT_1_NAME = 'youtubeilist'
+const PROJECT_2_NAME = 'project2'
+const PROJECT_3_NAME = 'project3'
+
 
 const PRIMARY_BLUE = '67, 142, 200'
 const PRIMARY_ORANGE = '255, 174, 36'
@@ -184,6 +248,7 @@ const PRIMARY_DARK_BROWN = '46, 41, 40'
 const PRIMARY_DARK_H = '#181a1b'
 const PRIMARY_WHITE_H = '#ffffff'
 const PRIMARY_DARK_BLUE_H ='#18759a'
+const PRIMARY_DARK_BLUE_H_H1 = '#343a40'
 
 /* styles */
 const projectChildVisible = {
@@ -196,26 +261,47 @@ const whiteAndOpacityInstant = {
   opacity: '1',
   color: 'white'
 }
-const whiteAndOpacityInstantD1 = {
+const whiteAndOpacityD1 = {
   opacity: '1',
   color: 'white',
   transitionDelay: '1000ms'
 }
-const whiteAndOpacityInstantD2 = {
+const whiteAndOpacityD1_5 = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '1500ms'
+}
+const whiteAndOpacityD2 = {
   opacity: '1',
   color: 'white',
   transitionDelay: '2000ms'
 }
-const whiteAndOpacityInstantD3 = {
+const whiteAndOpacityD2_5 = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '2500ms'
+}
+const whiteAndOpacityD3 = {
   opacity: '1',
   color: 'white',
   transitionDelay: '3000ms'
 }
-const noOpacity = {
+const whiteAndOpacityD3_5 = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '3500ms'
+}
+const whiteAndOpacityD4 = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '4000ms'
+}
+const noOpacityAndTrans = {
   opacity: '0',
   transition: '1s',
   transitionDelay: 0,
 }
+
 
 const arrowDisplayEffect = {
   filter: 'drop-shadow(1px 0px 2px rgb(171, 171, 171))',
@@ -246,3 +332,11 @@ let bgOpacity = {
   'background-color': 'rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important'
 }
 
+
+function setStyleRecursively(element, attribute, value){
+  $(element).css(attribute, value);
+  $(element).children().each( function() {
+    setStyleRecursively(this, attribute, value);
+  }
+  )
+}
