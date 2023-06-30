@@ -12900,3 +12900,36 @@ section.scroll-down-disclaimer{
 
 }
 
+.name-phone-email> .name-phone-email> h1{
+  padding-left: 2em;
+}
+h1 span.text-primary::after{
+  content: '';
+  width: 0.4em;
+  height: 0.12em;
+  position: relative;
+  left: 3.58em;
+  bottom: 0.15em;
+  background-color: rgb(52, 58, 64);
+  animation: blink 530ms infinite;
+  animation-direction: alternate
+}
+
+@keyframes blink {
+  0% {
+    /* transition: 0.005s; */
+    /* transition-duration: 6ms; */
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    /* transition-duration: 60ms; */
+    opacity: 0;
+
+  }
+}
