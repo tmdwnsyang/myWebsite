@@ -92,7 +92,9 @@ let bsCollapse = new bootstrap.Collapse( $('div.navbar-collapse')[0])
 
 function backgroundChange() {
   $(window).on('activate.bs.scrollspy', function( e) {
+
     let text = e.relatedTarget.textContent;
+    console.log(text);
     let element = e.relatedTarget;
     /* If the project page is naviaged out */
     if (element.parentElement !== $('li .project-child')[0] && 
@@ -105,26 +107,23 @@ function backgroundChange() {
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '1')
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
 
-      for (each of headings) {
-        if (each.parentElement === $('#projects > div.resume-section-content')[0]){
-          $('#projects > div.resume-section-content>h2')[0].style.setProperty('opacity', '0')
-          $('#projects > div.resume-section-content>h3')[0].style.setProperty('opacity', '0')
-          $('#projects > div.resume-section-content>p')[0].style.setProperty('opacity', '0')
-        }
-        else{
-          // each.style.setProperty('color', 'white')
-          each.style.setProperty('color', '#343a40')
-        }
-
-
+      for (head of headings) {
+        head.style.setProperty('color', '#343a40')
+        head.style.setProperty('transition', '1s')
+        head.style.setProperty('transition-delay', 'none')
       }
+      
+      $('#projects > div.resume-section-content>h2').css(noOpacity)
+      $('#projects > div.resume-section-content>h3').css(noOpacity)
+      $('#projects > div.resume-section-content>p').css(noOpacity)
+        // head.style.setProperty('color', 'white')
 
       /* Hide back the arrow animation */
-      $('section.scroll-down-disclaimer').css({
-        filter: 'drop-shadow(1px 0px 2px rgb(171, 171, 171))',
-        opacity: 0,
-  
-      })
+      
+      console.log('reset arrow.') 
+      $('#projects.resume-section-content').css({opacity: 0})
+      $('section.scroll-down-disclaimer').css(arrowHideEffect)
+      
     }
     if (text === 'About') {
       setTimeout(() => {
@@ -163,31 +162,22 @@ function backgroundChange() {
         bsCollapse.hide();
 
       }
+      $('#projects.resume-section-content').css({opacity: 1})
+
       /* Everything that happens once user is in the projects page. */
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_DARK_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '0')
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
       
-      for (each of headings) {
-        if (each.parentElement === $('#projects > div.resume-section-content')[0]){
-          setTimeout(() => {
-            $('#projects > div.resume-section-content>h2').css(whiteAndOpacity)
-            setTimeout(() => {
-              $('#projects > div.resume-section-content>h3').css(whiteAndOpacity)
-              setTimeout(() => {
-                $('#projects > div.resume-section-content>p').css(whiteAndOpacity)
-                  /* For the arrows */
-                setTimeout(() => {
-                  $('section.scroll-down-disclaimer').css(arrowDisplayEffect)
-                }, 1200);
-              }, 1000)
-            }, 1000)
-          }, 750)
-        }
-        else{
-          each.style.setProperty('color', 'white')
-        }
+      for (head of headings) {
+          head.style.setProperty('color', 'white')
       }
+      $('#projects > div.resume-section-content>h2').css(whiteAndOpacityInstantD1)
+      $('#projects > div.resume-section-content>h3').css(whiteAndOpacityInstantD2)
+      $('#projects > div.resume-section-content>p').css(whiteAndOpacityInstantD3)
+      /* The arrow container and the arrow itself */
+      $('section.scroll-down-disclaimer').css(arrowDisplayEffect)
+      $('section.scroll-down-disclaimer>*').css(arrowDisplayEffect)
      
     }
 
@@ -212,22 +202,52 @@ const projectChildVisible = {
 const projectChildHidden = {
   visibility: 'hidden', transition: '0.7s', transform: 'scaleY(0)'
 }
-const whiteAndOpacity = {
+const whiteAndOpacityInstant = {
   opacity: '1',
   color: 'white'
 }
+const whiteAndOpacityInstantD1 = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '1000ms'
+}
+const whiteAndOpacityInstantD2 = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '2000ms'
+}
+const whiteAndOpacityInstantD3 = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '3000ms'
+}
+const noOpacity = {
+  opacity: '0',
+  transition: '1s',
+  transitionDelay: 0,
+}
+
 const arrowDisplayEffect = {
   filter: 'drop-shadow(1px 0px 2px rgb(171, 171, 171))',
   opacity: 1,
   color: 'white',
-  transition: '2s'
+  transition: '2s',
+  transitionDelay: '4500ms'
 
 }
+const arrowHideEffect = {
+  filter: 'None',
+  opacity: 0,
+  color: 'white',
+  transition: '1s',
+}
+
 
 const bgNoOpacity = {
   '--bs-bg-opacity': 0,
   'transition': '1s',
-  'background-color': 'rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important'
+  'background-color': 'rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important',
+  'transition-delay' : 0,
 }
 
 let bgOpacity = {
@@ -235,3 +255,4 @@ let bgOpacity = {
   'transition': '1s',
   'background-color': 'rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important'
 }
+
