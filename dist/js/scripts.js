@@ -34,6 +34,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   backgroundChange();
 });
 
+// let projectDropTimer = false;
 function initializeNav() {
   let allProjectsSection = document.querySelector('#all-projects');
   let projectDropdown = document.querySelector('#project-dropdown');
@@ -42,15 +43,13 @@ function initializeNav() {
 
   /* adds */
   projectDropdown.addEventListener('mouseover', () => {
-    // console.log('hovered!')
-    // e.stopPropagation();
     $('#hidden-nav').css({height: '8em', transition: '1s'})
     $('.project-child > a').css(projectChildVisible)
+    // clearTimeout(projectDropTimer)
+    // projectDropTimer = setTimeout( () => {
+    // }, 200)
   })
-
    hiddenNav.addEventListener('mouseover', () => {
-    // console.log('hovered!')
-    
     $('#hidden-nav').css({height: '8em', transition: '1s'})
     $('.project-child > a').css(projectChildVisible)
   })
@@ -80,20 +79,17 @@ function initializeNav() {
   })
 }
 
+let postProj = false;
 function backgroundChange() {
   $(window).on('activate.bs.scrollspy', function( e) {
 
-    let text = e.relatedTarget.getAttribute('href').toLowerCase().slice(1);
-    console.log(text);
+    CURRENTLY_BROWSING = e.relatedTarget.getAttribute('href').toLowerCase().slice(1);
+    console.log(CURRENTLY_BROWSING);
     let element = e.relatedTarget;
-    /* If the project page is naviaged out */
-    if (element.parentElement !== $('li .project-child')[0] && 
-    text !== 'projects') {
+    /* If currently not viewing any of the project pages */
+    if (!postProj && !currentlyBrowsingProjects()) {
       $('button.navbar-toggler').css('visibility', 'visible')
 
-
-      /* Reset the bg to white and the nav opacity back to 1 */
-      document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_WHITE_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '1')
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
 
@@ -102,7 +98,7 @@ function backgroundChange() {
         head.style.setProperty('transition', '1s')
         head.style.setProperty('transition-delay', 'none')
       }
-      /* Resetting all text opacities under Projects section*/
+      /* Resetting all CURRENTLY_BROWSING opacities under Projects section*/
       $('#projects > div.resume-section-content>h2').css(noOpacityAndTrans)
       $('#projects > div.resume-section-content>h3').css(noOpacityAndTrans)
       $('#projects > div.resume-section-content>p').css(noOpacityAndTrans)
@@ -121,45 +117,68 @@ function backgroundChange() {
       $(`#${PROJECT_3_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
       $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
       $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+      // $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
       /* Hide back the arrow animation */
       
       console.log('reset arrow.') 
       $('#projects.resume-section-content').css({opacity: 0})
       $('section.scroll-down-disclaimer').css(arrowHideEffect)
-      
+      postProj = true;
     }
-    if (text === 'about') {
-      setTimeout(() => {
-        $('h1.mb-0').css({opacity: 1})
+    if (CURRENTLY_BROWSING === 'about') {
+      deviceTransitionAnimate()
 
-        setTimeout( ()=> {
-          $('span.text-primary').css({opacity: 1})
-          setTimeout( ()=> {
-            $('.name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)'})
-          }, 500)
-        }, 500)
-      }, 500)
-      document.querySelector(':root').style.setProperty('--bs-primary-rgb',  PRIMARY_BLUE)
-      document.querySelector(':root').style.setProperty('--bs-link-hover-color',  PRIMARY_DARK_BLUE_H)
-    }
-    else if (text === 'experience') {
-        document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_PURPLE)
-    }
-    else if (text === 'education') {
-      document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_ORANGE)
-    }
-    else if (text === 'skills') {
-      document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_RED)
-    }
-    else if (text === 'interests') {
+      $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
       
-     
-      document.querySelector(':root').style.setProperty('--bs-primary-rgb', PRIMARY_GREEN)
+      $('h1.text-primary').css(whiteAndOpacityD2_5)
+      $('.name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
+      /* 1. */
+      
+      $(':root').css('--bs-link-color', PRIMARY_DARK_BLUE_H)
+      
+      /* 2. The background color */
+      $(':root').css('--bs-body-bg', DARK_GRAY_H)
+      $(':root').css('--bs-primary-rgb', PRIMARY_LIGHT_BLUE)
+      
+      $('.name-phone-email h1').css('color', 'white')
+      document.querySelector(':root').style.setProperty('--bs-link-hover-color',  PRIMARY_LIGHT_BLUE)
+      // $(':root').css('--bs-link-color', 'white')
+      $('.resume-section-content p').css('color', LIGHT_GREY_H)
+      // $('email-and-address-container').css()
+    }
+    else if (CURRENTLY_BROWSING === 'education') {
+      setNavVisible()
+
+      /* Reset the bg to white and the nav opacity back to 1 */
+      document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_WHITE_H)
+      setNavDividerInvisible()
+
+      document.querySelector(':root').style.setProperty('--bs-primary-rgb', '170, 40, 0')
+    }
+    else if (CURRENTLY_BROWSING === 'experience') {
+      setNavVisible()
+
+      setNavDividerInvisible()
+      setNavColor(PRIMARY_PURPLE)
+      }
+    else if (CURRENTLY_BROWSING === 'skills') {
+      setNavVisible()
+
+      setNavDividerInvisible()
+      setNavColor(PRIMARY_RED)
+    }
+    else if (CURRENTLY_BROWSING === 'interests') {
+      setNavVisible()
+
+      setNavDividerInvisible()
+      setBgColor()
+      setNavColor(PRIMARY_GREEN)
     }
     /* Note the background uses HEX */
-    else if (element.parentElement === $('li .project-child')[0] || text === 'projects') {
+    else if (element.parentElement === $('li .project-child')[0] || CURRENTLY_BROWSING === 'projects') {
+      postProj = false;
       /* Hide only for mobiles  */
-      if ($('#navbarResponsive').css('display') !== 'flex'){
+      if (isMobile()){
         $('button.navbar-toggler').css('visibility', 'collapse')
         $('#navbarResponsive').collapse('hide');
 
@@ -168,16 +187,16 @@ function backgroundChange() {
       document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_DARK_H)
       document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '0')
       /* Now per page behavior */
-      if (text === 'projects'){
+      if (CURRENTLY_BROWSING === 'projects'){
         projectsIntroAnimate();
       }
-      else if (text === PROJECT_1_NAME){
+      else if (CURRENTLY_BROWSING === PROJECT_1_NAME){
         project1Animate();
       }
-      else if (text === PROJECT_2_NAME){
+      else if (CURRENTLY_BROWSING === PROJECT_2_NAME){
         project2Animate();
       }
-      else if (text === PROJECT_3_NAME){
+      else if (CURRENTLY_BROWSING === PROJECT_3_NAME){
         project3Animate();
       }
     }
@@ -207,6 +226,9 @@ function project1Animate(){
   $(`#${PROJECT_1_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
 
   $(`#${PROJECT_1_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>img+p>a`).css(whiteAndOpacityD4)
+
+  
 }
 
 function project2Animate(){
@@ -231,12 +253,73 @@ function project3Animate(){
   $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
 }
 
+window.addEventListener('resize', function() {
+  timerResize = setTimeout( deviceTransitionAnimate, 250 );
+})
+function isMobile() {
+  if (window.innerWidth < 992 ){
+    return true;
+  } 
+  return false;
+}
 
+/**
+ * 
+ * Turns on the navbar colors on mobile, and turns it off for desktop
+ */
+function deviceTransitionAnimate(){
+  /* Sets the nav color when on mobile. */
+  if (!isMobile() && CURRENTLY_BROWSING === 'about' ){
+    setNavInvisible()
+    // $('#sideNav-divider').css(noOpacityAndTrans)
+    $('#sideNav-divider').css(styleNavDividerShow)
+  }
+  /* At this point the nav divider should be hidden */
+  else if (isMobile()){
+    setNavDividerInvisible();
+    if ( currentlyBrowsingProjects()){
+      setNavInvisible();
+    } else {
+        setNavVisible();
+    }
+  }
+}
+
+function currentlyBrowsingProjects(){
+  return ALL_PROJECT_NAMES.includes(CURRENTLY_BROWSING); 
+}
+function setNavInvisible(){
+  $('#sideNav').css('--bs-bg-opacity', '0')
+}
+function setNavDividerInvisible(){
+  $('#sideNav-divider').css(styleNavDividerHide)
+}
+function setNavVisible(){
+  $('#sideNav').css('--bs-bg-opacity', '1')
+}
+/**
+ * Sets the default color
+ * @param {string} color
+ */
+function setNavColor(color){
+  
+  document.querySelector(':root').style.setProperty('--bs-primary-rgb', color)
+}
+/**
+ * @description  Sets the background color with the given Hex. If no argument given, it  will assign white as default.
+ * @param {string} colorHex 
+ */
+function setBgColor(colorHex = PRIMARY_WHITE_H) {
+  document.querySelector(':root').style.setProperty('--bs-body-bg', colorHex)
+}
+
+
+let CURRENTLY_BROWSING = ''
 /* Note all names will be processed in lower case */
 const PROJECT_1_NAME = 'youtubeilist'
 const PROJECT_2_NAME = 'project2'
 const PROJECT_3_NAME = 'project3'
-
+const ALL_PROJECT_NAMES = ['projects', PROJECT_1_NAME, PROJECT_2_NAME, PROJECT_3_NAME]
 
 const PRIMARY_BLUE = '67, 142, 200'
 const PRIMARY_ORANGE = '255, 174, 36'
@@ -245,11 +328,16 @@ const PRIMARY_GREEN = '109, 181, 139'
 const PRIMARY_RED = '232, 115, 97'
 const PRIMARY_DARK = '24, 26, 27'
 const PRIMARY_DARK_BROWN = '46, 41, 40'
+const PRIMARY_DARK_RED= '170, 40, 0'
 const PRIMARY_DARK_H = '#181a1b'
 const PRIMARY_WHITE_H = '#ffffff'
 const PRIMARY_DARK_BLUE_H ='#18759a'
 const PRIMARY_DARK_BLUE_H_H1 = '#343a40'
-
+const LIGHT_GREY_H ='#adadad'
+const DARK_GRAY_H ='#41464c'
+const PRIMARY_BLUE_H ='#438ec8'
+const PRIMARY_LIGHT_BLUE='79, 190, 255'
+const PRIMARY_LIGHT_BLUE_H='#4fbeff'
 /* styles */
 const projectChildVisible = {
   visibility: 'visible', transition: '0.7s', transform: 'scaleY(1)'
@@ -265,6 +353,12 @@ const whiteAndOpacityD1 = {
   opacity: '1',
   color: 'white',
   transitionDelay: '1000ms'
+}
+const whiteAndOpacityD1Filter = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '1000ms',
+  filter: 'drop-shadow(1px 0px 4px rgb(171, 171, 171))'
 }
 const whiteAndOpacityD1_5 = {
   opacity: '1',
@@ -300,6 +394,33 @@ const noOpacityAndTrans = {
   opacity: '0',
   transition: '1s',
   transitionDelay: 0,
+}
+const styleNavDividerShow = {
+  position: 'absolute',
+  opacity: 1,
+  width: '0.4em',
+  background: 'white',
+  height: '90%',
+  left: '17em',
+  bottom: '3em',
+  transition: '1s',
+  transitionDelay: '1s',
+  transform: 'scale(1,1)',
+  transformOrigin: 'center'
+
+}
+const styleNavDividerHide = {
+  position: 'absolute',
+  opacity: 1,
+  width: '0.4em',
+  background: 'white',
+  // height: '0',
+  left: '17em',
+  bottom: '3em',
+  transition: '1s',
+  transitionDelay: '0s',
+  transform: 'scale(0,1)',
+  transformOrigin: '0em 3em'
 }
 
 

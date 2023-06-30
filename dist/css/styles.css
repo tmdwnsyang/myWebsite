@@ -43,7 +43,7 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-primary-rgb: 67, 142, 200;
+  --bs-primary-rgb: 65,70,76,255;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -12837,7 +12837,7 @@ section#projects:hover .project-child>a,
 } */
 
 span.text-primary {
-  opacity:0;
+  opacity:1;
 }
 
 h1.mb-0 {
@@ -12845,24 +12845,24 @@ h1.mb-0 {
 }
 
 /* For About page hovering effects and animations */
+/* initial state for the text of my address, phone, email */
 .subheading.mb-5 {
-  
-  visibility: hidden;
-  transform: scale(0, 0)
+  opacity: 0;
 }
 #email-and-address-container {
   height: 2em;
   transition: 1s
 }
 
-section.name-phone-email:hover > h1 ~ #email-and-address-container {
-  height: 4em;
+section.name-phone-email:hover #email-and-address-container {
+  height: 5.3em;
   transition: 1s
 } 
 
-section.name-phone-email:hover >h1 ~ #email-and-address-container>.subheading.mb-5{
+section.name-phone-email:hover #email-and-address-container>.subheading.mb-5{
   visibility: visible;
-  transform: scale(1,1);
+  opacity: 1;
+  transform: translateY(0.2em);
   transition: 1s;
 }
 
@@ -12881,6 +12881,16 @@ section.name-phone-email:hover >h1 ~ #email-and-address-container>.subheading.mb
   100% {
     transform: translate(0, 1em);
   }
+}
+
+#youtubeilist-demo-gif{
+  align-self: center;
+  width: 80%;
+  padding: 3%;
+  max-width: 600px;
+  opacity: 1;
+  transition: all 1s ease 3500ms;
+  color: white;
 }
 
 .fa-arrow-down {
@@ -12905,18 +12915,47 @@ section.scroll-down-disclaimer{
 .name-phone-email> h1>span{
   padding-left: 0.5em;
 }
-.name-phone-email h1::before{
-  content: '';
-  width: 0.4em;
-  height: 0.11em;
+#blinking-cursor{
+  width: .45em;
+  height: 0.112em;
   position: relative;
   left: 3.58em;
-  top: 0.84em;
-  background-color: rgb(52, 58, 64);
+  top: -0.265em;
+  background-color: rgb(173 173 173);
   animation: blink 530ms infinite;
   animation-direction: alternate;
-  display:flex;
+  display: flex;
+  background: white;
 }
+
+.name-only{
+  display: flex;
+  flex-direction: row;
+}
+.name-only>h1{
+  transition: all 1s ease 0s;
+  opacity: 0;
+  /* filter: drop-shadow(1px 0px 4px rgb(171, 171, 171)); */
+}
+.name-only h1.mb-0.text-primary{
+  opacity: 0;
+  filter: none;
+  padding-left: 0.5em;
+}
+
+#sideNav-divider{
+  position: absolute;
+  opacity: 0;
+  width: 0.4em;
+  background: white;
+  height: 0;
+  left: 17em;
+  bottom: 3em;
+  /* transition: 1s; */
+  /* transform: scale(2,1); */
+  
+  content: '';
+} 
 
 @keyframes blink {
   0% {
