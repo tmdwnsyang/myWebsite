@@ -12884,6 +12884,7 @@ section.name-phone-email:hover >h1 ~ #email-and-address-container>.subheading.mb
 }
 
 .fa-arrow-down {
+  opacity: 0;
   height: 2em;
   display: flex;
   animation: shimmy 2s infinite;
