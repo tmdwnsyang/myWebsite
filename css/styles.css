@@ -12872,6 +12872,12 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5{
   transform: translateY(20em) 
 }
 
+/* Abouts page animations */
+.name-only>h1:first-of-type {
+  opacity: 0;
+  
+}
+
 /* Projects page */
 
 @keyframes shimmy{
