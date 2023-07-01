@@ -79,7 +79,8 @@ function initializeNav() {
   })
 }
 
-let postProj = false;
+let postProj = false,
+    runOnce = false;
 function backgroundChange() {
   $(window).on('activate.bs.scrollspy', function( e) {
 
@@ -89,14 +90,15 @@ function backgroundChange() {
     /* If currently not viewing any of the project pages */
     if (!postProj && !currentlyBrowsingProjects()) {
       $('button.navbar-toggler').css('visibility', 'visible')
-
-      document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '1')
+      console.log('Cleaning up styles...')
+      setNavVisible();
       let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
 
       for (head of headings) {
         head.style.setProperty('color', PRIMARY_DARK_BLUE_H_H1)
         head.style.setProperty('transition', '1s')
-        head.style.setProperty('transition-delay', 'none')
+        head.style.setProperty('transition-delay', '')
+        head.style.setProperty('filter', '')
       }
       /* Resetting all CURRENTLY_BROWSING opacities under Projects section*/
       $('#projects > div.resume-section-content>h2').css(noOpacityAndTrans)
@@ -129,63 +131,55 @@ function backgroundChange() {
       deviceTransitionAnimate()
 
       $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
-      
-      $('h1.text-primary').css(whiteAndOpacityD2_5)
+      if (!runOnce){
+        $('h1.text-primary').css(whiteAndOpacityD2_5)
+        runOnce = true;
+      }
       $('.name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
-      /* 1. */
-      
-      $(':root').css('--bs-link-color', PRIMARY_DARK_BLUE_H)
-      
-      /* 2. The background color */
-      $(':root').css('--bs-body-bg', DARK_GRAY_H)
-      $(':root').css('--bs-primary-rgb', PRIMARY_LIGHT_BLUE)
-      
-      $('.name-phone-email h1').css('color', 'white')
-      document.querySelector(':root').style.setProperty('--bs-link-hover-color',  PRIMARY_LIGHT_BLUE)
-      // $(':root').css('--bs-link-color', 'white')
-      $('.resume-section-content p').css('color', LIGHT_GREY_H)
+      setBgColor(DARK_GRAY_H)
+      setNavAndPrimaryColors(PRIMARY_LIGHT_BLUE)
+      setHyperLinkColor(PRIMARY_BLUE_H)
+      setHyperLinkHoverColor(PRIMARY_WHITE_H)
+      setResumeParagraphColor(LIGHT_GREY_H)
       // $('email-and-address-container').css()
     }
     else if (CURRENTLY_BROWSING === 'education') {
       setNavVisible()
-
       /* Reset the bg to white and the nav opacity back to 1 */
-      document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_WHITE_H)
+      setBgColor(PRIMARY_WHITE_H)
       setNavDividerInvisible()
-
-      document.querySelector(':root').style.setProperty('--bs-primary-rgb', '170, 40, 0')
+      setNavAndPrimaryColors(PRIMARY_RED)
+      setResumeParagraphColor(PRIMARY_DEFAULT_FONT_COLOR_H)
     }
     else if (CURRENTLY_BROWSING === 'experience') {
       setNavVisible()
 
       setNavDividerInvisible()
-      setNavColor(PRIMARY_PURPLE)
+      setNavAndPrimaryColors(PRIMARY_PURPLE)
       }
     else if (CURRENTLY_BROWSING === 'skills') {
       setNavVisible()
 
       setNavDividerInvisible()
-      setNavColor(PRIMARY_RED)
+      setNavAndPrimaryColors(PRIMARY_DARK_BROWN)
     }
     else if (CURRENTLY_BROWSING === 'interests') {
       setNavVisible()
 
       setNavDividerInvisible()
       setBgColor()
-      setNavColor(PRIMARY_GREEN)
+      setNavAndPrimaryColors(PRIMARY_GREEN)
     }
     /* Note the background uses HEX */
     else if (element.parentElement === $('li .project-child')[0] || CURRENTLY_BROWSING === 'projects') {
       postProj = false;
       /* Hide only for mobiles  */
       if (isMobile()){
-        $('button.navbar-toggler').css('visibility', 'collapse')
-        $('#navbarResponsive').collapse('hide');
-
+        setNavbarDismissed();
       }
       /* Everything that should apply to ALL project subsections once user is in the projects page. */
-      document.querySelector(':root').style.setProperty('--bs-body-bg', PRIMARY_DARK_H)
-      document.querySelector('.bg-primary').style.setProperty('--bs-bg-opacity', '0')
+      setBgColor(PRIMARY_DARK_H)
+      setNavInvisible()
       /* Now per page behavior */
       if (CURRENTLY_BROWSING === 'projects'){
         projectsIntroAnimate();
@@ -298,12 +292,12 @@ function setNavVisible(){
   $('#sideNav').css('--bs-bg-opacity', '1')
 }
 /**
- * Sets the default color
+ * Sets the color for navigation other primary elements, such as headers.
  * @param {string} color
  */
-function setNavColor(color){
+function setNavAndPrimaryColors(rgbColor){
   
-  document.querySelector(':root').style.setProperty('--bs-primary-rgb', color)
+  document.querySelector(':root').style.setProperty('--bs-primary-rgb', rgbColor)
 }
 /**
  * @description  Sets the background color with the given Hex. If no argument given, it  will assign white as default.
@@ -311,6 +305,25 @@ function setNavColor(color){
  */
 function setBgColor(colorHex = PRIMARY_WHITE_H) {
   document.querySelector(':root').style.setProperty('--bs-body-bg', colorHex)
+}
+function setHyperLinkColor(hexColor){
+  $(':root').css('--bs-link-color',hexColor)
+}
+function setHyperLinkHoverColor(hexColor) {
+  document.querySelector(':root').style.setProperty('--bs-link-hover-color',  hexColor)
+}
+/**
+ * This collapses the content of the navbar (for mobile). 
+ */
+function setNavbarDismissed(){
+  $('button.navbar-toggler').css('visibility', 'collapse')
+  $('#navbarResponsive').collapse('hide');
+
+}
+
+function setResumeParagraphColor(hexColor){
+  $('.resume-section-content p').css('color',hexColor)
+
 }
 
 
@@ -325,7 +338,7 @@ const PRIMARY_BLUE = '67, 142, 200'
 const PRIMARY_ORANGE = '255, 174, 36'
 const PRIMARY_PURPLE ='117, 45, 250'
 const PRIMARY_GREEN = '109, 181, 139'
-const PRIMARY_RED = '232, 115, 97'
+const PRIMARY_RED = '170, 40, 0'
 const PRIMARY_DARK = '24, 26, 27'
 const PRIMARY_DARK_BROWN = '46, 41, 40'
 const PRIMARY_DARK_RED= '170, 40, 0'
@@ -338,6 +351,7 @@ const DARK_GRAY_H ='#41464c'
 const PRIMARY_BLUE_H ='#438ec8'
 const PRIMARY_LIGHT_BLUE='79, 190, 255'
 const PRIMARY_LIGHT_BLUE_H='#4fbeff'
+const PRIMARY_DEFAULT_FONT_COLOR_H = '#6C757D'
 /* styles */
 const projectChildVisible = {
   visibility: 'visible', transition: '0.7s', transform: 'scaleY(1)'
@@ -433,7 +447,7 @@ const arrowDisplayEffect = {
 
 }
 const arrowHideEffect = {
-  filter: 'None',
+  filter: 'none',
   opacity: 0,
   color: 'white',
   transition: '1s',
