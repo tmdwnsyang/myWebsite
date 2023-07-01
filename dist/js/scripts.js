@@ -130,7 +130,7 @@ function backgroundChange() {
       $('.name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
       setBgColor(DARK_GRAY_H)
       setNavAndPrimaryColors(PRIMARY_LIGHT_BLUE)
-      setHyperLinkColor(PRIMARY_BLUE_H)
+      setHyperLinkColor(PRIMARY_LIGHT_BLUE_H)
       setHyperLinkHoverColor(PRIMARY_WHITE_H)
       setResumeParagraphColor(LIGHT_GREY_H)
       // $('email-and-address-container').css()
@@ -145,21 +145,23 @@ function backgroundChange() {
     }
     else if (CURRENTLY_BROWSING === 'experience') {
       setNavVisible()
+      setBgColor(PRIMARY_WHITE_H)
 
       setNavDividerInvisible()
       setNavAndPrimaryColors(PRIMARY_PURPLE)
       }
     else if (CURRENTLY_BROWSING === 'skills') {
       setNavVisible()
+      setBgColor(PRIMARY_WHITE_H)
 
       setNavDividerInvisible()
       setNavAndPrimaryColors(PRIMARY_DARK_BROWN)
     }
     else if (CURRENTLY_BROWSING === 'interests') {
       setNavVisible()
+      setBgColor()
 
       setNavDividerInvisible()
-      setBgColor()
       setNavAndPrimaryColors(PRIMARY_GREEN)
     }
     /* Note the background uses HEX */
@@ -199,7 +201,7 @@ function projectsIntroAnimate(){
   $('#projects > div.resume-section-content>p').css(whiteAndOpacityD3)
   /* The arrow container and the arrow itself */
   $('section.scroll-down-disclaimer').css(arrowDisplayEffect)
-  $('section.scroll-down-disclaimer>*').css(arrowDisplayEffect)
+  $('section.scroll-down-disclaimer>*').css(whiteAndOpacityInstant)
  
 }
 
