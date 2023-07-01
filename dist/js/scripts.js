@@ -127,12 +127,13 @@ function backgroundChange() {
         $('h1.text-primary').css(whiteAndOpacityD2_5)
         runOnce = true;
       }
-      $('.name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
+      $('.name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
       setBgColor(DARK_GRAY_H)
       setNavAndPrimaryColors(PRIMARY_LIGHT_BLUE)
       setHyperLinkColor(PRIMARY_LIGHT_BLUE_H)
       setHyperLinkHoverColor(PRIMARY_WHITE_H)
-      setResumeParagraphColor(LIGHT_GREY_H)
+      setHeaderColor(3, '#f76d6d');   /* light red */
+      setResumeParagraphColor(LIGHT_GREY_H);
       // $('email-and-address-container').css()
     }
     else if (CURRENTLY_BROWSING === 'education') {
@@ -141,20 +142,23 @@ function backgroundChange() {
       setBgColor(PRIMARY_WHITE_H)
       setNavDividerInvisible()
       setNavAndPrimaryColors(PRIMARY_RED)
+      setHeaderColor(3, PRIMARY_RED, true)
       setResumeParagraphColor(PRIMARY_DEFAULT_FONT_COLOR_H)
     }
     else if (CURRENTLY_BROWSING === 'experience') {
       setNavVisible()
       setBgColor(PRIMARY_WHITE_H)
-
+      
       setNavDividerInvisible()
       setNavAndPrimaryColors(PRIMARY_PURPLE)
+      setHeaderColor(3, PRIMARY_PURPLE, true)
       }
     else if (CURRENTLY_BROWSING === 'skills') {
       setNavVisible()
       setBgColor(PRIMARY_WHITE_H)
-
+      
       setNavDividerInvisible()
+      setHeaderColor(3, PRIMARY_DARK_BROWN, true)
       setNavAndPrimaryColors(PRIMARY_DARK_BROWN)
     }
     else if (CURRENTLY_BROWSING === 'interests') {
@@ -317,7 +321,20 @@ function setNavbarDismissed(){
 
 function setResumeParagraphColor(hexColor){
   $('.resume-section-content p').css('color',hexColor)
+}
+/**
+ * 
+ * @param {number} hnumber 
+ * @param {*} color 
+ * @param {boolean} rgb 
+ */
+function setHeaderColor(hnumber, color, rgb){
+  if (rgb){
+    $(`h${hnumber}`).css('color', `rgb(${color})`)
+  }else {
 
+    $(`h${hnumber}`).css('color', color)
+  }
 }
 
 
