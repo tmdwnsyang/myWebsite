@@ -12852,7 +12852,8 @@ h1.mb-0 {
 }
 #email-and-address-container {
   height: 2em;
-  transition: 1s
+  transition: 1s;
+  margin: 0.5em 0;
 }
 
 section.name-phone-email:hover #email-and-address-container {
