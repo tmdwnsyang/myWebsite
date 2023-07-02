@@ -138,6 +138,7 @@ h1,
 h1,
 .h1 {
   font-size: calc(1.725rem + 5.3vw);
+  /* font-family: "Saira Extra Condensed" */
 }
 
 @media (min-width: 1200px) {
@@ -12875,29 +12876,29 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5{
 /* Abouts page animations */
 .name-only>h1:first-of-type {
   opacity: 0;
-  
-}
-.name-only>h1:first-of-type + h1{
-  opacity: 0;
-  padding-left: 0.5em;
-
-  filter: drop-shadow(rgb(79, 190, 255) 1px 0px 4px);
+  filter: drop-shadow(1px 0px 4px 'rgb(79, 190, 255)');
+  display: flex;
 }
 
 /* The blinking cursor */
-.name-only>h1:first-of-type::after {
-  content: "";
-  width: 0.54em;
-  height: 0.08em;
-  position: relative;
-  left: 4.98em;
-  top: -0.18em;
-  animation: 530ms ease 0s infinite alternate none running blink;
-  display: flex;
-  background: white;
-  color: inherit;
-
-}
+/* .name-only>h1:first-of-type+h1::after { */
+  #blinking-cursor {
+    /* content: ""; */
+    width: 0.54em;
+    height: 0.08em;
+    position: relative;
+    right: -0.05em;
+    top: 0.82em;
+    animation: 530ms ease 0s infinite alternate none running blink;
+    display: flex;
+    background: white;
+  }
+  .name-only>h1:first-of-type + h1{
+    opacity: 0;
+    /* padding-left: 0.5em; */
+  
+    filter: drop-shadow(rgb(79, 190, 255) 1px 0px 4px);
+  }
 /* Abouts page */
 
 .name-phone-email> h1>span{
@@ -12908,11 +12909,6 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5{
 .name-only{
   display: flex;
   flex-direction: row;
-}
-.name-only>h1{
-  transition: all 1s ease 0s;
-  opacity: 0;
-  filter: drop-shadow(1px 0px 4px 'rgb(79, 190, 255)');
 }
 
 
