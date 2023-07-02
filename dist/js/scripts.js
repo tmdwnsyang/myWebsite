@@ -26,6 +26,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
   backgroundChange();
 });
 
+/* For the purpose of enabling dynamic css property change for pseudo elements. */
+const style = document.createElement('style');
+document.head.appendChild(style);
+const styleSheet = style.sheet;
+
+
 // let projectDropTimer = false;
 function initializeNav() {
   let allProjectsSection = document.querySelector('#all-projects');
@@ -72,7 +78,7 @@ function initializeNav() {
 }
 
 let postProj = false,
-    runOnce = false;
+    firstTimeRunning = true;
 function backgroundChange() {
   $(window).on('activate.bs.scrollspy', function( e) {
 
@@ -122,12 +128,18 @@ function backgroundChange() {
     if (CURRENTLY_BROWSING === 'about') {
       deviceTransitionAnimate()
 
-      $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
-      if (!runOnce){
+      if (firstTimeRunning){
+        $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
         $('h1.text-primary').css(whiteAndOpacityD2_5)
-        runOnce = true;
+        $('.name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
+        firstTimeRunning = false
+      } else {
+        $('.name-only>h1:first-of-type').css(whiteAndOpacityInstantFilter )
+        setPseudoCSSProperty('.name-only>h1:first-of-type::after', 'background: white')
+        $('.name-only>h1+h1').css('transition', '0s')
+
       }
-      $('.name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
+      
       setBgColor(DARK_GRAY_H)
       setNavAndPrimaryColors(PRIMARY_LIGHT_BLUE)
       setHyperLinkColor(PRIMARY_LIGHT_BLUE_H)
@@ -374,6 +386,12 @@ const whiteAndOpacityInstant = {
   opacity: '1',
   color: 'white'
 }
+const whiteAndOpacityInstantFilter = {
+  opacity: '1',
+  color: 'white',
+  transitionDelay: '0ms',
+  filter: 'drop-shadow(1px 0px 4px rgb(171, 171, 171))'
+}
 const whiteAndOpacityD1 = {
   opacity: '1',
   color: 'white',
@@ -385,6 +403,7 @@ const whiteAndOpacityD1Filter = {
   transitionDelay: '1000ms',
   filter: 'drop-shadow(1px 0px 4px rgb(171, 171, 171))'
 }
+
 const whiteAndOpacityD1_5 = {
   opacity: '1',
   color: 'white',
@@ -485,4 +504,15 @@ function setStyleRecursively(element, attribute, value){
     setStyleRecursively(this, attribute, value);
   }
   )
+}
+
+function setPseudoCSSProperty(selector, cssPropertyStr){
+  for (let i = 0; i < styleSheet.cssRules.length; i++){
+    if (styleSheet.cssRules[i].selectorText.replace(' ','') === selector){
+      styleSheet.deleteRule(i);
+      styleSheet.insertRule(`${selector}{${cssPropertyStr}}`, i);
+      return;
+    }
+  }
+  styleSheet.insertRule(`${selector}{${cssPropertyStr}}`);
 }
