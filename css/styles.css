@@ -12989,46 +12989,65 @@ section.scroll-down-disclaimer{
 
 
 
-
-
 @font-face {
-    font-family: 'sairaregular';
-    src: url('../assets/fonts/saira-regular-webfont.woff2') format('woff2'),
-         url('../assets/fonts/saira-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'sairathin';
+  src: url('../assets/fonts/saira-thin-webfont.woff2') format('woff2'),
+       url('../assets/fonts/saira-thin-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 }
 
 
 @font-face {
-    font-family: 'timeburnerbold';
-    src: url('../assets/fonts/timeburnerbold-webfont.woff2') format('woff2'),
-         url('../assets/fonts/timeburnerbold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'sairathin';
-    src: url('../assets/fonts/saira-thin-webfont.woff2') format('woff2'),
-         url('../assets/fonts/saira-thin-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'timeburnerbold';
+  src: url('../assets/fonts/timeburnerbold-webfont.woff2') format('woff2'),
+       url('../assets/fonts/timeburnerbold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 }
 
 
 
 
+@font-face {
+  font-family: 'timeburnerregular';
+  src: url('../assets/fonts/timeburnernormal-webfont.woff2') format('woff2'),
+       url('../assets/fonts/timeburnernormal-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
 
 
 @font-face {
-    font-family: 'timeburnerregular';
-    src: url('../assets/fonts/timeburnernormal-webfont.woff2') format('woff2'),
-         url('../assets/fonts/timeburnernormal-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'sairaregular';
+  src: url('../assets/fonts/saira-regular-webfont.woff2') format('woff2'),
+       url('../assets/fonts/saira-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
+
+@font-face {
+  font-family: 'timeburnerbold';
+  src: url('../assets/fonts/timeburnerbold-webfont.woff2') format('woff2'),
+       url('../assets/fonts/timeburnerbold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'timeburnerregular';
+  src: url('../assets/fonts/timeburnernormal-webfont.woff2') format('woff2'),
+       url('../assets/fonts/timeburnernormal-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 
 }
