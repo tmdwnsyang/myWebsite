@@ -132,7 +132,7 @@ function backgroundChange() {
       setNavAndPrimaryColors(PRIMARY_LIGHT_BLUE)
       setHyperLinkColor(PRIMARY_LIGHT_BLUE_H)
       setHyperLinkHoverColor(PRIMARY_WHITE_H)
-      setHeaderColor(3, '#f76d6d');   /* light red */
+      setHeaderColor(3, 'white');   /* light red */
       setResumeParagraphColor(LIGHT_GREY_H);
       // $('email-and-address-container').css()
     }
