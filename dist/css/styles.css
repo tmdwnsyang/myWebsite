@@ -12804,7 +12804,6 @@ section.resume-section .resume-section-content {
 
 /* Custom made by me */
 
-
 #hidden-nav {
   height: 0;
   transition: 1s;
@@ -12816,27 +12815,6 @@ section.resume-section .resume-section-content {
   transform: scaleY(0)
 }
 
-
-/* 
-#project-dropdown:hover~#hidden-nav {
-  height: 8em;
-  transition: 1s;
-}
-
-#hidden-nav:hover {
-  height: 8em;
-  transition: 1s;
-}
-
-
-#hidden-nav:hover .project-child>a,
-#project-dropdown:hover~nav .project-child>a,
-section#projects:hover .project-child>a,
-.project-child>a:hover{
-  visibility: visible;
-  transition: 0.7s;
-  transform: scaleY(1)
-} */
 
 span.text-primary {
   opacity: 1;
@@ -12883,9 +12861,6 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5 {
   opacity: 0;
   filter: drop-shadow(1px 0px 4px 'rgb(79, 190, 255)');
   display: flex;
-}
-#navbarResponsive .nav-nav .nav-item.active{
-
 }
 /* The blinking cursor */
 /* .name-only>h1:first-of-type+h1::after { */
@@ -13031,33 +13006,6 @@ section.scroll-down-disclaimer {
   /* color: white; */
 
 }
-
-
-
-
-
-
-
-
-/* @font-face {
-  font-family: 'sairathin';
-  src: url('../assets/fonts/saira-thin-webfont.woff2') format('woff2'),
-       url('../assets/fonts/saira-thin-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-} */
-
-/* 
-@font-face {
-  font-family: 'timeburnerbold';
-  src: url('../assets/fonts/timeburnerbold-webfont.woff2') format('woff2'),
-       url('../assets/fonts/timeburnerbold-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-
-} */
-
 
 
 
