@@ -12804,25 +12804,6 @@ section.resume-section .resume-section-content {
 
 /* Custom made by me */
 
-#hidden-nav {
-  height: 0;
-  transition: 1s;
-}
-
-#hidden-nav .project-child>a {
-  visibility: hidden;
-  transition: 0.7s;
-  transform: scaleY(0)
-}
-
-
-span.text-primary {
-  opacity: 1;
-}
-
-h1.mb-0 {
-  opacity: 0;
-}
 
 /* For About page hovering effects and animations */
 /* initial state for the text of my address, phone, email */
@@ -12968,7 +12949,7 @@ li.nav-item .nav-link::before{
 }
 
 
-/* Projects page */
+/* PROJECTS page */
 
 @keyframes shimmy {
   0% {
@@ -13009,6 +12990,83 @@ section.scroll-down-disclaimer {
 
 
 
+#hidden-nav {
+  height: 0;
+  transition: 1s;
+}
+
+#hidden-nav .project-child>a {
+  visibility: hidden;
+  transition: 0.7s;
+  transform: scaleY(0)
+}
+
+
+span.text-primary {
+  opacity: 1;
+}
+
+h1.mb-0 {
+  opacity: 0;
+}
+
+/* WEBAPPS page */
+.development-container{
+  display: flex;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.development-tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 15em;
+  max-width: 15em;
+  min-height: 18em;
+  max-height: 18em;
+}
+
+.development-tile>figure{
+  /* min-height: 7.5em;
+  max-height: 7.5em; */
+  min-width: inherit;
+  
+  margin: 0 0 1rem;
+}
+
+section#project2{
+  max-height: auto;
+}
+section#project2 h4 {
+  margin: 0 0 1em 0
+}
+
+/*development tile Image sizes */
+.development-tile>figure,.development-tile>figure>img  {
+  /* height: 100%; */
+  width: 100%;
+  transition: 0.7s;
+}
+.development-tile>p{
+  margin:0
+}
+.development-tile>figure>img:hover {
+  filter: drop-shadow(0px 0px 3px rgb(171, 171, 171));
+  transition: 0.5s;
+  transform: scale(1.07);
+}
+.development-container{
+  opacity: 0;
+  transition: 0.7s;
+  position: relative;
+  top:4em;
+}
+
+
+
+
+/* Fonts */
+
 @font-face {
   font-family: 'timeburnerregular';
   src: url('../assets/fonts/timeburnernormal-webfont.woff2') format('woff2'),
@@ -13039,3 +13097,4 @@ section.scroll-down-disclaimer {
   font-style: normal;
 
 } */
+
