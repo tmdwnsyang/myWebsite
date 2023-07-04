@@ -90,7 +90,7 @@ function backgroundChange() {
       $('button.navbar-toggler').css('visibility', 'visible')
       console.log('Cleaning up styles...')
       setNavVisible();
-      let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p>a')
+      let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .flex-grow-1p>a')
 
       for (head of headings) {
         head.style.setProperty('color', PRIMARY_DARK_BLUE_H_H1)
@@ -123,7 +123,18 @@ function backgroundChange() {
       console.log('reset arrow.') 
       $('#projects.resume-section-content').css({opacity: 0})
       $('section.scroll-down-disclaimer').css(arrowHideEffect)
+      
+      /* Reset the project2 page */
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>h4`).css(noOpacityAndTrans)
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
+  /* "Currently In Development" */
+      $(`.development-tile>h5`).css(whiteAndOpacityD1_5)
+      
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'})
       postProj = true;
+
+      $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(noOpacityAndTrans)
     }
     if (CURRENTLY_BROWSING === 'about') {
       deviceTransitionAnimate()
@@ -248,6 +259,10 @@ function project2Animate(){
   // $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
 
   $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+
+  /* Anchor links resetting colors */
+  // $('.development-tile p a').css('color', 'white');
+
 }
 
 function project3Animate(){
@@ -258,7 +273,11 @@ function project3Animate(){
   $(`#${PROJECT_3_NAME} > div.resume-section-content>p:first-of-type+p`).css(whiteAndOpacityD3)
   $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
 
+  /* Project titles */
   $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+  
+
 }
 
 window.addEventListener('resize', function() {
