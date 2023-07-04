@@ -13042,15 +13042,26 @@ section#project2 h4 {
 }
 
 /*development tile Image sizes */
-.development-tile>figure,.development-tile>figure>img  {
+.development-tile>figure,.development-tile>figure>a>img  {
   /* height: 100%; */
   width: 100%;
   transition: 0.7s;
 }
+.development-tile>figure>a{
+  width: 100%;
+}
+/* Anchors within the paragraph */
+.development-tile p a{
+  color: lightgrey;
+}
+.development-tile p a:hover{
+  color:white
+}
+
 .development-tile>p{
   margin:0
 }
-.development-tile>figure>img:hover {
+.development-tile>figure>a>img:hover {
   filter: drop-shadow(0px 0px 3px rgb(171, 171, 171));
   transition: 0.5s;
   transform: scale(1.07);
