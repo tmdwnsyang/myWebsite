@@ -237,11 +237,15 @@ function project1Animate(){
 
 function project2Animate(){
   $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>h3`).css(whiteAndOpacityD1_5)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>p:first-of-type`).css(whiteAndOpacityD2)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>h4`).css(whiteAndOpacityD1_5)
+  
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '0.5s' })
+  /* "Currently In Development" */
+  $(`.development-tile>h5`).css(whiteAndOpacityD1_5)
+  
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1s'})
 
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>p:first-of-type+p`).css(whiteAndOpacityD3)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
+  // $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
 
   $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
 }
