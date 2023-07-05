@@ -37,74 +37,45 @@ function initializeNav() {
   let allProjectsSection = document.querySelector('#all-projects');
   let projectDropdown = document.querySelector('#project-dropdown');
   let hiddenNav = document.querySelector('#hidden-nav');
+  let sideNav = document.querySelector('#sideNav');
   // let allResumes = document.querySelector('#all-resumes');
 
-  /* adds */
-
+  /* adds dropdown animation. */
   projectDropdown.addEventListener('mouseover', () => {
-    // timer = setTimeout(()=> {
-      
-    // }, 1000);
-      Object.assign(document.querySelector('#hidden-nav').style, {height: '8em', transition: '1s'});
-      let allAnchors = document.querySelectorAll('.project-child > a');
-      for (a of allAnchors){
-        Object.assign(a.style,projectChildVisible);
-      }
+      Object.assign(document.querySelector('#hidden-nav').style, projectDropdownVisible);
+      setStyleForAll('li.project-child > a', projectChildVisible) 
       // console.log('Hovering over \'Projects\'');
   })
    hiddenNav.addEventListener('mouseover', () => {
-    // timer = setTimeout(()=> {
-      // }, 1000);
-      let allAnchors = document.querySelectorAll('.project-child > a');
-      for (a of allAnchors){
-        Object.assign(a.style,projectChildVisible);
-      }
-      // $('.project-child > a').css(projectChildVisible)
-      Object.assign(document.querySelector('#hidden-nav').style, {height: '8em', transition: '1s'});
+      setStyleForAll('li.project-child > a', projectChildVisible) 
+      Object.assign(document.querySelector('#hidden-nav').style, projectDropdownVisible);
       // console.log('Hovering over of \'hiddenNav\'');
-
   })
-
-
   allProjectsSection.addEventListener('mouseover', (e) => {
     // console.log('mouseHover!');
-    let allAnchors = document.querySelectorAll('.project-child > a');
-    for (a of allAnchors){
-      Object.assign(a.style,projectChildVisible);
-    }
-    Object.assign(document.querySelector('#hidden-nav').style, {height: '8em', transition: '1s'});
+    setStyleForAll('li.project-child > a', projectChildVisible) 
+    Object.assign(document.querySelector('#hidden-nav').style, projectDropdownVisible);
     // console.log('Hovering in \'All Projects Section\'');
+  })
+  /* Dropdown effect when mouse is hovered away  */
+  // projectDropdown.addEventListener('mouseout', () => {
+  //   setTimeout(() => {
+  //     if (!isHoveringProjects()){
+  //       Object.assign(document.querySelector('#hidden-nav').style, projectDropdownHidden);     
+  //       setStyleForAll('li.project-child > a', projectChildHidden ) 
 
-    // $('.project-child > a').css(projectChildVisible)
+  //     }
+      
+  //   },500)
+  //    })
+  allProjectsSection.addEventListener('mouseleave', () => {
+    setTimeout( attemptCollapse,500)
+    console.log('Hovering out of \'All Projects Section\'');
     
   })
-
-  /* Dropdown effect when mouse is hovered away  */
-  projectDropdown.addEventListener('mouseout', () => {
-      Object.assign(document.querySelector('#hidden-nav').style, {height: '0', transition: '1s'});     
-      let allAnchors = document.querySelectorAll('.project-child > a');
-      for (a of allAnchors){
-        Object.assign(a.style,projectChildHidden);
-      } 
-     })
-  allProjectsSection.addEventListener('mouseleave', () => {
-      Object.assign(document.querySelector('#hidden-nav').style, {height: '0', transition: '1s'});
-
-      let allAnchors = document.querySelectorAll('.project-child > a');
-      for (a of allAnchors){
-        Object.assign(a.style,projectChildHidden);
-      }
-      // console.log('Hovering out of \'All Projects Section\'');
-
-  })
-
-  hiddenNav.addEventListener('mouseleave', () => {
-      Object.assign(document.querySelector('#hidden-nav').style, {height: '0', transition: '1s'});
-      let allAnchors = document.querySelectorAll('.project-child > a');
-    for (a of allAnchors){
-      Object.assign(a.style,projectChildHidden);
-    }
-    // console.log('Hovering out of \'Hidden Nav\'');
+  sideNav.addEventListener('mouseleave', () => {
+    setTimeout( attemptCollapse,500)
+    console.log('Hovering out of \'Hidden Nav\'');
   })
 }
 
@@ -125,14 +96,10 @@ function backgroundChange() {
 
       if (firstTimeRunning){
         Object.assign(document.querySelector('.name-only>h1:first-of-type').style, whiteAndOpacityD1Filter)
-        // $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
         Object.assign(document.querySelector('h1.text-primary').style, whiteAndOpacityD2_5)
-        // $('h1.text-primary').css(whiteAndOpacityD2_5)
         
-        let introParagraphs = document.querySelectorAll('.name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons');
-        for (e of introParagraphs){
-          Object.assign(e.style, {opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'});
-        }
+        let introParagraphsQ = '.name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons';
+        setStyleForAll(introParagraphsQ,{opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'});
         firstTimeRunning = false
       } else {
         Object.assign(document.querySelector('.name-only>h1:first-of-type').style, whiteAndOpacityInstantFilter)
@@ -219,15 +186,11 @@ function projectsIntroAnimate(){
   Object.assign(document.querySelector('#projects > div.resume-section-content>p').style, whiteAndOpacityD3)
   /* The arrow container and the arrow itself */
   Object.assign(document.querySelector('section.scroll-down-disclaimer').style, arrowDisplayEffect)
-  let scrollDisclaimerContents = document.querySelectorAll('section.scroll-down-disclaimer>*');
-  for (el of scrollDisclaimerContents){
-    Object.assign(el.style, whiteAndOpacityInstant)
-  }
+  setStyleForAll('section.scroll-down-disclaimer>*', whiteAndOpacityInstant)
  
 }
 
 function project1Animate(){
-// Use querySelector instead of jQuery selector and use Object.assign to apply style object
 Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).style, whiteAndOpacityD1);
 Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).style, whiteAndOpacityD1_5);
 
@@ -246,28 +209,19 @@ Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-co
 function project2Animate(){
   Object.assign(document.querySelector(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).style, whiteAndOpacityD1);
   Object.assign(document.querySelector(`#${PROJECT_2_NAME} > div.resume-section-content>p.mb-4`).style, {opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'});
-  let project2H4s = document.querySelectorAll(`#${PROJECT_2_NAME} > div.resume-section-content>h4`)
-  for (h4 of project2H4s){
-    Object.assign(h4.style, whiteAndOpacityD1);
-  }
+  setStyleForAll(`#${PROJECT_2_NAME} > div.resume-section-content>h4`, whiteAndOpacityD1)
   let sections = document.querySelectorAll(`#${PROJECT_2_NAME} > div.resume-section-content>section`);
   
   Object.assign(sections[0].style, { transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' });
   /* "Currently In Development" */
-  let tiles = document.querySelectorAll('.development-tile>h5');
-  for (let tile of tiles) {
-    Object.assign(tile.style, {opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'});
-  }
+  setStyleForAll('#project2 .development-tile>h5',{opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'} )
   Object.assign(sections[1].style, { transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'});
 }
 
 function project3Animate(){
   Object.assign(document.querySelector(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).style, whiteAndOpacityD1);
   Object.assign(document.querySelector(`#${PROJECT_3_NAME} > div.resume-section-content>p.mb-4`).style, {opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'});
-  let project3H4 = document.querySelectorAll(`#${PROJECT_3_NAME} > div.resume-section-content>h4`);
-  for (el of project3H4){
-    Object.assign(el.style, whiteAndOpacityD1);
-  }
+  setStyleForAll(`#${PROJECT_3_NAME} > div.resume-section-content>h4`, whiteAndOpacityD1)
   let sections = document.querySelectorAll(`#${PROJECT_3_NAME} > div.resume-section-content>section`);
   Object.assign(sections[0].style,{ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' } )
   /* "Currently In Development" */
@@ -297,45 +251,33 @@ function cleanUpStyling(){
   let projects = document.getElementById('projects');
   let projectsH2 = projects.querySelector('div.resume-section-content>h2');
   let projectsH3 = projects.querySelector('div.resume-section-content>h3');
-  let projectsP = projects.querySelectorAll('div.resume-section-content p');
+  setStyleForAll('#projects>div.resume-section-content p', noOpacityAndTrans)
   Object.assign(projectsH2.style, noOpacityAndTrans);
   Object.assign(projectsH3.style, noOpacityAndTrans);
-  for (el of projectsP) {
-    Object.assign(el.style, noOpacityAndTrans);
-
-  }
   let project1 = document.getElementById(PROJECT_1_NAME);
   let project1H2 = project1.querySelector('div.resume-section-content>h2');
   let project1H3 = project1.querySelector('div.resume-section-content>h3');
   let project1Img = project1.querySelector('div.resume-section-content>img');
-  let project1P = project1.querySelectorAll('div.resume-section-content>p');
-
+  
   Object.assign(project1H2.style, noOpacityAndTrans);
   Object.assign(project1H3.style, noOpacityAndTrans);
   Object.assign(project1Img.style, noOpacityAndTrans);
-  for (el of project1P){
-    Object.assign(el.style, noOpacityAndTrans)
-  }
+  setStyleForAll(`#${PROJECT_1_NAME}>div.resume-section-content>p`, noOpacityAndTrans);
+ 
   
   /* For project 2 cleaning */
   let project2 = document.getElementById(PROJECT_2_NAME);
   
   let project2P = project2.querySelector('div.resume-section-content>p');  
   let project2H2 = project2.querySelector('div.resume-section-content>h2');
-  let project2H4 = project2.querySelectorAll('div.resume-section-content>h4');
   let project2FirstSection = project2.querySelector('div.resume-section-content>section');
-  let project2DevTiles = project2.querySelectorAll('.development-tile>h5')
   let project2SecondSection = project2.querySelector('div.resume-section-content>section:nth-of-type(2)');
 
   Object.assign(project2P.style, noOpacityAndTrans);
   Object.assign(project2H2.style, noOpacityAndTrans);
-  for (el of project2H4){
-    Object.assign(el.style, noOpacityAndTrans);
-  }
+  setStyleForAll(`#${PROJECT_2_NAME} > div.resume-section-content>h4`, noOpacityAndTrans);
   Object.assign(project2FirstSection.style, { transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
-  for (el of project2DevTiles){
-    Object.assign(el.style,whiteAndOpacityD1_5 )
-  }
+  setStyleForAll(`#${PROJECT_2_NAME}>.development-tile>h5`, whiteAndOpacityD1_5);
   Object.assign(project2SecondSection.style, { transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'});
 
   /* For project 3 cleaning */
@@ -343,20 +285,15 @@ function cleanUpStyling(){
 
   let project3P = project3.querySelector('div.resume-section-content>p');  
   let project3H2 = project3.querySelector('div.resume-section-content>h2');
-  let project3H4 = project3.querySelectorAll('div.resume-section-content>h4');
   let project3FirstSection = project3.querySelector('div.resume-section-content>section');
   let project3DevTiles = project3.querySelectorAll('.development-tile>h5')
   let project3SecondSection = project3.querySelector('div.resume-section-content>section:nth-of-type(2)');
 
   Object.assign(project3P.style, noOpacityAndTrans);
   Object.assign(project3H2.style, noOpacityAndTrans);
-  for (el of project3H4){
-    Object.assign(el.style, noOpacityAndTrans);
-  }
+  setStyleForAll(`#${PROJECT_3_NAME}>div.resume-section-content>h4`, noOpacityAndTrans)
   Object.assign(project3FirstSection.style, { transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
-  for (el of project3DevTiles){
-    Object.assign(el.style,whiteAndOpacityD1_5 )
-  }
+  setStyleForAll(`#${PROJECT_3_NAME} .development-tile>h5`, whiteAndOpacityD1_5);
   Object.assign(project3SecondSection.style, { transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'});
   
   console.log('reset arrow.') 
@@ -472,6 +409,46 @@ function setHeaderColor(hnumber, color, rgb){
     document.querySelector(`h${hnumber}`).style.setProperty('color', color);
   }
 }
+function isHoveringProjects(){
+  // return document.querySelector('.nav .navbar-nav:hover') !== null ||
+  //        document.querySelector('#project-dropdown:hover') !== null
+  // return document.querySelector('.navbar-nav:hover') !== null 
+  return isHoveringAllProjects() || isHoveringNavbar()
+}
+
+function isHoveringAllProjects(){
+  return document.querySelector('#all-projects:hover') !== null
+}
+function isHoveringNavbar(){
+  document.querySelector('#sideNav:hover')
+}
+/**
+ * Attempts to collapse the projects sub navbar if the mouse is hovered away from the entire navbar. If the mouse is not hovered away, it will try again every x ms.
+ */
+function attemptCollapse(){
+  if (!isHoveringProjects()){
+    console.log("No longer hovering. Collapsing now...")
+
+    Object.assign(document.querySelector('#hidden-nav').style, projectDropdownHidden);
+    setStyleForAll('li.project-child > a', projectChildHidden )
+
+  }
+  else {
+    console.log("Still hovering. Trying again in a bit...")
+    timer = setTimeout(attemptCollapse, 500)
+  }
+}
+/**
+ * 
+ * @param {string} queryStr 
+ * @param {Object} styleObj 
+ */
+function setStyleForAll(queryStr, styleObj){
+  let els = document.querySelectorAll(queryStr);
+  for (el of els){
+    Object.assign(el.style, styleObj);
+  }
+}
 
 
 let CURRENTLY_BROWSING = ''
@@ -502,11 +479,13 @@ const PRIMARY_LIGHT_BLUE_H='#4fbeff'
 const PRIMARY_DEFAULT_FONT_COLOR_H = '#6C757D'
 /* styles */
 const projectChildVisible = {
-  visibility: 'visible', transition: '0.7s', transform: 'scaleY(1)'
+  visibility: 'visible', transition: '0.3s', transform: 'scaleY(1)'
 }
 const projectChildHidden = {
-  visibility: 'hidden', transition: '0.7s', transform: 'scaleY(0)'
+  visibility: 'hidden', transition: '0.3s', transform: 'scaleY(0)', transitionDelay: '0.5s'
 }
+const projectDropdownHidden = {height: '0', transition: '0.7s', transitionDelay: '0.5s'}
+const projectDropdownVisible = {height: '8em', transition: '0.7s'}
 const whiteAndOpacityInstant = {
   opacity: '1',
   color: 'white'
