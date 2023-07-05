@@ -203,31 +203,32 @@ Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-co
 }
 
 function project2Animate(){
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>p.mb-4`).css({opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'})
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>h4`).css(whiteAndOpacityD1)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' })
-  /* "Currently In Development" */
-  $(`.development-tile>h5`).css({opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'})
+  Object.assign(document.querySelector(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).style, whiteAndOpacityD1);
+  Object.assign(document.querySelector(`#${PROJECT_2_NAME} > div.resume-section-content>p.mb-4`).style, {opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'});
+  let project2H4s = document.querySelectorAll(`#${PROJECT_2_NAME} > div.resume-section-content>h4`)
+  for (h4 of project2H4s){
+    Object.assign(h4.style, whiteAndOpacityD1);
+  }
+  let sections = document.querySelectorAll(`#${PROJECT_2_NAME} > div.resume-section-content>section`);
   
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'})
-
-
+  Object.assign(sections[0].style, { transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' });
+  /* "Currently In Development" */
+  let tiles = document.querySelectorAll('.development-tile>h5');
+  for (let tile of tiles) {
+    Object.assign(tile.style, {opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'});
+  }
+  Object.assign(sections[1].style, { transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'});
 }
 
 function project3Animate(){
   Object.assign(document.querySelector(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).style, whiteAndOpacityD1);
-  // $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
   Object.assign(document.querySelector(`#${PROJECT_3_NAME} > div.resume-section-content>p.mb-4`).style, {opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'});
-  // $(`#${PROJECT_3_NAME} > div.resume-section-content>p.mb-4`).css({opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'})
   let project3H4 = document.querySelectorAll(`#${PROJECT_3_NAME} > div.resume-section-content>h4`);
   for (el of project3H4){
     Object.assign(el.style, whiteAndOpacityD1);
   }
-  // $(`#${PROJECT_3_NAME} > div.resume-section-content>h4`).css(whiteAndOpacityD1)
   let sections = document.querySelectorAll(`#${PROJECT_3_NAME} > div.resume-section-content>section`);
   Object.assign(sections[0].style,{ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' } )
-  // $(`#${PROJECT_3_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' })
   /* "Currently In Development" */
 
   let developmentTiles = document.querySelectorAll('#project3 .resume-section-content .development-tile>h5')
@@ -384,16 +385,18 @@ function setBgColor(colorHex = PRIMARY_WHITE_H) {
   document.querySelector(':root').style.setProperty('--bs-body-bg', colorHex)
 }
 function setHyperLinkColor(hexColor){
-  $(':root').css('--bs-link-color',hexColor)
+  document.documentElement.style.setProperty('--bs-link-color', hexColor);
+  // $(':root').css('--bs-link-color',hexColor)
 }
 function setHyperLinkHoverColor(hexColor) {
-  document.querySelector(':root').style.setProperty('--bs-link-hover-color',  hexColor)
+  document.documentElement.style.setProperty('--bs-link-hover-color',  hexColor)
 }
 /**
  * This collapses the content of the navbar (for mobile). 
  */
 function setNavbarDismissed(){
-  $('button.navbar-toggler').css('visibility', 'collapse')
+  document.querySelector('button.navbar-toggler').style.setProperty('visibility', 'collapse');
+  // $('button.navbar-toggler').css('visibility', 'collapse')
   $('#navbarResponsive').collapse('hide');
 
 }
