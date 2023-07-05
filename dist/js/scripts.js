@@ -58,23 +58,13 @@ function initializeNav() {
     // console.log('Hovering in \'All Projects Section\'');
   })
   /* Dropdown effect when mouse is hovered away  */
-  // projectDropdown.addEventListener('mouseout', () => {
-  //   setTimeout(() => {
-  //     if (!isHoveringProjects()){
-  //       Object.assign(document.querySelector('#hidden-nav').style, projectDropdownHidden);     
-  //       setStyleForAll('li.project-child > a', projectChildHidden ) 
-
-  //     }
-      
-  //   },500)
-  //    })
   allProjectsSection.addEventListener('mouseleave', () => {
-    setTimeout( attemptCollapse,500)
+    timer = setTimeout( attemptCollapse,500)
     console.log('Hovering out of \'All Projects Section\'');
     
   })
   sideNav.addEventListener('mouseleave', () => {
-    setTimeout( attemptCollapse,500)
+    timer = setTimeout( attemptCollapse,500)
     console.log('Hovering out of \'Hidden Nav\'');
   })
 }
@@ -409,10 +399,8 @@ function setHeaderColor(hnumber, color, rgb){
     document.querySelector(`h${hnumber}`).style.setProperty('color', color);
   }
 }
+/* Returns true if the reader is hovering the navbar or the projects section. */
 function isHoveringProjects(){
-  // return document.querySelector('.nav .navbar-nav:hover') !== null ||
-  //        document.querySelector('#project-dropdown:hover') !== null
-  // return document.querySelector('.navbar-nav:hover') !== null 
   return isHoveringAllProjects() || isHoveringNavbar()
 }
 
@@ -420,22 +408,16 @@ function isHoveringAllProjects(){
   return document.querySelector('#all-projects:hover') !== null
 }
 function isHoveringNavbar(){
-  document.querySelector('#sideNav:hover')
+  return document.querySelector('#sideNav:hover') !== null
 }
 /**
  * Attempts to collapse the projects sub navbar if the mouse is hovered away from the entire navbar. If the mouse is not hovered away, it will try again every x ms.
  */
 function attemptCollapse(){
   if (!isHoveringProjects()){
-    console.log("No longer hovering. Collapsing now...")
-
     Object.assign(document.querySelector('#hidden-nav').style, projectDropdownHidden);
     setStyleForAll('li.project-child > a', projectChildHidden )
 
-  }
-  else {
-    console.log("Still hovering. Trying again in a bit...")
-    timer = setTimeout(attemptCollapse, 500)
   }
 }
 /**
