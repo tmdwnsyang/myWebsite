@@ -13034,12 +13034,16 @@ h1.mb-0 {
   margin: 0 0 1rem;
 }
 
-section#project2{
+section#project2, section#project3{
   max-height: auto;
 }
-section#project2 h4 {
+section#project2 h4, section#project3 h4 {
   margin: 0 0 1em 0
 }
+#project2> div.resume-section-content>p.mb-4 {
+  opacity: 0;
+}
+
 
 /*development tile Image sizes */
 .development-tile>figure,.development-tile>figure>a>img  {

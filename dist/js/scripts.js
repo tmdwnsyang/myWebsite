@@ -87,57 +87,10 @@ function backgroundChange() {
     let element = e.relatedTarget;
     /* If currently not viewing any of the project pages */
     if (!postProj && !currentlyBrowsingProjects()) {
-      $('button.navbar-toggler').css('visibility', 'visible')
-      console.log('Cleaning up styles...')
-      setNavVisible();
-      let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .flex-grow-1p>a')
-
-      for (head of headings) {
-        head.style.setProperty('color', PRIMARY_DARK_BLUE_H_H1)
-        head.style.setProperty('transition', '1s')
-        head.style.setProperty('transition-delay', '')
-        head.style.setProperty('filter', '')
-      }
-      /* Resetting all CURRENTLY_BROWSING opacities under Projects section*/
-      $('#projects > div.resume-section-content>h2').css(noOpacityAndTrans)
-      $('#projects > div.resume-section-content>h3').css(noOpacityAndTrans)
-      $('#projects > div.resume-section-content>p').css(noOpacityAndTrans)
-
-      $(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-      $(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
-      $(`#${PROJECT_1_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
-      $(`#${PROJECT_1_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
-
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
-
-      $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-      $(`#${PROJECT_3_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
-      $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
-      $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
-      // $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
-      /* Hide back the arrow animation */
-      
-      console.log('reset arrow.') 
-      $('#projects.resume-section-content').css({opacity: 0})
-      $('section.scroll-down-disclaimer').css(arrowHideEffect)
-      
-      /* Reset the project2 page */
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>h4`).css(noOpacityAndTrans)
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
-  /* "Currently In Development" */
-      $(`.development-tile>h5`).css(whiteAndOpacityD1_5)
-      
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'})
-      postProj = true;
-
-      $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(noOpacityAndTrans)
+      cleanUpStyling();
     }
     if (CURRENTLY_BROWSING === 'about') {
-      deviceTransitionAnimate()
+      deviceTransitionAnimate();
 
       if (firstTimeRunning){
         $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
@@ -248,15 +201,14 @@ function project1Animate(){
 
 function project2Animate(){
   $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>p.mb-4`).css({opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'})
   $(`#${PROJECT_2_NAME} > div.resume-section-content>h4`).css(whiteAndOpacityD1)
-  
   $(`#${PROJECT_2_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' })
   /* "Currently In Development" */
-  $(`.development-tile>h5`).css(whiteAndOpacityD1_5)
+  $(`.development-tile>h5`).css({opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'})
   
   $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'})
 
-  // $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
 
   $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
 
@@ -267,17 +219,69 @@ function project2Animate(){
 
 function project3Animate(){
   $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>h3`).css(whiteAndOpacityD1_5)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>h4`).css(whiteAndOpacityD1)
   $(`#${PROJECT_3_NAME} > div.resume-section-content>p:first-of-type`).css(whiteAndOpacityD2)
 
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>p:first-of-type+p`).css(whiteAndOpacityD3)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
-
-  /* Project titles */
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' })
+  /* "Currently In Development" */
+  $(`.development-tile>h5`).css({opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'})
   
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'})
 
+
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
+
+}
+
+function cleanUpStyling(){
+  $('button.navbar-toggler').css('visibility', 'visible')
+  console.log('Cleaning up styles...')
+  setNavVisible();
+  let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .flex-grow-1p>a')
+
+  for (head of headings) {
+    head.style.setProperty('color', PRIMARY_DARK_BLUE_H_H1)
+    head.style.setProperty('transition', '1s')
+    head.style.setProperty('transition-delay', '')
+    head.style.setProperty('filter', '')
+  }
+  /* Resetting all CURRENTLY_BROWSING opacities under Projects section*/
+  $('#projects > div.resume-section-content>h2').css(noOpacityAndTrans)
+  $('#projects > div.resume-section-content>h3').css(noOpacityAndTrans)
+  $('#projects > div.resume-section-content>p').css(noOpacityAndTrans)
+
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
+  $(`#${PROJECT_1_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
+  $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+  // $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+  /* Hide back the arrow animation */
+  
+  console.log('reset arrow.') 
+  $('#projects.resume-section-content').css({opacity: 0})
+  $('section.scroll-down-disclaimer').css(arrowHideEffect)
+  
+  /* Reset the project2 page */
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>h4`).css(noOpacityAndTrans)
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
+/* "Currently In Development" */
+  $(`.development-tile>h5`).css(whiteAndOpacityD1_5)
+  
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'})
+  postProj = true;
+
+  $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(noOpacityAndTrans)
 }
 
 window.addEventListener('resize', function() {
@@ -378,6 +382,7 @@ let CURRENTLY_BROWSING = ''
 const PROJECT_1_NAME = 'youtubeilist'
 const PROJECT_2_NAME = 'project2'
 const PROJECT_3_NAME = 'project3'
+/* If the user is browsing anywhere outside of these sections, perform styling reset.  */
 const ALL_PROJECT_NAMES = ['projects', PROJECT_1_NAME, PROJECT_2_NAME, PROJECT_3_NAME]
 
 const PRIMARY_BLUE = '67, 142, 200'
