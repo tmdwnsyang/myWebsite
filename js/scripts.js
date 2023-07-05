@@ -186,17 +186,20 @@ function projectsIntroAnimate(){
 }
 
 function project1Animate(){
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).css(whiteAndOpacityD1_5)
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>p:first-of-type`).css(whiteAndOpacityD2)
+// Use querySelector instead of jQuery selector and use Object.assign to apply style object
+Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).style, whiteAndOpacityD1);
+Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).style, whiteAndOpacityD1_5);
 
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>p:first-of-type+p`).css(whiteAndOpacityD3)
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>img`).css(whiteAndOpacityD3_5)
+let paragraphs = document.querySelectorAll(`#${PROJECT_1_NAME} > div.resume-section-content>p`);
 
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>img+p>a`).css(whiteAndOpacityD4)
+Object.assign(paragraphs[0].style, whiteAndOpacityD2);
+Object.assign(paragraphs[1].style, whiteAndOpacityD2_5);
 
-  
+Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-content>img`).style, whiteAndOpacityD3_5);
+
+Object.assign(paragraphs[2].style, whiteAndOpacityD4);
+Object.assign(document.querySelector(`#${PROJECT_1_NAME} > div.resume-section-content>img+p>a`).style, whiteAndOpacityD4);  
+
 }
 
 function project2Animate(){
@@ -210,78 +213,115 @@ function project2Animate(){
   $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'})
 
 
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
-
-  /* Anchor links resetting colors */
-  // $('.development-tile p a').css('color', 'white');
-
 }
 
 function project3Animate(){
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>h4`).css(whiteAndOpacityD1)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>p:first-of-type`).css(whiteAndOpacityD2)
-
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' })
+  Object.assign(document.querySelector(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).style, whiteAndOpacityD1);
+  // $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(whiteAndOpacityD1)
+  Object.assign(document.querySelector(`#${PROJECT_3_NAME} > div.resume-section-content>p.mb-4`).style, {opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'});
+  // $(`#${PROJECT_3_NAME} > div.resume-section-content>p.mb-4`).css({opacity: 1, color: 'var(--bs-gray-500)', transitionDelay: '1s'})
+  let project3H4 = document.querySelectorAll(`#${PROJECT_3_NAME} > div.resume-section-content>h4`);
+  for (el of project3H4){
+    Object.assign(el.style, whiteAndOpacityD1);
+  }
+  // $(`#${PROJECT_3_NAME} > div.resume-section-content>h4`).css(whiteAndOpacityD1)
+  let sections = document.querySelectorAll(`#${PROJECT_3_NAME} > div.resume-section-content>section`);
+  Object.assign(sections[0].style,{ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' } )
+  // $(`#${PROJECT_3_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(-4em)', opacity: 1, transitionDelay: '1.25s' })
   /* "Currently In Development" */
-  $(`.development-tile>h5`).css({opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'})
-  
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'})
 
-
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>img+p`).css(whiteAndOpacityD4)
-
+  let developmentTiles = document.querySelectorAll('#project3 .resume-section-content .development-tile>h5')
+  for (tiles of developmentTiles){
+    Object.assign(tiles.style, {opacity: 1, color: 'var(--bs-gray-400)', transitionDelay: '1.5s'})
+  }
+  Object.assign(sections[1].style, { transform: 'translateY(-4em)', opacity: 1 , transitionDelay: '1.5s'})
 }
 
 function cleanUpStyling(){
-  $('button.navbar-toggler').css('visibility', 'visible')
+  // Get the button element by its class name and set its visibility style
+  let button = document.querySelector('button.navbar-toggler');
+  button.style.visibility = 'visible';
   console.log('Cleaning up styles...')
   setNavVisible();
   let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .flex-grow-1p>a')
 
-  for (head of headings) {
-    head.style.setProperty('color', PRIMARY_DARK_BLUE_H_H1)
-    head.style.setProperty('transition', '1s')
-    head.style.setProperty('transition-delay', '')
-    head.style.setProperty('filter', '')
+  for (let head of headings) {
+    head.style.color = PRIMARY_DARK_BLUE_H_H1;
+    head.style.transition = '1s';
+    head.style.transitionDelay = '';
+    head.style.filter = '';
   }
   /* Resetting all CURRENTLY_BROWSING opacities under Projects section*/
-  $('#projects > div.resume-section-content>h2').css(noOpacityAndTrans)
-  $('#projects > div.resume-section-content>h3').css(noOpacityAndTrans)
-  $('#projects > div.resume-section-content>p').css(noOpacityAndTrans)
+  let projects = document.getElementById('projects');
+  let projectsH2 = projects.querySelector('div.resume-section-content>h2');
+  let projectsH3 = projects.querySelector('div.resume-section-content>h3');
+  let projectsP = projects.querySelectorAll('div.resume-section-content p');
+  Object.assign(projectsH2.style, noOpacityAndTrans);
+  Object.assign(projectsH3.style, noOpacityAndTrans);
+  for (el of projectsP) {
+    Object.assign(el.style, noOpacityAndTrans);
 
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
-  $(`#${PROJECT_1_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+  }
+  let project1 = document.getElementById(PROJECT_1_NAME);
+  let project1H2 = project1.querySelector('div.resume-section-content>h2');
+  let project1H3 = project1.querySelector('div.resume-section-content>h3');
+  let project1Img = project1.querySelector('div.resume-section-content>img');
+  let project1P = project1.querySelectorAll('div.resume-section-content>p');
 
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
+  Object.assign(project1H2.style, noOpacityAndTrans);
+  Object.assign(project1H3.style, noOpacityAndTrans);
+  Object.assign(project1Img.style, noOpacityAndTrans);
+  for (el of project1P){
+    Object.assign(el.style, noOpacityAndTrans)
+  }
+  
+  /* For project 2 cleaning */
+  let project2 = document.getElementById(PROJECT_2_NAME);
+  
+  let project2P = project2.querySelector('div.resume-section-content>p');  
+  let project2H2 = project2.querySelector('div.resume-section-content>h2');
+  let project2H4 = project2.querySelectorAll('div.resume-section-content>h4');
+  let project2FirstSection = project2.querySelector('div.resume-section-content>section');
+  let project2DevTiles = project2.querySelectorAll('.development-tile>h5')
+  let project2SecondSection = project2.querySelector('div.resume-section-content>section:nth-of-type(2)');
 
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>h3`).css(noOpacityAndTrans)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>img`).css(noOpacityAndTrans)
-  $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
-  // $(`#${PROJECT_3_NAME} > div.resume-section-content>p`).css(noOpacityAndTrans)
-  /* Hide back the arrow animation */
+  Object.assign(project2P.style, noOpacityAndTrans);
+  Object.assign(project2H2.style, noOpacityAndTrans);
+  for (el of project2H4){
+    Object.assign(el.style, noOpacityAndTrans);
+  }
+  Object.assign(project2FirstSection.style, { transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
+  for (el of project2DevTiles){
+    Object.assign(el.style,whiteAndOpacityD1_5 )
+  }
+  Object.assign(project2SecondSection.style, { transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'});
+
+  /* For project 3 cleaning */
+  let project3 = document.getElementById(PROJECT_3_NAME);
+
+  let project3P = project3.querySelector('div.resume-section-content>p');  
+  let project3H2 = project3.querySelector('div.resume-section-content>h2');
+  let project3H4 = project3.querySelectorAll('div.resume-section-content>h4');
+  let project3FirstSection = project3.querySelector('div.resume-section-content>section');
+  let project3DevTiles = project3.querySelectorAll('.development-tile>h5')
+  let project3SecondSection = project3.querySelector('div.resume-section-content>section:nth-of-type(2)');
+
+  Object.assign(project3P.style, noOpacityAndTrans);
+  Object.assign(project3H2.style, noOpacityAndTrans);
+  for (el of project3H4){
+    Object.assign(el.style, noOpacityAndTrans);
+  }
+  Object.assign(project3FirstSection.style, { transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
+  for (el of project3DevTiles){
+    Object.assign(el.style,whiteAndOpacityD1_5 )
+  }
+  Object.assign(project3SecondSection.style, { transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'});
   
   console.log('reset arrow.') 
   $('#projects.resume-section-content').css({opacity: 0})
   $('section.scroll-down-disclaimer').css(arrowHideEffect)
   
-  /* Reset the project2 page */
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>h2`).css(noOpacityAndTrans)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>h4`).css(noOpacityAndTrans)
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:first-of-type`).css({ transform: 'translateY(4em)', opacity: 0, transitionDelay: '0' })
-/* "Currently In Development" */
-  $(`.development-tile>h5`).css(whiteAndOpacityD1_5)
-  
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>section:nth-of-type(2)`).css({ transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'})
   postProj = true;
-
-  $(`#${PROJECT_2_NAME} > div.resume-section-content>img+p`).css(noOpacityAndTrans)
 }
 
 window.addEventListener('resize', function() {
@@ -379,7 +419,7 @@ function setHeaderColor(hnumber, color, rgb){
 
 let CURRENTLY_BROWSING = ''
 /* Note all names will be processed in lower case */
-const PROJECT_1_NAME = 'youtubeilist'
+const PROJECT_1_NAME = 'project1'
 const PROJECT_2_NAME = 'project2'
 const PROJECT_3_NAME = 'project3'
 /* If the user is browsing anywhere outside of these sections, perform styling reset.  */
