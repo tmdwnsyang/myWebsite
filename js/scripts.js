@@ -40,48 +40,79 @@ function initializeNav() {
   // let allResumes = document.querySelector('#all-resumes');
 
   /* adds */
+
   projectDropdown.addEventListener('mouseover', () => {
-    $('#hidden-nav').css({height: '8em', transition: '1s'})
-    $('.project-child > a').css(projectChildVisible)
-    // clearTimeout(projectDropTimer)
-    // projectDropTimer = setTimeout( () => {
-    // }, 200)
+    // timer = setTimeout(()=> {
+      
+    // }, 1000);
+      Object.assign(document.querySelector('#hidden-nav').style, {height: '8em', transition: '1s'});
+      let allAnchors = document.querySelectorAll('.project-child > a');
+      for (a of allAnchors){
+        Object.assign(a.style,projectChildVisible);
+      }
+      // console.log('Hovering over \'Projects\'');
   })
    hiddenNav.addEventListener('mouseover', () => {
-    $('#hidden-nav').css({height: '8em', transition: '1s'})
-    $('.project-child > a').css(projectChildVisible)
+    // timer = setTimeout(()=> {
+      // }, 1000);
+      let allAnchors = document.querySelectorAll('.project-child > a');
+      for (a of allAnchors){
+        Object.assign(a.style,projectChildVisible);
+      }
+      // $('.project-child > a').css(projectChildVisible)
+      Object.assign(document.querySelector('#hidden-nav').style, {height: '8em', transition: '1s'});
+      // console.log('Hovering over of \'hiddenNav\'');
+
   })
 
 
   allProjectsSection.addEventListener('mouseover', (e) => {
     // console.log('mouseHover!');
+    let allAnchors = document.querySelectorAll('.project-child > a');
+    for (a of allAnchors){
+      Object.assign(a.style,projectChildVisible);
+    }
+    Object.assign(document.querySelector('#hidden-nav').style, {height: '8em', transition: '1s'});
+    // console.log('Hovering in \'All Projects Section\'');
 
-    $('#hidden-nav').css({height: '8em', transition: '1s'})
-    $('.project-child > a').css(projectChildVisible)
+    // $('.project-child > a').css(projectChildVisible)
     
   })
 
   /* Dropdown effect when mouse is hovered away  */
   projectDropdown.addEventListener('mouseout', () => {
-    $('#hidden-nav').css({height: '0', transition: '1s'})
-    $('.project-child > a').css(projectChildHidden)
-  })
-  allProjectsSection.addEventListener('mouseout', () => {
-    $('#hidden-nav').css({height: '0', transition: '1s'})
-    $('.project-child > a').css(projectChildHidden)
+      Object.assign(document.querySelector('#hidden-nav').style, {height: '0', transition: '1s'});     
+      let allAnchors = document.querySelectorAll('.project-child > a');
+      for (a of allAnchors){
+        Object.assign(a.style,projectChildHidden);
+      } 
+     })
+  allProjectsSection.addEventListener('mouseleave', () => {
+      Object.assign(document.querySelector('#hidden-nav').style, {height: '0', transition: '1s'});
+
+      let allAnchors = document.querySelectorAll('.project-child > a');
+      for (a of allAnchors){
+        Object.assign(a.style,projectChildHidden);
+      }
+      // console.log('Hovering out of \'All Projects Section\'');
+
   })
 
-  hiddenNav.addEventListener('mouseout', () => {
-    $('#hidden-nav').css({height: '0', transition: '1s'})
-    $('.project-child > a').css(projectChildHidden)
+  hiddenNav.addEventListener('mouseleave', () => {
+      Object.assign(document.querySelector('#hidden-nav').style, {height: '0', transition: '1s'});
+      let allAnchors = document.querySelectorAll('.project-child > a');
+    for (a of allAnchors){
+      Object.assign(a.style,projectChildHidden);
+    }
+    // console.log('Hovering out of \'Hidden Nav\'');
   })
 }
 
 let postProj = false,
     firstTimeRunning = true;
 function backgroundChange() {
-  $(window).on('activate.bs.scrollspy', function( e) {
-
+  document.addEventListener('activate.bs.scrollspy', function( e) {
+    projectListItems = document.querySelector('li .project-child');
     CURRENTLY_BROWSING = e.relatedTarget.getAttribute('href').toLowerCase().slice(1);
     console.log(CURRENTLY_BROWSING);
     let element = e.relatedTarget;
@@ -93,29 +124,38 @@ function backgroundChange() {
       deviceTransitionAnimate();
 
       if (firstTimeRunning){
-        $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
-        $('h1.text-primary').css(whiteAndOpacityD2_5)
-        $('.name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons').css({opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'})
+        Object.assign(document.querySelector('.name-only>h1:first-of-type').style, whiteAndOpacityD1Filter)
+        // $('.name-only>h1:first-of-type').css(whiteAndOpacityD1Filter )
+        Object.assign(document.querySelector('h1.text-primary').style, whiteAndOpacityD2_5)
+        // $('h1.text-primary').css(whiteAndOpacityD2_5)
+        
+        let introParagraphs = document.querySelectorAll('.name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons');
+        for (e of introParagraphs){
+          Object.assign(e.style, {opacity: 1, transform: 'translateY(0em)', transitionDuration: '1s', transitionDelay: '1s'});
+        }
         firstTimeRunning = false
       } else {
-        $('.name-only>h1:first-of-type').css(whiteAndOpacityInstantFilter )
+        Object.assign(document.querySelector('.name-only>h1:first-of-type').style, whiteAndOpacityInstantFilter)
         setPseudoCSSProperty('.name-only>h1:first-of-type::after', 'background: white')
-        $('.name-only>h1+h1').css('transition', '0s')
-
+        document.querySelector('.name-only>h1+h1').style.setProperty('transition', '0s');
       }
       
       setBgColor(DARK_GRAY_H)
+      setCurrentParagraphColor('var(--bs-gray-500)')
       setNavAndPrimaryColors(PRIMARY_LIGHT_BLUE)
       setHyperLinkColor(PRIMARY_LIGHT_BLUE_H)
       setHyperLinkHoverColor(PRIMARY_WHITE_H)
       setHeaderColor(3, 'white');   /* light red */
+      setHeaderColor(2, 'lightgrey');
       setResumeParagraphColor(LIGHT_GREY_H);
-      // $('email-and-address-container').css()
     }
     else if (CURRENTLY_BROWSING === 'education') {
       setNavVisible()
       /* Reset the bg to white and the nav opacity back to 1 */
       setBgColor(PRIMARY_WHITE_H)
+      setHeaderColor(1, PRIMARY_DEFAULT_FONT_COLOR_H);
+      setHeaderColor(2, PRIMARY_DEFAULT_FONT_COLOR_H);
+
       setNavDividerInvisible()
       setNavAndPrimaryColors(PRIMARY_RED)
       setHeaderColor(3, PRIMARY_RED, true)
@@ -145,7 +185,7 @@ function backgroundChange() {
       setNavAndPrimaryColors(PRIMARY_GREEN)
     }
     /* Note the background uses HEX */
-    else if (element.parentElement === $('li .project-child')[0] || CURRENTLY_BROWSING === 'projects') {
+    else if (element.parentElement === projectListItems || CURRENTLY_BROWSING === 'projects') {
       postProj = false;
       /* Hide only for mobiles  */
       if (isMobile()){
@@ -174,14 +214,15 @@ function backgroundChange() {
 }
 
 function projectsIntroAnimate(){
-  
-  $('#projects.resume-section-content').css({opacity: 1})
-  $('#projects > div.resume-section-content>h2').css(whiteAndOpacityD1)
-  $('#projects > div.resume-section-content>h3').css(whiteAndOpacityD2)
-  $('#projects > div.resume-section-content>p').css(whiteAndOpacityD3)
+  Object.assign(document.querySelector('#projects > div.resume-section-content>h2').style, whiteAndOpacityD1);
+  Object.assign(document.querySelector('#projects > div.resume-section-content>h3').style, whiteAndOpacityD2)
+  Object.assign(document.querySelector('#projects > div.resume-section-content>p').style, whiteAndOpacityD3)
   /* The arrow container and the arrow itself */
-  $('section.scroll-down-disclaimer').css(arrowDisplayEffect)
-  $('section.scroll-down-disclaimer>*').css(whiteAndOpacityInstant)
+  Object.assign(document.querySelector('section.scroll-down-disclaimer').style, arrowDisplayEffect)
+  let scrollDisclaimerContents = document.querySelectorAll('section.scroll-down-disclaimer>*');
+  for (el of scrollDisclaimerContents){
+    Object.assign(el.style, whiteAndOpacityInstant)
+  }
  
 }
 
@@ -319,8 +360,7 @@ function cleanUpStyling(){
   Object.assign(project3SecondSection.style, { transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'});
   
   console.log('reset arrow.') 
-  $('#projects.resume-section-content').css({opacity: 0})
-  $('section.scroll-down-disclaimer').css(arrowHideEffect)
+  Object.assign(document.querySelector('section.scroll-down-disclaimer').style, arrowHideEffect)
   
   postProj = true;
 }
@@ -344,7 +384,8 @@ function deviceTransitionAnimate(){
   if (!isMobile() && CURRENTLY_BROWSING === 'about' ){
     setNavInvisible()
     // $('#sideNav-divider').css(noOpacityAndTrans)
-    $('#sideNav-divider').css(styleNavDividerShow)
+    // $('#sideNav-divider').css(styleNavDividerShow)
+    Object.assign(document.querySelector('#sideNav-divider').style, styleNavDividerShow)
   }
   /* At this point the nav divider should be hidden */
   else if (isMobile()){
@@ -361,13 +402,14 @@ function currentlyBrowsingProjects(){
   return ALL_PROJECT_NAMES.includes(CURRENTLY_BROWSING); 
 }
 function setNavInvisible(){
-  $('#sideNav').css('--bs-bg-opacity', '0')
+  document.querySelector('#sideNav').style.setProperty('--bs-bg-opacity', '0')
+
 }
 function setNavDividerInvisible(){
-  $('#sideNav-divider').css(styleNavDividerHide)
+  Object.assign(document.querySelector('#sideNav-divider').style, styleNavDividerHide);
 }
 function setNavVisible(){
-  $('#sideNav').css('--bs-bg-opacity', '1')
+  document.querySelector('#sideNav').style.setProperty('--bs-bg-opacity', '1');
 }
 /**
  * Sets the color for navigation other primary elements, such as headers.
@@ -386,7 +428,6 @@ function setBgColor(colorHex = PRIMARY_WHITE_H) {
 }
 function setHyperLinkColor(hexColor){
   document.documentElement.style.setProperty('--bs-link-color', hexColor);
-  // $(':root').css('--bs-link-color',hexColor)
 }
 function setHyperLinkHoverColor(hexColor) {
   document.documentElement.style.setProperty('--bs-link-hover-color',  hexColor)
@@ -396,13 +437,26 @@ function setHyperLinkHoverColor(hexColor) {
  */
 function setNavbarDismissed(){
   document.querySelector('button.navbar-toggler').style.setProperty('visibility', 'collapse');
-  // $('button.navbar-toggler').css('visibility', 'collapse')
-  $('#navbarResponsive').collapse('hide');
+  // $('#navbarResponsive').collapse('hide');
+  /* In case jQuery goes bust forever. */
+  document.querySelector('#navbarResponsive').classList.remove('show');
+  document.querySelector('#navbarResponsive').classList.add('collapse');
+
 
 }
 
 function setResumeParagraphColor(hexColor){
-  $('.resume-section-content p').css('color',hexColor)
+  let ps= document.querySelectorAll('#experience>.resume-section-content p, #education>.resume-section-content p');
+  for (p of ps){
+    p.style.setProperty('color', hexColor);
+  }
+}
+
+function setCurrentParagraphColor(color){
+  let ps = document.querySelectorAll(`#${CURRENTLY_BROWSING} p`);
+  for (p of ps){
+    p.style.setProperty('color', color);
+  }
 }
 /**
  * 
@@ -412,10 +466,10 @@ function setResumeParagraphColor(hexColor){
  */
 function setHeaderColor(hnumber, color, rgb){
   if (rgb){
-    $(`h${hnumber}`).css('color', `rgb(${color})`)
+    document.querySelector(`h${hnumber}`).style.setProperty('color', `rgb(${color})`);
   }else {
 
-    $(`h${hnumber}`).css('color', color)
+    document.querySelector(`h${hnumber}`).style.setProperty('color', color);
   }
 }
 
@@ -569,13 +623,18 @@ let bgOpacity = {
 }
 
 
-function setStyleRecursively(element, attribute, value){
-  $(element).css(attribute, value);
-  $(element).children().each( function() {
-    setStyleRecursively(this, attribute, value);
-  }
-  )
-}
+// function setStyleRecursively(element, attribute, value){
+//   // $(element).css(attribute, value);
+//   document.querySelector(element).style.setProperty(attribute, value);
+//   let children = document.querySelector(element).children;
+//   for (child of children){
+//     setStyleRecursively()
+//   }
+//   $(element).children().each( function() {
+//     setStyleRecursively(this, attribute, value);
+//   }
+//   )
+// }
 
 function setPseudoCSSProperty(selector, cssPropertyStr){
   for (let i = 0; i < styleSheet.cssRules.length; i++){
