@@ -58,16 +58,8 @@ function initializeNav() {
     // console.log('Hovering in \'All Projects Section\'');
   })
   /* Dropdown effect when mouse is hovered away  */
-  allProjectsSection.addEventListener('mouseleave', () => {
-    // The delay must be equal to the transitionDelay of the projectDropdown elem.
-    timer = setTimeout( attemptCollapse,500)
-    console.log('Hovering out of \'All Projects Section\'');
-    
-  })
-  sideNav.addEventListener('mouseleave', () => {
-    timer = setTimeout( attemptCollapse,500)
-    console.log('Hovering out of \'Hidden Nav\'');
-  })
+  allProjectsSection.addEventListener('mouseleave', collapseDebounce);
+  sideNav.addEventListener('mouseleave', collapseDebounce );
 }
 
 let postProj = false,
@@ -228,7 +220,6 @@ function cleanUpStyling(){
   // Get the button element by its class name and set its visibility style
   let button = document.querySelector('button.navbar-toggler');
   button.style.visibility = 'visible';
-  console.log('Cleaning up styles...')
   setNavVisible();
   let headings = document.querySelectorAll('h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .flex-grow-1p>a')
 
@@ -277,7 +268,6 @@ function cleanUpStyling(){
   let project3P = project3.querySelector('div.resume-section-content>p');  
   let project3H2 = project3.querySelector('div.resume-section-content>h2');
   let project3FirstSection = project3.querySelector('div.resume-section-content>section');
-  let project3DevTiles = project3.querySelectorAll('.development-tile>h5')
   let project3SecondSection = project3.querySelector('div.resume-section-content>section:nth-of-type(2)');
 
   Object.assign(project3P.style, noOpacityAndTrans);
@@ -287,7 +277,6 @@ function cleanUpStyling(){
   setStyleForAll(`#${PROJECT_3_NAME} .development-tile>h5`, whiteAndOpacityD1_5);
   Object.assign(project3SecondSection.style, { transform: 'translateY(4em)', opacity: 0 , transitionDelay: '0'});
   
-  console.log('reset arrow.') 
   Object.assign(document.querySelector('section.scroll-down-disclaimer').style, arrowHideEffect)
   
   postProj = true;
@@ -418,7 +407,6 @@ function attemptCollapse(){
   if (!isHoveringProjects()){
     Object.assign(document.querySelector('#hidden-nav').style, projectDropdownHidden);
     setStyleForAll('li.project-child > a', projectChildHidden )
-
   }
 }
 /**
@@ -610,3 +598,16 @@ function setPseudoCSSProperty(selector, cssPropertyStr){
   }
   styleSheet.insertRule(`${selector}{${cssPropertyStr}}`);
 }
+
+// Debouncer that resets the timer each time the mouse is hovered out, 
+// so it can wait after a bit each time.
+function debounce(f, timeout = 500){
+  let timer;
+  return(...args) => {
+    clearTimeout(timer)
+    timer = setTimeout( ()=> {
+      f.apply(this, args)      
+    }, timeout)
+  }
+}
+const collapseDebounce = debounce(() => attemptCollapse())
