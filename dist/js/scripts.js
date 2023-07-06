@@ -59,6 +59,7 @@ function initializeNav() {
   })
   /* Dropdown effect when mouse is hovered away  */
   allProjectsSection.addEventListener('mouseleave', () => {
+    // The delay must be equal to the transitionDelay of the projectDropdown elem.
     timer = setTimeout( attemptCollapse,500)
     console.log('Hovering out of \'All Projects Section\'');
     
@@ -109,7 +110,7 @@ function backgroundChange() {
     else if (CURRENTLY_BROWSING === 'education') {
       setNavVisible()
       /* Reset the bg to white and the nav opacity back to 1 */
-      setBgColor(PRIMARY_WHITE_H)
+      setBgColor(PRIMARY_LIGHT_GREEN_H)
       setHeaderColor(1, PRIMARY_DEFAULT_FONT_COLOR_H);
       setHeaderColor(2, PRIMARY_DEFAULT_FONT_COLOR_H);
 
@@ -120,15 +121,15 @@ function backgroundChange() {
     }
     else if (CURRENTLY_BROWSING === 'experience') {
       setNavVisible()
-      setBgColor(PRIMARY_WHITE_H)
+      setBgColor(PRIMARY_LIGHT_GREEN_H)
       
       setNavDividerInvisible()
-      setNavAndPrimaryColors(PRIMARY_PURPLE)
-      setHeaderColor(3, PRIMARY_PURPLE, true)
+      setNavAndPrimaryColors(PRIMARY_AQUA_BLUE)
+      setHeaderColor(3, PRIMARY_AQUA_BLUE, true)
       }
     else if (CURRENTLY_BROWSING === 'skills') {
       setNavVisible()
-      setBgColor(PRIMARY_WHITE_H)
+      setBgColor(PRIMARY_LIGHT_GREEN_H)
       
       setNavDividerInvisible()
       setHeaderColor(3, PRIMARY_DARK_BROWN, true)
@@ -444,10 +445,10 @@ const ALL_PROJECT_NAMES = ['projects', PROJECT_1_NAME, PROJECT_2_NAME, PROJECT_3
 const PRIMARY_BLUE = '67, 142, 200'
 const PRIMARY_ORANGE = '255, 174, 36'
 const PRIMARY_PURPLE ='117, 45, 250'
-const PRIMARY_GREEN = '109, 181, 139'
+const PRIMARY_GREEN = '141, 170, 152'
 const PRIMARY_RED = '170, 40, 0'
 const PRIMARY_DARK = '24, 26, 27'
-const PRIMARY_DARK_BROWN = '46, 41, 40'
+const PRIMARY_DARK_BROWN = '38, 27, 51'
 const PRIMARY_DARK_RED= '170, 40, 0'
 const PRIMARY_DARK_H = '#181a1b'
 const PRIMARY_WHITE_H = '#ffffff'
@@ -459,6 +460,8 @@ const PRIMARY_BLUE_H ='#438ec8'
 const PRIMARY_LIGHT_BLUE='79, 190, 255'
 const PRIMARY_LIGHT_BLUE_H='#4fbeff'
 const PRIMARY_DEFAULT_FONT_COLOR_H = '#6C757D'
+const PRIMARY_LIGHT_GREEN_H = '#f5f7f4'
+const PRIMARY_AQUA_BLUE = '62, 171, 196'
 /* styles */
 const projectChildVisible = {
   visibility: 'visible', transition: '0.3s', transform: 'scaleY(1)'
