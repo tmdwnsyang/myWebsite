@@ -24,6 +24,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
   initializeNav();
   backgroundChange();
+  resizeGrid();
 });
 
 /* For the purpose of enabling dynamic css property change for pseudo elements. */
@@ -130,9 +131,12 @@ function backgroundChange() {
     else if (CURRENTLY_BROWSING === 'interests') {
       setNavVisible()
       setBgColor()
-
       setNavDividerInvisible()
-      setNavAndPrimaryColors(PRIMARY_GREEN)
+      setNavAndPrimaryColors(PRIMARY_GREEN);
+      setColor(`.grid>div:nth-of-type(5) .disc h5`, '#E6E6E6' );
+      setColor(`.grid>div:nth-of-type(7) .disc h5`, '#735C5C' );
+      setColor(`.grid>div:nth-of-type(9) .disc h5`, '#E6E6E6' );
+
     }
     /* Note the background uses HEX */
     else if (element.parentElement === projectListItems || CURRENTLY_BROWSING === 'projects') {
@@ -282,9 +286,6 @@ function cleanUpStyling(){
   postProj = true;
 }
 
-window.addEventListener('resize', function() {
-  timerResize = setTimeout( deviceTransitionAnimate, 250 );
-})
 function isMobile() {
   if (window.innerWidth < 992 ){
     return true;
@@ -404,6 +405,8 @@ function isHoveringNavbar(){
  * Attempts to collapse the projects sub navbar if the mouse is hovered away from the entire navbar. If the mouse is not hovered away, it will try again every x ms.
  */
 function attemptCollapse(){
+  console.log('checking...');
+
   if (!isHoveringProjects()){
     Object.assign(document.querySelector('#hidden-nav').style, projectDropdownHidden);
     setStyleForAll('li.project-child > a', projectChildHidden )
@@ -421,6 +424,28 @@ function setStyleForAll(queryStr, styleObj){
   }
 }
 
+function setColor(queryStr, color){
+  document.querySelector(queryStr).style.color = color;
+}
+
+function resizeGrid(){
+  const grid = document.querySelector('.grid');
+  const rowHeight = getStyleVal(grid, 'grid-auto-rows');
+  const rowGap = getStyleVal(grid, 'grid-row-gap');
+  grid.style.gridAutoRows = 'auto';
+  
+  // Aligns the items at the beginning.
+  grid.style.alignItems = 'self-start';
+  console.log(rowHeight, rowGap);
+  grid.querySelectorAll('.item').forEach( el => {
+    el.style.gridRowEnd = `span ${Math.ceil((el.clientHeight + rowGap) / (rowHeight + rowGap) )}`
+  });
+  grid.removeAttribute('style');
+}
+
+function getStyleVal(elem, style){
+  return parseInt(window.getComputedStyle(elem).getPropertyValue(style));
+}
 
 let CURRENTLY_BROWSING = ''
 /* Note all names will be processed in lower case */
@@ -575,18 +600,6 @@ let bgOpacity = {
 }
 
 
-// function setStyleRecursively(element, attribute, value){
-//   // $(element).css(attribute, value);
-//   document.querySelector(element).style.setProperty(attribute, value);
-//   let children = document.querySelector(element).children;
-//   for (child of children){
-//     setStyleRecursively()
-//   }
-//   $(element).children().each( function() {
-//     setStyleRecursively(this, attribute, value);
-//   }
-//   )
-// }
 
 function setPseudoCSSProperty(selector, cssPropertyStr){
   for (let i = 0; i < styleSheet.cssRules.length; i++){
@@ -611,3 +624,11 @@ function debounce(f, timeout = 500){
   }
 }
 const collapseDebounce = debounce(() => attemptCollapse())
+const transitionDebounce = debounce(() => deviceTransitionAnimate());
+const gridResizeDebounce = debounce(()=> resizeGrid());
+
+
+window.addEventListener('resize', () => {
+  transitionDebounce();
+  gridResizeDebounce();
+});
