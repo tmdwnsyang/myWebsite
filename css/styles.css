@@ -13091,9 +13091,6 @@ section#project2 h4, section#project3 h4 {
 
 }
 
-
-
-
 @font-face {
   font-family: 'sairaregular';
   src: url('../assets/fonts/saira-regular-webfont.woff2') format('woff2'),
@@ -13103,13 +13100,55 @@ section#project2 h4, section#project3 h4 {
 
 }
 
-/* 
-@font-face {
-  font-family: 'timeburnerbold';
-  src: url('../assets/fonts/timeburnerbold-webfont.woff2') format('woff2'),
-       url('../assets/fonts/timeburnerbold-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
 
-} */
+/* The grid system */
+section.grid{
+  display: grid;
+  grid-gap: 0.3em;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 20px;
+}
+
+.grid>.item{
+  background: grey;
+}
+
+.item.text>.disc{
+  padding: 2em;
+}
+
+.item img {
+  width: 100%;
+}
+
+
+.disc>p{
+  margin: 0;
+  color: #E6E6E6;
+}
+
+/* Boat Cruise Text */
+.grid>div:nth-of-type(5){
+  background: #CB3970;
+}
+
+
+/* Hot dog text */
+
+.grid>div:nth-of-type(7){
+  background: #D9D9D9;
+}
+/* H5 can be edit on JS under interests. */
+.grid>div:nth-of-type(7) .disc>p{
+  color: #735C5C;
+}
+
+.grid>div:nth-of-type(9){
+  background: #1E2F6A;
+}
+/* H5 can be edit on JS under interests. */
+.grid>div:nth-of-type(9) .disc>p{
+  color: '#E6E6E6';
+}
+
 
