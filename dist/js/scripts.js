@@ -134,9 +134,9 @@ function backgroundChange() {
       setBgColor(PRIMARY_LIGHT_GREEN_H)
       setNavAndPrimaryColors(PRIMARY_DARK_BROWN)
 
-      setColor(`.grid>div:nth-of-type(2) .disc h5`, '#E6E6E6' );
-      setColor(`.grid>div:nth-of-type(7) .disc h5`, '#735C5C' );
-      setColor(`.grid>div:nth-of-type(9) .disc h5`, '#E6E6E6' );
+      setColor(`.grid>#text1 .disc h5`, '#E6E6E6' );
+      setColor(`.grid>#text2 .disc h5`, '#735C5C' );
+      setColor(`.grid>#text3 .disc h5`, '#E6E6E6' );
 
     }
     /* Note the background uses HEX */
