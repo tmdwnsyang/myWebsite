@@ -13103,7 +13103,7 @@ section#project2 h4, section#project3 h4 {
 section.grid{
   display: grid;
   grid-gap: 0.5em;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(max(250px, 25%), 1fr));
   grid-auto-rows: 5px;
 }
 
