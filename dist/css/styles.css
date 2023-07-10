@@ -12948,6 +12948,14 @@ li.nav-item .nav-link::before{
   }
 }
 
+#copyright{
+  position: fixed;
+  top: 95%;
+  left: 45%;
+}
+
+
+
 
 /* PROJECTS page */
 
