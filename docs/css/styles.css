@@ -13102,9 +13102,11 @@ section#project2 h4, section#project3 h4 {
 /* The grid system */
 section.grid{
   display: grid;
-  grid-gap: 0.5em;
+  grid-gap: 7px;
   grid-template-columns: repeat(auto-fill, minmax(max(250px, 25%), 1fr));
   grid-auto-rows: 5px;
+  position: relative;
+  z-index: 1;
 }
 
 .grid>.item{
@@ -13114,6 +13116,18 @@ section.grid{
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.34);
   opacity: 0;
   transform: translateY(5em);
+
+}
+
+.grid>.item.img{
+    position: relative;
+    z-index: 2;
+}
+
+.item.img>.content{
+    position: relative;
+    z-index: 3;
+    /* height: 100%; */
 }
 
 .item.text{
@@ -13125,14 +13139,46 @@ section.grid{
   padding: 2em;
 }
 
-.item img {
+.item.img>.content>img {
   width: 100%;
+  z-index: 4;
+  position: relative;
   /* max-height: 200px; */
+}
+/* .overlay span>img{
+    height: 1em;
+} */
+
+.content .overlay{
+    position: absolute;
+    z-index: 5;
+    background: orange;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    display: flex;
+    flex-flow: column;
+    padding: 1em;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transform: translateX(100%);
+
+}
+.content img:hover~.overlay, .content .overlay:hover{
+   
+    transition: 0.5s; 
+    transform: translateX(0%);
+
+ 
 }
 
 
 
-.disc>p{
+.disc>p, .overlay>p, .overlay span>img{
   margin: 0;
   color: #E6E6E6;
 }
@@ -13160,5 +13206,4 @@ section.grid{
 .grid #text3 .disc>p{
   color: '#E6E6E6';
 }
-
 
