@@ -202,11 +202,11 @@ function projectsIntroAnimate() {
   );
   Object.assign(
     document.querySelector("#projects > div.resume-section-content>h3").style,
-    whiteAndOpacityD2
+    whiteAndOpacityD1_5
   );
   Object.assign(
     document.querySelector("#projects > div.resume-section-content>p").style,
-    whiteAndOpacityD3
+    whiteAndOpacityD2
   );
   /* The arrow container and the arrow itself */
   Object.assign(
@@ -233,21 +233,21 @@ function project1Animate() {
   );
 
   Object.assign(paragraphs[0].style, whiteAndOpacityD2);
-  Object.assign(paragraphs[1].style, whiteAndOpacityD2_5);
+  Object.assign(paragraphs[1].style, whiteAndOpacityD2);
 
   Object.assign(
     document.querySelector(
       `#${PROJECT_1_NAME} > div.resume-section-content>img`
     ).style,
-    whiteAndOpacityD3_5
+    whiteAndOpacityD2_5
   );
 
-  Object.assign(paragraphs[2].style, whiteAndOpacityD4);
+  Object.assign(paragraphs[2].style, whiteAndOpacityD3);
   Object.assign(
     document.querySelector(
       `#${PROJECT_1_NAME} > div.resume-section-content>img+p>a`
     ).style,
-    whiteAndOpacityD4
+    whiteAndOpacityD3
   );
 }
 
@@ -785,7 +785,7 @@ const arrowDisplayEffect = {
   opacity: 1,
   color: "white",
   transition: "2s",
-  transitionDelay: "4500ms",
+  transitionDelay: "3000ms",
 };
 const arrowHideEffect = {
   filter: "none",
