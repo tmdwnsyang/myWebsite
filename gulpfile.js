@@ -8,8 +8,8 @@ const gulp = require('gulp')
 const minify = require('gulp-minify');
  
 gulp.task('compress', function(done) {
-  gulp.src(['dist/js/*.js', 'dist/js/*.mjs'])
+  gulp.src(['docs/js/*.js', 'docs/js/*.mjs'])
     .pipe(minify())
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('docs'))
     .on ('end', done);
 });
