@@ -100,7 +100,7 @@ function backgroundChange() {
         );
 
         let introParagraphsQ =
-          ".name-phone-email~h3, .name-phone-email~p, .name-phone-email~.social-icons";
+          ".name-phone-email~h3, .name-phone-email+h3+p, .name-phone-email~.social-icons";
         setStyleForAll(introParagraphsQ, {
           opacity: 1,
           transform: "translateY(0em)",
@@ -131,7 +131,6 @@ function backgroundChange() {
       setHeaderColor(3, "white"); /* light red */
       setHeaderColor(2, "lightgrey");
       setResumeParagraphColor(LIGHT_GREY_H);
-      document.querySelector('#copyright').style.opacity = 1;
 
     } else if (CURRENTLY_BROWSING === "education") {
       setNavVisible();
@@ -463,8 +462,10 @@ function deviceTransitionAnimate() {
       document.querySelector("#sideNav-divider").style,
       styleNavDividerShow
     );
+    toggleCopyright(1);
   } else if (isMobile()) {
   /* At this point the nav divider should be hidden */
+    toggleCopyright(0);
     setNavDividerInvisible();
     if (currentlyBrowsingProjects()) {
       setNavInvisible();
@@ -564,6 +565,11 @@ function isHoveringAllProjects() {
 }
 function isHoveringNavbar() {
   return document.querySelector("#sideNav:hover") !== null;
+}
+function toggleCopyright(integer){
+  document.querySelector('#copyright').style.setProperty('opacity', integer);
+  
+
 }
 /**
  * Attempts to collapse the projects sub navbar if the mouse is hovered away from the entire navbar. If the mouse is not hovered away, it will try again every x ms.
