@@ -621,7 +621,8 @@ function resizeGrid() {
         (rowHeight + rowGap)
     )}`;
   });
-
+  setStyleForAll('.item.img>.content', {position: 'relative',
+    zIndex: 3, height: '100%'})
   grid.removeAttribute("style");
 }
 
@@ -808,6 +809,7 @@ let bgOpacity = {
   "background-color":
     "rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important",
 };
+
 
 function setPseudoCSSProperty(selector, cssPropertyStr) {
   for (let i = 0; i < styleSheet.cssRules.length; i++) {
