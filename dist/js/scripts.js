@@ -123,17 +123,18 @@ function backgroundChange() {
     else if (CURRENTLY_BROWSING === 'skills') {
       setNavVisible()
       setBgColor(PRIMARY_LIGHT_GREEN_H)
-      
+      setNavAndPrimaryColors(PRIMARY_GREEN);
       setNavDividerInvisible()
       setHeaderColor(3, PRIMARY_DARK_BROWN, true)
-      setNavAndPrimaryColors(PRIMARY_DARK_BROWN)
     }
     else if (CURRENTLY_BROWSING === 'interests') {
       setNavVisible()
       setBgColor()
       setNavDividerInvisible()
-      setNavAndPrimaryColors(PRIMARY_GREEN);
-      setColor(`.grid>div:nth-of-type(5) .disc h5`, '#E6E6E6' );
+      setBgColor(PRIMARY_LIGHT_GREEN_H)
+      setNavAndPrimaryColors(PRIMARY_DARK_BROWN)
+
+      setColor(`.grid>div:nth-of-type(2) .disc h5`, '#E6E6E6' );
       setColor(`.grid>div:nth-of-type(7) .disc h5`, '#735C5C' );
       setColor(`.grid>div:nth-of-type(9) .disc h5`, '#E6E6E6' );
 
@@ -434,12 +435,15 @@ function resizeGrid(){
   const rowGap = getStyleVal(grid, 'grid-row-gap');
   grid.style.gridAutoRows = 'auto';
   
-  // Aligns the items at the beginning.
-  grid.style.alignItems = 'self-start';
-  console.log(rowHeight, rowGap);
-  grid.querySelectorAll('.item').forEach( el => {
-    el.style.gridRowEnd = `span ${Math.ceil((el.clientHeight + rowGap) / (rowHeight + rowGap) )}`
+  grid.querySelectorAll('.item.img').forEach( item => {
+    // console.log(`span (${item.querySelector('.content').clientHeight} + ${rowGap}) / (${rowHeight} + ${rowGap})`);
+    item.style.gridRowEnd = `span ${Math.floor((item.querySelector('.content').clientHeight + rowGap) / (rowHeight + rowGap) )}`
   });
+  grid.querySelectorAll('.item.text').forEach( item => {
+    // console.log(`span (${item.querySelector('.content').clientHeight} + ${rowGap}) / (${rowHeight} + ${rowGap})`);
+    item.style.gridRowEnd = `span ${Math.ceil((item.querySelector('.content').clientHeight + rowGap) / (rowHeight + rowGap) )}`
+  });
+  
   grid.removeAttribute('style');
 }
 
@@ -625,7 +629,7 @@ function debounce(f, timeout = 500){
 }
 const collapseDebounce = debounce(() => attemptCollapse())
 const transitionDebounce = debounce(() => deviceTransitionAnimate());
-const gridResizeDebounce = debounce(()=> resizeGrid());
+const gridResizeDebounce = debounce(()=> resizeGrid(), 1000);
 
 
 window.addEventListener('resize', () => {
