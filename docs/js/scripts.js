@@ -607,6 +607,11 @@ function resizeGrid() {
   const rowGap = getStyleVal(grid, "grid-row-gap");
   grid.style.gridAutoRows = "auto";
 
+  /* ! Very important to reset the height before proceeding, 
+    and setting to 100% after for calculation purposes.
+  */
+  setStyleForAll('.item.img>.content', { height: ''});
+
   grid.querySelectorAll(".item.img").forEach((item) => {
     // console.log(`span (${item.querySelector('.content').clientHeight} + ${rowGap}) / (${rowHeight} + ${rowGap})`);
     item.style.gridRowEnd = `span ${Math.floor(
@@ -621,8 +626,7 @@ function resizeGrid() {
         (rowHeight + rowGap)
     )}`;
   });
-  setStyleForAll('.item.img>.content', {position: 'relative',
-    zIndex: 3, height: '100%'})
+  setStyleForAll('.item.img>.content', { height: '100%'});
   grid.removeAttribute("style");
 }
 
