@@ -23,7 +23,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   initializeNav();
   backgroundChange();
-  resizeGrid();
+  window.addEventListener('load', resizeGrid)
+  // resizeGrid();
 });
 
 /* For the purpose of enabling dynamic css property change for pseudo elements. */
@@ -119,6 +120,7 @@ function backgroundChange() {
         document
           .querySelector(".name-only>h1+h1")
           .style.setProperty("transition", "0s");
+        document.querySelector('#copyright').style.setProperty('transition', '0.5s');
       }
 
       setBgColor(DARK_GRAY_H);
@@ -129,6 +131,8 @@ function backgroundChange() {
       setHeaderColor(3, "white"); /* light red */
       setHeaderColor(2, "lightgrey");
       setResumeParagraphColor(LIGHT_GREY_H);
+      document.querySelector('#copyright').style.opacity = 1;
+
     } else if (CURRENTLY_BROWSING === "education") {
       setNavVisible();
       /* Reset the bg to white and the nav opacity back to 1 */
@@ -140,6 +144,7 @@ function backgroundChange() {
       setNavAndPrimaryColors(PRIMARY_RED);
       setHeaderColor(3, PRIMARY_RED, true);
       setResumeParagraphColor(PRIMARY_DEFAULT_FONT_COLOR_H);
+      document.querySelector('#copyright').style.opacity = 0;
     } else if (CURRENTLY_BROWSING === "experience") {
       setNavVisible();
       setBgColor(PRIMARY_LIGHT_GREEN_H);
