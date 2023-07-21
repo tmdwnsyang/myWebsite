@@ -48,7 +48,6 @@ function initializeNav() {
       projectDropdownVisible
     );
     setStyleForAll("li.project-child > a", projectChildVisible);
-    // console.log('Hovering over \'Projects\'');
   });
   hiddenNav.addEventListener("mouseover", () => {
     setStyleForAll("li.project-child > a", projectChildVisible);
@@ -56,16 +55,13 @@ function initializeNav() {
       document.querySelector("#hidden-nav").style,
       projectDropdownVisible
     );
-    // console.log('Hovering over of \'hiddenNav\'');
   });
   allProjectsSection.addEventListener("mouseover", (e) => {
-    // console.log('mouseHover!');
     setStyleForAll("li.project-child > a", projectChildVisible);
     Object.assign(
       document.querySelector("#hidden-nav").style,
       projectDropdownVisible
     );
-    // console.log('Hovering in \'All Projects Section\'');
   });
   /* Dropdown effect when mouse is hovered away  */
   allProjectsSection.addEventListener("mouseleave", collapseDebounce);
@@ -81,7 +77,6 @@ function backgroundChange() {
       .getAttribute("href")
       .toLowerCase()
       .slice(1);
-    console.log(CURRENTLY_BROWSING);
     let element = e.relatedTarget;
     /* If currently not viewing any of the project pages */
     if (!postProj && !currentlyBrowsingProjects()) {
@@ -135,12 +130,16 @@ function backgroundChange() {
       setResumeParagraphColor(LIGHT_GREY_H);
       document.querySelector('section#gradient-bg').style.setProperty('transform', '');
       
+      /* Resetting animation for sibling */
+      setContentInvisibleNUnanimate('education');
+      setContentInvisibleNUnanimate('experience');
+
 
     } else if (CURRENTLY_BROWSING === "education") {
       document.querySelector('#sideNav').style.setProperty('background', '');
-
       setNavVisible();
       /* Reset the bg to white and the nav opacity back to 1 */
+      document.querySelector('#copyright').style.opacity = 0;
       setBg(PRIMARY_LIGHT_GREEN_H);
       setHeaderColor(1, PRIMARY_DEFAULT_FONT_COLOR_H);
       setHeaderColor(2, PRIMARY_DEFAULT_FONT_COLOR_H);
@@ -149,7 +148,11 @@ function backgroundChange() {
       setNavAndPrimaryColors(PRIMARY_RED);
       setHeaderColor(3, PRIMARY_RED, true);
       setResumeParagraphColor(PRIMARY_DEFAULT_FONT_COLOR_H);
-      document.querySelector('#copyright').style.opacity = 0;
+
+      /* Animation */
+      setContentVisibleNAnimate();
+      setContentInvisibleNUnanimate('skills');
+
     } else if (CURRENTLY_BROWSING === "experience") {
       setNavVisible();
       setBg(PRIMARY_LIGHT_GREEN_H);
@@ -157,12 +160,21 @@ function backgroundChange() {
       setNavDividerInvisible();
       setNavAndPrimaryColors(PRIMARY_AQUA_BLUE);
       setHeaderColor(3, PRIMARY_AQUA_BLUE, true);
+
+      /* Animation */
+      setContentVisibleNAnimate();
+      setUnanimateGrids();
+      setContentInvisibleNUnanimate('interests');
     } else if (CURRENTLY_BROWSING === "skills") {
       setNavVisible();
       setBg(PRIMARY_LIGHT_GREEN_H);
       setNavAndPrimaryColors(PRIMARY_GREEN);
       setNavDividerInvisible();
       setHeaderColor(3, PRIMARY_DARK_BROWN, true);
+      
+      /* Animation */
+      setContentVisibleNAnimate();
+   
     } else if (CURRENTLY_BROWSING === "interests") {
       setNavVisible();
       setBg();
@@ -173,7 +185,10 @@ function backgroundChange() {
       setColor(`.grid>#text1 .disc h5`, "#E6E6E6");
       setColor(`.grid>#text2 .disc h5`, "#735C5C");
       setColor(`.grid>#text3 .disc h5`, "#E6E6E6");
-      animateGrids();
+
+      /* Animation */
+      setContentVisibleNAnimate();
+      setAnimateGrids();
     } else if (
     /* Note the background uses HEX */
       element.parentElement === projectListItems ||
@@ -551,6 +566,35 @@ function setResumeParagraphColor(hexColor) {
     p.style.setProperty("color", hexColor);
   }
 }
+/**
+ * Loops through each children elements of resume-section-content, adjusts opacity, translation, and animation. 
+ *  
+ */
+function setContentVisibleNAnimate(){
+  let resumeSectionContentElem = document.querySelector(`#${CURRENTLY_BROWSING} .resume-section-content`);
+  let timer = 0;
+  for (c of resumeSectionContentElem.children){
+    c.style.setProperty('transition', '0.5s');
+    c.style.setProperty('transition-delay', `${timer}s`);
+    c.style.setProperty('opacity', '1');
+    c.style.setProperty('transform', 'translateY(0rem)');
+    timer = timer + 0.15;
+  }
+}
+
+/**
+ * Loops through each children elements of resume-section-content, RESETS opacity, translation, and animation. Used to reset animation when navigating away.
+ *  
+ */
+function setContentInvisibleNUnanimate(sectionID){
+  let resumeSectionContentElem = document.querySelector(`#${sectionID} .resume-section-content`);
+  for (c of resumeSectionContentElem.children){
+    c.style.setProperty('transition', '0.5s');
+    c.style.setProperty('transition-delay', '');
+    c.style.setProperty('opacity', '0');
+    c.style.setProperty('transform', 'translateY(4rem)');
+  }
+}
 
 function setCurrentParagraphColor(color) {
   let ps = document.querySelectorAll(`#${CURRENTLY_BROWSING} p`);
@@ -593,7 +637,6 @@ function toggleCopyright(integer){
  * Attempts to collapse the projects sub navbar if the mouse is hovered away from the entire navbar. If the mouse is not hovered away, it will try again every x ms.
  */
 function attemptCollapse() {
-  console.log("checking...");
 
   if (!isHoveringProjects()) {
     Object.assign(
@@ -635,14 +678,12 @@ function resizeGrid() {
   setStyleForAll('.item.img>.content', { height: ''});
 
   grid.querySelectorAll(".item.img").forEach((item) => {
-    // console.log(`span (${item.querySelector('.content').clientHeight} + ${rowGap}) / (${rowHeight} + ${rowGap})`);
     item.style.gridRowEnd = `span ${Math.floor(
       (item.querySelector(".content").clientHeight + rowGap) /
         (rowHeight + rowGap)
     )}`;
   });
   grid.querySelectorAll(".item.text").forEach((item) => {
-    // console.log(`span (${item.querySelector('.content').clientHeight} + ${rowGap}) / (${rowHeight} + ${rowGap})`);
     item.style.gridRowEnd = `span ${Math.ceil(
       (item.querySelector(".content").clientHeight + rowGap) /
         (rowHeight + rowGap)
@@ -652,7 +693,7 @@ function resizeGrid() {
   grid.removeAttribute("style");
 }
 
-function animateGrids() {
+function setAnimateGrids() {
   let items = document.querySelectorAll(".grid>.item");
   let delay = 0;
   
@@ -667,6 +708,21 @@ function animateGrids() {
     delay = delay + 0.10;
   }
 }
+
+function setUnanimateGrids() {
+  let items = document.querySelectorAll(".grid>.item");
+  
+  for (item of items) {
+    Object.assign(item.style, {
+      transition: "0.75s",
+      transitionDelay: 0,
+      opacity: 0,
+      transform: 'translateY(5em)',
+
+    });
+  }
+}
+
 
 function getStyleVal(elem, style) {
   return parseInt(window.getComputedStyle(elem).getPropertyValue(style));
