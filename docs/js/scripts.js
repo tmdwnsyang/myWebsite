@@ -467,6 +467,7 @@ function deviceTransitionAnimate() {
       document.querySelector("#sideNav-divider").style,
       styleNavDividerShow
     );
+    nav.style.setProperty('-webkit-backdrop-filter', 'none');
     nav.style.setProperty('backdrop-filter', 'none');
     nav.style.setProperty('background', 'none');
     toggleCopyright(1);
@@ -479,7 +480,7 @@ function deviceTransitionAnimate() {
     } else if (CURRENTLY_BROWSING == 'about'){
       setNavVisible();
       nav.style.setProperty('background', 'rgba(213, 228, 230, 0.2)');
-
+      nav.style.setProperty('-webkit-backdrop-filter', 'blur(15px)');
       nav.style.setProperty('backdrop-filter', 'blur(15px)');
 
     }
