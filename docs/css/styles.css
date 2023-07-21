@@ -9124,7 +9124,7 @@ fieldset:disabled .btn {
 .bg-primary {
   --bs-bg-opacity: 1;
   transition: 1s;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) ;
   backdrop-filter: blur(15px);
 
 }
@@ -12625,9 +12625,7 @@ fieldset:disabled .btn {
 body {
   padding-top: 3.375rem;
   color: #6c757d;
-  overflow-x: hidden;
-  overscroll-behavior-y: none;
-
+  
 }
 
 @media (min-width: 992px) {
@@ -12954,13 +12952,16 @@ li.nav-item .nav-link::before{
 }
 @keyframes changeGradient{
   0%{
-      --c: rgb(127 137 255);
+    --c: rgb(127 137 255);
   }
-  50% {
-      --c:blue;
+  33% {
+    --c:blue;
+  }
+  66%{
+    --c: rgb(0, 237, 255);
   }
   100%{
-      --c: rgb(0, 237, 255);
+    --c: orange;
   }
 }
 @keyframes noGradient{
@@ -22130,11 +22131,6 @@ fieldset:disabled .btn {
   --bs-text-opacity: 1;
 }
 
-.bg-primary {
-  --bs-bg-opacity: 1;
-  transition: 1s;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
-}
 
 .bg-secondary {
   --bs-bg-opacity: 1;
@@ -25630,6 +25626,7 @@ fieldset:disabled .btn {
 body {
   padding-top: 3.375rem;
   color: #6c757d;
+  overscroll-behavior: none;
 }
 
 @media (min-width: 992px) {
@@ -25762,8 +25759,7 @@ p.lead {
 }
 
 .social-icons .social-icon:hover {
-  background-color: #bd5d38;
-  background-color: rgba(var(--bs-primary-rgb));
+  background-color: #a9ffeb;
 }
 
 .dev-icons {
@@ -26483,3 +26479,18 @@ section.grid{
   color: '#E6E6E6';
 }
 
+
+/* Scrollbar theme */
+body::-webkit-scrollbar {
+  width: 1em;
+  background: black;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color:   rgba(213, 228, 230, 0.29);
+}

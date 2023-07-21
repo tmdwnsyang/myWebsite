@@ -137,6 +137,8 @@ function backgroundChange() {
       
 
     } else if (CURRENTLY_BROWSING === "education") {
+      document.querySelector('#sideNav').style.setProperty('background', '');
+
       setNavVisible();
       /* Reset the bg to white and the nav opacity back to 1 */
       setBg(PRIMARY_LIGHT_GREEN_H);
@@ -458,13 +460,15 @@ function isMobile() {
  */
 function deviceTransitionAnimate() {
   /* Sets the nav color when on mobile. */
+  let nav = document.querySelector('#sideNav');
   if (!isMobile() && CURRENTLY_BROWSING === "about") {
     setNavInvisible();
     Object.assign(
       document.querySelector("#sideNav-divider").style,
       styleNavDividerShow
     );
-    document.querySelector('#sideNav').style.setProperty('backdrop-filter', 'none');
+    nav.style.setProperty('backdrop-filter', 'none');
+    nav.style.setProperty('background', 'none');
     toggleCopyright(1);
   } else if (isMobile()) {
   /* At this point the nav divider should be hidden */
@@ -472,9 +476,11 @@ function deviceTransitionAnimate() {
     setNavDividerInvisible();
     if (currentlyBrowsingProjects()) {
       setNavInvisible();
-    } else {
+    } else if (CURRENTLY_BROWSING == 'about'){
       setNavVisible();
-      document.querySelector('#sideNav').style.setProperty('backdrop-filter', 'blur(15px)');
+      nav.style.setProperty('background', 'rgba(213, 228, 230, 0.2)');
+
+      nav.style.setProperty('backdrop-filter', 'blur(15px)');
 
     }
   }
@@ -497,6 +503,8 @@ function setNavDividerInvisible() {
 }
 function setNavVisible() {
   document.querySelector("#sideNav").style.setProperty("--bs-bg-opacity", "1");
+  document.querySelector('#sideNav').style.setProperty('background-color', 'none');
+
 }
 /**
  * Sets the color for navigation other primary elements, such as headers.
