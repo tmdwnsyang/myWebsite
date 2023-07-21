@@ -94,6 +94,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   transition: 1s;
+  min-width: fit-content;
 }
 
 hr {
@@ -12773,6 +12774,7 @@ section.resume-section {
   padding-top: 5rem;
   padding-bottom: 5rem;
   max-width: 75rem;
+  min-height: 100vh;
 }
 
 section.resume-section .resume-section-content {
@@ -25766,15 +25768,6 @@ p.lead {
   font-size: 3rem;
 }
 
-section.resume-section {
-  display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  max-width: 75rem;
-}
 
 section.resume-section .resume-section-content {
   width: 100%;
