@@ -492,6 +492,7 @@ function currentlyBrowsingProjects() {
 function setNavInvisible() {
   let d =  document.querySelector("#sideNav");
   d.style.setProperty("--bs-bg-opacity", "0");
+  nav.style.setProperty('-webkit-backdrop-filter', 'none');
   d.style.setProperty('backdrop-filter', 'none');
 
 }
