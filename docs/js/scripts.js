@@ -81,7 +81,6 @@ function backgroundChange() {
       .getAttribute("href")
       .toLowerCase()
       .slice(1);
-    console.log(CURRENTLY_BROWSING);
     let element = e.relatedTarget;
     /* If currently not viewing any of the project pages */
     if (!postProj && !currentlyBrowsingProjects()) {
@@ -591,7 +590,6 @@ function toggleCopyright(integer){
  * Attempts to collapse the projects sub navbar if the mouse is hovered away from the entire navbar. If the mouse is not hovered away, it will try again every x ms.
  */
 function attemptCollapse() {
-  console.log("checking...");
 
   if (!isHoveringProjects()) {
     Object.assign(
