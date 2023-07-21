@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   // Activate Bootstrap scrollspy on the main nav element
+  window.scrollTo(top);
   const sideNav = document.body.querySelector("#sideNav");
   if (sideNav) {
     new bootstrap.ScrollSpy(document.body, {
@@ -122,23 +123,28 @@ function backgroundChange() {
           .style.setProperty("transition", "0s");
         document.querySelector('#copyright').style.setProperty('transition', '0.5s');
       }
+      setLastNameColor('#a9ffeb');
 
-      setBgColor(DARK_GRAY_H);
-      setCurrentParagraphColor("var(--bs-gray-500)");
-      setNavAndPrimaryColors(PRIMARY_LIGHT_BLUE);
-      setHyperLinkColor(PRIMARY_LIGHT_BLUE_H);
+      setCurrentParagraphColor("var(--bs-gray-300)");
+      setNavAndPrimaryColors('none');
+
+      setHyperLinkColor('#a9ffeb');
       setHyperLinkHoverColor(PRIMARY_WHITE_H);
       setHeaderColor(3, "white"); /* light red */
       setHeaderColor(2, "lightgrey");
       setResumeParagraphColor(LIGHT_GREY_H);
+      document.querySelector('section#gradient-bg').style.setProperty('transform', '');
+      
 
     } else if (CURRENTLY_BROWSING === "education") {
+      document.querySelector('#sideNav').style.setProperty('background', '');
+
       setNavVisible();
       /* Reset the bg to white and the nav opacity back to 1 */
-      setBgColor(PRIMARY_LIGHT_GREEN_H);
+      setBg(PRIMARY_LIGHT_GREEN_H);
       setHeaderColor(1, PRIMARY_DEFAULT_FONT_COLOR_H);
       setHeaderColor(2, PRIMARY_DEFAULT_FONT_COLOR_H);
-
+      document.querySelector('section#gradient-bg').style.setProperty('transform', 'translateY(-100%)');
       setNavDividerInvisible();
       setNavAndPrimaryColors(PRIMARY_RED);
       setHeaderColor(3, PRIMARY_RED, true);
@@ -146,22 +152,22 @@ function backgroundChange() {
       document.querySelector('#copyright').style.opacity = 0;
     } else if (CURRENTLY_BROWSING === "experience") {
       setNavVisible();
-      setBgColor(PRIMARY_LIGHT_GREEN_H);
+      setBg(PRIMARY_LIGHT_GREEN_H);
 
       setNavDividerInvisible();
       setNavAndPrimaryColors(PRIMARY_AQUA_BLUE);
       setHeaderColor(3, PRIMARY_AQUA_BLUE, true);
     } else if (CURRENTLY_BROWSING === "skills") {
       setNavVisible();
-      setBgColor(PRIMARY_LIGHT_GREEN_H);
+      setBg(PRIMARY_LIGHT_GREEN_H);
       setNavAndPrimaryColors(PRIMARY_GREEN);
       setNavDividerInvisible();
       setHeaderColor(3, PRIMARY_DARK_BROWN, true);
     } else if (CURRENTLY_BROWSING === "interests") {
       setNavVisible();
-      setBgColor();
+      setBg();
       setNavDividerInvisible();
-      setBgColor(PRIMARY_LIGHT_GREEN_H);
+      setBg(PRIMARY_LIGHT_GREEN_H);
       setNavAndPrimaryColors(PRIMARY_DARK_BROWN);
       
       setColor(`.grid>#text1 .disc h5`, "#E6E6E6");
@@ -179,7 +185,7 @@ function backgroundChange() {
         setNavbarDismissed();
       }
       /* Everything that should apply to ALL project subsections once user is in the projects page. */
-      setBgColor(PRIMARY_DARK_H);
+      setBg(PRIMARY_DARK_H);
       setNavInvisible();
       /* Now per page behavior */
       if (CURRENTLY_BROWSING === "projects") {
@@ -454,14 +460,15 @@ function isMobile() {
  */
 function deviceTransitionAnimate() {
   /* Sets the nav color when on mobile. */
+  let nav = document.querySelector('#sideNav');
   if (!isMobile() && CURRENTLY_BROWSING === "about") {
     setNavInvisible();
-    // $('#sideNav-divider').css(noOpacityAndTrans)
-    // $('#sideNav-divider').css(styleNavDividerShow)
     Object.assign(
       document.querySelector("#sideNav-divider").style,
       styleNavDividerShow
     );
+    nav.style.setProperty('backdrop-filter', 'none');
+    nav.style.setProperty('background', 'none');
     toggleCopyright(1);
   } else if (isMobile()) {
   /* At this point the nav divider should be hidden */
@@ -469,8 +476,12 @@ function deviceTransitionAnimate() {
     setNavDividerInvisible();
     if (currentlyBrowsingProjects()) {
       setNavInvisible();
-    } else {
+    } else if (CURRENTLY_BROWSING == 'about'){
       setNavVisible();
+      nav.style.setProperty('background', 'rgba(213, 228, 230, 0.2)');
+
+      nav.style.setProperty('backdrop-filter', 'blur(15px)');
+
     }
   }
 }
@@ -479,7 +490,10 @@ function currentlyBrowsingProjects() {
   return ALL_PROJECT_NAMES.includes(CURRENTLY_BROWSING);
 }
 function setNavInvisible() {
-  document.querySelector("#sideNav").style.setProperty("--bs-bg-opacity", "0");
+  let d =  document.querySelector("#sideNav");
+  d.style.setProperty("--bs-bg-opacity", "0");
+  d.style.setProperty('backdrop-filter', 'none');
+
 }
 function setNavDividerInvisible() {
   Object.assign(
@@ -489,6 +503,8 @@ function setNavDividerInvisible() {
 }
 function setNavVisible() {
   document.querySelector("#sideNav").style.setProperty("--bs-bg-opacity", "1");
+  document.querySelector('#sideNav').style.setProperty('background-color', 'none');
+
 }
 /**
  * Sets the color for navigation other primary elements, such as headers.
@@ -503,8 +519,8 @@ function setNavAndPrimaryColors(rgbColor) {
  * @description  Sets the background color with the given Hex. If no argument given, it  will assign white as default.
  * @param {string} colorHex
  */
-function setBgColor(colorHex = PRIMARY_WHITE_H) {
-  document.querySelector(":root").style.setProperty("--bs-body-bg", colorHex);
+function setBg(colorHex = PRIMARY_WHITE_H) {
+  document.body.style.setProperty('background', colorHex);
 }
 function setHyperLinkColor(hexColor) {
   document.documentElement.style.setProperty("--bs-link-color", hexColor);
@@ -599,6 +615,10 @@ function setStyleForAll(queryStr, styleObj) {
 
 function setColor(queryStr, color) {
   document.querySelector(queryStr).style.color = color;
+}
+
+function setLastNameColor(color){
+  document.querySelector(".name-only .text-primary").style.setProperty('color', color);
 }
 
 function resizeGrid() {
