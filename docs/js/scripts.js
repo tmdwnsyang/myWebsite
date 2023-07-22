@@ -113,9 +113,11 @@ function backgroundChange() {
           ".name-only>h1:first-of-type::after",
           "background: white"
         );
+        document.querySelector('.resume-section h3.mb-3').style.setProperty('transition-delay', '0s');
         document
           .querySelector(".name-only>h1+h1")
           .style.setProperty("transition", "0s");
+
         document.querySelector('#copyright').style.setProperty('transition', '0.5s');
       }
       setLastNameColor('#a9ffeb');
@@ -137,7 +139,7 @@ function backgroundChange() {
 
     } else if (CURRENTLY_BROWSING === "education") {
       document.querySelector('#sideNav').style.setProperty('background', '');
-      setNavVisible();
+      setNavVisible(0.3);
       /* Reset the bg to white and the nav opacity back to 1 */
       document.querySelector('#copyright').style.opacity = 0;
       setBg(PRIMARY_LIGHT_GREEN_H);
@@ -150,7 +152,7 @@ function backgroundChange() {
       setResumeParagraphColor(PRIMARY_DEFAULT_FONT_COLOR_H);
 
       /* Animation */
-      setContentVisibleNAnimate();
+      setContentVisibleNAnimate(0.3);
       setContentInvisibleNUnanimate('skills');
 
     } else if (CURRENTLY_BROWSING === "experience") {
@@ -505,12 +507,12 @@ function deviceTransitionAnimate() {
 function currentlyBrowsingProjects() {
   return ALL_PROJECT_NAMES.includes(CURRENTLY_BROWSING);
 }
-function setNavInvisible() {
+function setNavInvisible(delay = 0) {
   let d =  document.querySelector("#sideNav");
   d.style.setProperty("--bs-bg-opacity", "0");
   document.querySelector('#sideNav').style.setProperty('-webkit-backdrop-filter', 'none');
   d.style.setProperty('backdrop-filter', 'none');
-
+  d.style.setProperty('transition-delay', `${delay}s`)
 }
 function setNavDividerInvisible() {
   Object.assign(
@@ -518,9 +520,11 @@ function setNavDividerInvisible() {
     styleNavDividerHide
   );
 }
-function setNavVisible() {
-  document.querySelector("#sideNav").style.setProperty("--bs-bg-opacity", "1");
-  document.querySelector('#sideNav').style.setProperty('background-color', 'none');
+function setNavVisible(delay = 0) {
+  let nav = document.querySelector("#sideNav")
+  nav.style.setProperty("--bs-bg-opacity", "1");
+  nav.style.setProperty('background-color', 'none');
+  nav.style.setProperty('transition-delay', `${delay}s`);
 
 }
 /**
@@ -570,9 +574,10 @@ function setResumeParagraphColor(hexColor) {
  * Loops through each children elements of resume-section-content, adjusts opacity, translation, and animation. 
  *  
  */
-function setContentVisibleNAnimate(){
+function setContentVisibleNAnimate(delay = 0){
   let resumeSectionContentElem = document.querySelector(`#${CURRENTLY_BROWSING} .resume-section-content`);
-  let timer = 0;
+  
+  let timer = delay;
   for (c of resumeSectionContentElem.children){
     c.style.setProperty('transition', '0.5s');
     c.style.setProperty('transition-delay', `${timer}s`);
