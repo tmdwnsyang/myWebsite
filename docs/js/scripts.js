@@ -138,14 +138,14 @@ function backgroundChange() {
 
 
     } else if (CURRENTLY_BROWSING === "education") {
-      document.querySelector('#sideNav').style.setProperty('background', '');
+      
       setNavVisible(0.3);
       /* Reset the bg to white and the nav opacity back to 1 */
       document.querySelector('#copyright').style.opacity = 0;
       setBg(PRIMARY_LIGHT_GREEN_H);
       setHeaderColor(1, PRIMARY_DEFAULT_FONT_COLOR_H);
       setHeaderColor(2, PRIMARY_DEFAULT_FONT_COLOR_H);
-      document.querySelector('section#gradient-bg').style.setProperty('transform', 'translateY(-100%)');
+      setGradientBgHidden();
       setNavDividerInvisible();
       setNavAndPrimaryColors(PRIMARY_RED);
       setHeaderColor(3, PRIMARY_RED, true);
@@ -157,8 +157,9 @@ function backgroundChange() {
 
     } else if (CURRENTLY_BROWSING === "experience") {
       setNavVisible();
+      setGradientBgHidden();
       setBg(PRIMARY_LIGHT_GREEN_H);
-
+      
       setNavDividerInvisible();
       setNavAndPrimaryColors(PRIMARY_AQUA_BLUE);
       setHeaderColor(3, PRIMARY_AQUA_BLUE, true);
@@ -169,6 +170,7 @@ function backgroundChange() {
       setContentInvisibleNUnanimate('interests');
     } else if (CURRENTLY_BROWSING === "skills") {
       setNavVisible();
+      setGradientBgHidden();
       setBg(PRIMARY_LIGHT_GREEN_H);
       setNavAndPrimaryColors(PRIMARY_GREEN);
       setNavDividerInvisible();
@@ -180,6 +182,7 @@ function backgroundChange() {
     } else if (CURRENTLY_BROWSING === "interests") {
       setNavVisible();
       setBg();
+      setGradientBgHidden();
       setNavDividerInvisible();
       setBg(PRIMARY_LIGHT_GREEN_H);
       setNavAndPrimaryColors(PRIMARY_DARK_BROWN);
@@ -525,8 +528,9 @@ function setNavVisible(delay = 0) {
   nav.style.setProperty("--bs-bg-opacity", "1");
   nav.style.setProperty('background-color', 'none');
   nav.style.setProperty('transition-delay', `${delay}s`);
-
+  nav.style.setProperty('background', '');
 }
+
 /**
  * Sets the color for navigation other primary elements, such as headers.
  * @param {string} color
@@ -661,6 +665,10 @@ function setStyleForAll(queryStr, styleObj) {
   for (el of els) {
     Object.assign(el.style, styleObj);
   }
+}
+
+function setGradientBgHidden(){
+  document.querySelector('section#gradient-bg').style.setProperty('transform', 'translateY(-100%)');
 }
 
 function setColor(queryStr, color) {
