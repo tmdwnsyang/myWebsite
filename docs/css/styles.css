@@ -9859,7 +9859,7 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5 {
 section#gradient-bg{
   position: absolute;
   width: 100%;
-  height: 200vh;
+  height: 300vh;
   left: 0;
   top: 0;
   background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
