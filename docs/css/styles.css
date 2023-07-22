@@ -11909,6 +11909,10 @@ li.nav-item .nav-link::before{
 
 
 /* Abouts page */
+#about{
+  transition-duration: 0.25s;
+  
+}
 
 .name-phone-email>h1>span {
   padding-left: 0.5em;
