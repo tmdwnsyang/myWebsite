@@ -9861,14 +9861,14 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5 {
 
 
 section#gradient-bg{
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: 300vh;
+  height: 100vh;
   left: 0;
   top: 0;
   background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
   animation: 17s linear infinite alternate changeGradient;
-  transition: 1.5s;
+  transition: 0.7s;
 }
 
 
