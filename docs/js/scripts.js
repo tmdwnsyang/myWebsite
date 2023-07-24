@@ -982,7 +982,6 @@ function mySpyScroll(){
       }
       let currentSection = Object.keys(sectionsScrollTops)[idx - 1];
       if (CURRENTLY_BROWSING !== currentSection ){
-        console.log(currentSection);
         CURRENTLY_BROWSING = currentSection;
         backgroundChange();
       }
