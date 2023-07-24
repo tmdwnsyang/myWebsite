@@ -9682,6 +9682,10 @@ p.lead {
   filter: drop-shadow(1px 0px 4px rgb(171, 171, 171));
 }
 
+.nav-item>a {
+  padding-left: 0.3rem;
+}
+
 #sideNav .navbar-nav .nav-item .nav-link {
   font-weight: 800;
   letter-spacing: 0.05rem;
@@ -11852,12 +11856,11 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5 {
 /* The blinking cursor */
 /* .name-only>h1:first-of-type+h1::after { */
 #blinking-cursor {
-  /* content: ""; */
   width: 0.54em;
-  height: 0.08em;
+  height: 0.07em;
   position: relative;
-  right: -0.05em;
-  top: 0.82em;
+  right: -0.2rem;
+  top: 0.84em;
   animation: 530ms ease 0s infinite alternate none running blink;
   display: flex;
   background: white;
