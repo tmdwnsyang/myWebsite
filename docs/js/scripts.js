@@ -1,13 +1,4 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  // Activate Bootstrap scrollspy on the main nav element
-  window.scrollTo(top);
-  const sideNav = document.body.querySelector("#sideNav");
-  if (sideNav) {
-    new bootstrap.ScrollSpy(document.body, {
-      target: "#sideNav",
-      rootMargin: "0px 0px 0px 0px",
-    });
-  }
 
   // Collapse responsive navbar when toggler is visible
   const navbarToggler = document.body.querySelector(".navbar-toggler");
@@ -21,8 +12,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
-
   initializeNav();
+  
+  mySpyScroll();
+  window.scrollTo(top);
   backgroundChange();
   window.addEventListener('load', resizeGrid)
   // resizeGrid();
@@ -71,13 +64,13 @@ function initializeNav() {
 let postProj = false,
   firstTimeRunning = true;
 function backgroundChange() {
-  document.addEventListener("activate.bs.scrollspy", function (e) {
-    projectListItems = document.querySelector("li .project-child");
-    CURRENTLY_BROWSING = e.relatedTarget
-      .getAttribute("href")
-      .toLowerCase()
-      .slice(1);
-    let element = e.relatedTarget;
+  // document.addEventListener("activate.bs.scrollspy", function (e) {
+    projectListItems = document.querySelector("section#all-projects");
+    // CURRENTLY_BROWSING = e.relatedTarget
+    //   .getAttribute("href")
+    //   .toLowerCase()
+    //   .slice(1);
+    let element = document.querySelector(`#${CURRENTLY_BROWSING}`);
     /* If currently not viewing any of the project pages */
     if (!postProj && !currentlyBrowsingProjects()) {
       cleanUpStyling();
@@ -218,7 +211,7 @@ function backgroundChange() {
         project3Animate();
       }
     }
-  });
+  // });
 }
 
 function projectsIntroAnimate() {
@@ -741,7 +734,7 @@ function getStyleVal(elem, style) {
   return parseInt(window.getComputedStyle(elem).getPropertyValue(style));
 }
 
-let CURRENTLY_BROWSING = "";
+let CURRENTLY_BROWSING = "about";
 /* Note all names will be processed in lower case */
 const PROJECT_1_NAME = "project1";
 const PROJECT_2_NAME = "project2";
@@ -935,4 +928,61 @@ const gridResizeDebounce = debounce(() => resizeGrid(), 1000);
 window.addEventListener("resize", () => {
   transitionDebounce();
   gridResizeDebounce();
+  
 });
+
+
+function mySpyScroll(){
+
+  
+
+  let timer;
+  window.onscroll = function () {
+    clearTimeout(timer);
+    
+    timer = setTimeout(() => {
+      let section = document.querySelectorAll(".resume-section");
+      let sectionsScrollTops = {};
+      let difference = (document.documentElement.clientHeight / 1.75);
+
+      Array.prototype.forEach.call(section, function (e) {
+        sectionsScrollTops[e.id] = e.offsetTop;
+        });
+      let scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      // console.log(sections);
+      let idx = 0;
+      let navItem = document.querySelector('.nav-item');
+      let subNav = navItem.querySelector('.project-child');
+      for (id in sectionsScrollTops) {
+        if (sectionsScrollTops[id] - difference  <= scrollTop ) {
+          if (idx > 5){ // num of items in nav
+            // If idx = 6, then leave the last item to be remain activated. 
+            
+            // Remove active class of the sub nav items as needed
+            subNav.querySelector('.active')?.setAttribute('class', 'nav-link js-scroll-trigger' );
+          }
+          else {
+            // If browsing the main nav items, remove accordingly
+            navItem.querySelectorAll(".active").forEach(elem => {elem.setAttribute("class", "nav-link js-scroll-trigger")});
+          }
+          // Update the  active nav.
+          navItem
+            .querySelector("a[href*=" + id + "]")
+            .setAttribute("class", "nav-link js-scroll-trigger active");
+          
+        } else if (sectionsScrollTops[id] > scrollTop ){
+          break;
+        }
+        
+        idx += 1;
+      }
+      let currentSection = Object.keys(sectionsScrollTops)[idx - 1];
+      if (CURRENTLY_BROWSING !== currentSection ){
+        console.log(currentSection);
+        CURRENTLY_BROWSING = currentSection;
+        backgroundChange();
+      }
+    }, 0);
+  };
+}
