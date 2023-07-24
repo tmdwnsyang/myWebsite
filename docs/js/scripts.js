@@ -960,7 +960,10 @@ function mySpyScroll(){
             // If idx = 6, then leave the last item to be remain activated. 
             
             // Remove active class of the sub nav items as needed
-            subNav.querySelector('.active')?.setAttribute('class', 'nav-link js-scroll-trigger' );
+            let active =  subNav.querySelector('.active');
+            if (active !== null){
+              active.setAttribute('class', 'nav-link js-scroll-trigger' );
+            }
           }
           else {
             // If browsing the main nav items, remove accordingly
