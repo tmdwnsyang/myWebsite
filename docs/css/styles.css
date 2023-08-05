@@ -12276,3 +12276,9 @@ body::-webkit-scrollbar-thumb {
   background-color:   rgba(213, 228, 230, 0.29);
   
 }
+
+
+/* Skills */
+#skills .subheading.mb-3{
+    margin-top: 1rem;
+}
