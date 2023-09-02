@@ -15,7 +15,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
   initializeNav();
   
   mySpyScroll();
-  window.scrollTo(top);
+
+  //! Debug
+  // window.scrollTo(top);
+
   backgroundChange();
   window.addEventListener('load', resizeGrid)
   // resizeGrid();
@@ -668,6 +671,7 @@ function setColor(queryStr, color) {
   document.querySelector(queryStr).style.color = color;
 }
 
+
 function setLastNameColor(color){
   document.querySelector(".name-only .text-primary").style.setProperty('color', color);
 }
@@ -989,3 +993,75 @@ function mySpyScroll(){
     }, 0);
   };
 }
+
+
+//
+function test(){
+  let maxIndx= 2;
+  let currentPos = 0;
+  let leftArrowElem = document.querySelector('.arrow.left');
+  let rightArrowElem = document.querySelector('.arrow.right');
+  let innerContentElem = document.querySelectorAll('.inner-content');
+  
+  leftArrowElem.addEventListener('click', (e) => {
+      if ((currentPos == 0)){
+        return;
+      }
+      else{
+        console.log(currentPos);
+        innerContentElem[currentPos].className = 'inner-content'
+        currentPos -= 1;
+        innerContentElem[currentPos].className = 'inner-content show';
+        for (let i = 0; i <= maxIndx; i++){
+          innerContentElem[i].style.transform = `translateX(${-currentPos * 100}%)`;
+        }
+      }
+     }
+  )
+  rightArrowElem.addEventListener('click', (e) => {
+    if (currentPos === maxIndx){
+      return;
+    } else {
+      console.log(currentPos);
+      innerContentElem[currentPos].className = 'inner-content';
+      currentPos += 1;
+      innerContentElem[currentPos].className = 'inner-content show';
+
+      for (let i = 0; i <= maxIndx; i++){
+        innerContentElem[i].style.transform = `translateX(${-currentPos * 100}%)`;
+      }
+    }
+  })
+
+  // let clientDashImg1 = document.querySelector('.triple-card-container > img:first-of-type');
+  // clientDashImg1.addEventListener('click', (e)=>{
+  //   if (!clientDashImg1.classList.contains('zoom')){
+  //     clientDashImg1.classList.add('zoom');
+  //   } else{
+  //     clientDashImg1.classList.remove('zoom');
+  //   }
+  // })
+
+  let clientDashImgs = document.querySelectorAll('.triple-card-container > img');
+  let tripleCardContainer = document.querySelector('.triple-card-container');
+  for (let elem of clientDashImgs){
+    elem.addEventListener('click', (e)=>{
+
+      if (!elem.classList.contains('zoom')){
+        clientDashImgs.forEach((el) => {
+          el.classList.remove('zoom');
+        })
+        elem.classList.add('zoom');
+      } else{
+        elem.classList.remove('zoom');
+      }
+
+    })
+    tripleCardContainer.addEventListener('mouseleave', (e) => {
+      clientDashImgs.forEach((el) => {
+        el.classList.remove('zoom');
+      })
+    })
+  }
+}
+test();
