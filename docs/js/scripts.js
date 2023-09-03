@@ -126,7 +126,7 @@ function backgroundChange() {
       setHeaderColor(3, "white"); /* light red */
       setHeaderColor(2, "lightgrey");
       setResumeParagraphColor(LIGHT_GREY_H);
-      document.querySelector('section#gradient-bg').style.setProperty('transform', '');
+      document.querySelector('section#gradient-bg').classList.add('show');
       
       /* Resetting animation for sibling */
       setContentInvisibleNUnanimate('education');
@@ -153,7 +153,8 @@ function backgroundChange() {
 
     } else if (CURRENTLY_BROWSING === "experience") {
       setNavVisible();
-      setGradientBgHidden();
+      // setGradientBgHidden();
+      setGradientBgShowExp();
       setBg(PRIMARY_LIGHT_GREEN_H);
       
       setNavDividerInvisible();
@@ -664,7 +665,23 @@ function setStyleForAll(queryStr, styleObj) {
 }
 
 function setGradientBgHidden(){
-  document.querySelector('section#gradient-bg').style.setProperty('transform', 'translateY(-100%)');
+  let l = document.querySelector('section#gradient-bg').classList;
+  let copy = [...l];
+  copy.forEach((prop) => {
+    l.remove(prop);
+  })
+  let body = document.body;
+  body.classList.remove('no-scroll');
+}
+function setGradientBgShowExp(){
+  let l = document.querySelector('section#gradient-bg').classList;
+  l.add('show');
+  l.add('experience');
+  l.add('first');
+
+  // Disable body scrolling
+  let body = document.body;
+  body.classList.add('no-scroll');
 }
 
 function setColor(queryStr, color) {
@@ -997,7 +1014,7 @@ function mySpyScroll(){
 
 //
 function test(){
-  let maxIndx= 2;
+  let maxIndx= 3;
   let currentPos = 0;
   let leftArrowElem = document.querySelector('.arrow.left');
   let rightArrowElem = document.querySelector('.arrow.right');
@@ -1033,6 +1050,8 @@ function test(){
     }
   })
 
+  // document.querySelector('#gradient-bg').classList.add('show experience first');
+
   // let clientDashImg1 = document.querySelector('.triple-card-container > img:first-of-type');
   // clientDashImg1.addEventListener('click', (e)=>{
   //   if (!clientDashImg1.classList.contains('zoom')){
@@ -1044,24 +1063,24 @@ function test(){
 
   let clientDashImgs = document.querySelectorAll('.triple-card-container > img');
   let tripleCardContainer = document.querySelector('.triple-card-container');
-  for (let elem of clientDashImgs){
-    elem.addEventListener('click', (e)=>{
+  // for (let elem of clientDashImgs){
+  //   elem.addEventListener('click', (e)=>{
 
-      if (!elem.classList.contains('zoom')){
-        clientDashImgs.forEach((el) => {
-          el.classList.remove('zoom');
-        })
-        elem.classList.add('zoom');
-      } else{
-        elem.classList.remove('zoom');
-      }
+  //     if (!elem.classList.contains('zoom')){
+  //       clientDashImgs.forEach((el) => {
+  //         el.classList.remove('zoom');
+  //       })
+  //       elem.classList.add('zoom');
+  //     } else{
+  //       elem.classList.remove('zoom');
+  //     }
 
-    })
-    tripleCardContainer.addEventListener('mouseleave', (e) => {
-      clientDashImgs.forEach((el) => {
-        el.classList.remove('zoom');
-      })
-    })
-  }
+  //   })
+    // tripleCardContainer.addEventListener('mouseleave', (e) => {
+    //   clientDashImgs.forEach((el) => {
+    //     el.classList.remove('zoom');
+    //   })
+    // })
+  // }
 }
 test();

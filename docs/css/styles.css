@@ -9833,55 +9833,9 @@ section.name-phone-email:hover #email-and-address-container>.subheading.mb-5 {
   z-index: 2;
   position: relative;
 }
-@property --c{
-  syntax: '<color>';
-  inherits: false;
-  initial-value: rgb(230, 100, 101);
-}
-@keyframes changeGradient{
-  0%{
-    --c: rgb(127 137 255);
-  }
-  33% {
-    --c:blue;
-  }
-  66%{
-    --c: rgb(0, 217, 232); /* Cyan */
-  }
-  100%{
-    --c: rgb(232, 0, 151);
-  }
-}
-@keyframes noGradient{
-  0%{
-      --c: rgb(245, 247, 244);
-  }
-  100%{
-      --c: rgb(245, 247, 244);
-  }
-}
-
-
-section#gradient-bg{
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
-  animation: 17s linear infinite alternate changeGradient;
-  transition: 0.7s;
-}
 
 
 
-
-#copyright{
-  position: fixed;
-  top: 95%;
-  left: 50%;
-  transform: translate(-50%);
-}
 @charset "UTF-8";
 
 @media (prefers-reduced-motion: no-preference) {
