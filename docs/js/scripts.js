@@ -117,7 +117,7 @@ function backgroundChange() {
         document.querySelector('#copyright').style.setProperty('transition', '0.5s');
       }
       setLastNameColor('#a9ffeb');
-
+      setGradientBgShowAbout();
       setCurrentParagraphColor("var(--bs-gray-300)");
       setNavAndPrimaryColors('none');
 
@@ -671,15 +671,34 @@ function setStyleForAll(queryStr, styleObj) {
 
 function setGradientBgHidden(){
   let l = document.querySelector('section#gradient-bg').classList;
+  l.remove('show');
+  setGradientHelper(l);  // Must be set to restore back the color
+  let body = document.body;
+  body.classList.remove('no-scroll');
+  
+}
+
+/**
+ * Removes `experience` class from gradient bg
+ * in (default delay 500ms) to restore the original bg
+ */
+const setGradientHelper = debounce( (l) => { 
+  // We have to remove experience class because in addition to
+  // the bg color, the z-index is different. 
+  l.remove('experience'); 
+  // Add other future classes that have diff colors...
+}
+  );
+function setGradientBgShowExp(){
+  
+  let l = document.querySelector('section#gradient-bg').classList;
+  
+  // Perform clean up first...
   let copy = [...l];
   copy.forEach((prop) => {
     l.remove(prop);
-  })
-  let body = document.body;
-  body.classList.remove('no-scroll');
-}
-function setGradientBgShowExp(){
-  let l = document.querySelector('section#gradient-bg').classList;
+  });
+
   l.add('show');
   l.add('experience');
   l.add('first');
@@ -687,6 +706,19 @@ function setGradientBgShowExp(){
   // Disable body scrolling
   let body = document.body;
   body.classList.add('no-scroll');
+}
+
+function setGradientBgShowAbout(){
+  let l = document.querySelector('section#gradient-bg').classList;
+  let copy = [...l];
+  copy.forEach((prop) => {
+    l.remove(prop);
+  })
+  let body = document.body;
+  body.classList.remove('no-scroll');
+  l.add('show');
+  l.add('about');
+
 }
 
 function setColor(queryStr, color) {
@@ -950,21 +982,42 @@ function debounce(f, timeout = 500) {
 const collapseDebounce = debounce(() => attemptCollapse());
 const transitionDebounce = debounce(() => deviceTransitionAnimate());
 const gridResizeDebounce = debounce(() => resizeGrid(), 1000);
+const enableAllTransitionsDebounce = debounce(() => enableAllTransitions(), 400)
 
 window.addEventListener("resize", () => {
+  setPersistentBackground();
+  tempDisableAllTransitions();
   transitionDebounce();
   gridResizeDebounce();
   showRotationWarning();
+
 });
 
-function showRotationWarning(){
+/**
+ * Restores the background while viewing gallery
+ */
+const setPersistentBackground = debounce (() => {
+ if (isViewingGallery()){
+  showResumePopup();
+ }
+} )
+
+function enableAllTransitions(){
+  document.body.classList.remove('resize-animation-stopper');
+}
+
+function tempDisableAllTransitions(){
+  document.body.classList.add('resize-animation-stopper');
+  enableAllTransitionsDebounce();
+}
+
+const showRotationWarning = debounce ( () => {
   if (isViewingGallery() && isPortrait()){
     document.querySelector('.rotation-warning').classList.add('show');
-  }
-  else {
+  } else{
     document.querySelector('.rotation-warning').classList.remove('show');
   }
-}
+})
 
 
 function mySpyScroll(){
@@ -1027,7 +1080,7 @@ function mySpyScroll(){
 
 
 //
-function test(){
+function methods(){
   let maxIndx= 3;
   let currentPos = 0;
   let leftArrowElem = document.querySelector('.arrow.left');
@@ -1121,8 +1174,10 @@ function test(){
   })
   function showResumePopup(){
      // 1. show resume overlay
-     resumeOverlay.classList.add('show');
-     galleryContainer.classList.add('show');
+     let rClassList = resumeOverlay.classList;
+     let gClassList = galleryContainer.classList;
+     rClassList.contains('show')? null : rClassList.add('show');
+     gClassList.contains('show')? null : gClassList.add('show');
  
      // 2. show gradient-bg
      setGradientBgShowExp();
@@ -1131,7 +1186,8 @@ function test(){
      document.body.classList.add('no-scroll');
      
      // 4. show sidenav
-     setNavVisibilityOff();
+    //  setNavVisibilityOff();
+    setNavInvisible();
   }
   function hideResumePopup(){
      // 1. hide resume overlay
@@ -1145,7 +1201,9 @@ function test(){
      document.body.classList.remove('no-scroll');
 
      // 4. show navbar
-     setNavVisibilityOn();
+    //  setNavVisibilityOn();
+    setNavVisible();
+
   }
   let clientDashImgs = document.querySelectorAll('.triple-card-container > img');
   let tripleCardContainer = document.querySelector('.triple-card-container');
@@ -1173,9 +1231,9 @@ function test(){
 
   }
   
-  return {isViewingGallery};
+  return {isViewingGallery, showResumePopup};
 }
-const {isViewingGallery} = test();
+const {isViewingGallery, showResumePopup} = methods();
 function setNavVisibilityOff(){
   let sideNav = document.querySelector('#sideNav');
   sideNav.classList.add('hide');
