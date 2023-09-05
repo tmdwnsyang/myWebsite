@@ -46,12 +46,16 @@
 <body id="page-top" data-spy="scroll">
     <!-- Navigation-->
     <section id="gradient-bg"></section>
-    <section class="resume-overlay">
+    <section class="resume-overlay"> <!-- !! debug -->
+        <div class="rotation-warning">
+            <p>Please rotate your device.</p>
+            <img src="./assets/img/icons/phone.jpg"> 
+        </div>
         <div class="gallery-container">
             <img class="tract-logo" src="./assets/img/icons/tract-logo.svg"> 
             
             <img src="./assets/img/icons/close-popup.svg" class="close-popup">
-            <img class ="arrow left" src="./assets/img/icons/arrow-left.svg">
+            <img class ="arrow left disabled" src="./assets/img/icons/arrow-left.svg">
             <img class ="arrow right" src="./assets/img/icons/arrow-right.svg">
 
             <div class="inner-content show">
@@ -88,14 +92,15 @@
                         <img src="./assets/img/gallery-photos/client_dashboard_vertical_4.png" class="single"> -->
 
                     </div>
-                  
+                    <p>Please scroll down ⇣</p>
                 </div>
-                <p>Please scroll down ⇣</p>
+               
             </div>
             <div class="inner-content">
                 <div class="description-container">
                     <h1>Subscription <span>UI</span></h1>
-                    <p>During this role, I worked on the front-end implementation of the responsive UI for the Client Dashboard, mainly Sherlock Output Page, Sherlock Input Page, My Reports, and more.</p>
+                    <p> I had the opportunity to work on the front-end Subscription responsive UI as well as its functionalities, powered by Stripe API.</p>
+                    <p>I also implemented a back-end REST API using Java to ensure that everything is running smoothly.</p>
                 </div>
                 <div class="gallery-divider">
                 </div>
@@ -117,12 +122,13 @@
                             <img src="./assets/img/gallery-photos/stripe_horizontal.jpg" class="horizontal">
                         </figure>
                     </div>
+                    <p>Please scroll down ⇣</p>
                 </div>
             </div>
             <div class="inner-content">
                 <div class="description-container">
                     <h1>My <span>Reports</span></h1>
-                    <p>During this role, I worked on the front-end implementation of the responsive UI for the Client Dashboard, mainly Sherlock Output Page, Sherlock Input Page, My Reports, and more.</p>
+                    <p>Additionally, I implemented the responsive UI for My Reports page to display report information on a responsive table formatting, in addition to search and sorting features, and more.</p>
                 </div>
                 <div class="gallery-divider">
                 </div>
@@ -141,7 +147,7 @@
             <div class="inner-content">
                 <div class="description-container">
                     <h1>Authentication<span></span></h1>
-                    <p>During this role, I worked on the front-end implementation of the responsive UI for the Client Dashboard, mainly Sherlock Output Page, Sherlock Input Page, My Reports, and more.</p>
+                    <p>Furthermore, I integrated two-step email verification process for both sign-up page and Forgot My Password page.</p>
                 </div>
                 <div class="gallery-divider">
                 </div>
@@ -280,17 +286,23 @@
                     <h2 class="mb-5">Experience</h2>
                     <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">Full-stack Web Developer - Intern</h3>
+                           
+                            <h3 class="mb-0">Front-End Web Developer - Intern</h3>
                             <div class="subheading mb-3">useTRACT.com</div>
-                            <p>Collaborated with product designers, back-end developers and QA engineers using Agile methodologies and Git
+                            <p>Designed REST APIs for Stripe integration to handle payments and its frontend component using Java and React
                             </p>
-                            <p>Coordinated with back-end engineers to integrate back-end with front-end application using REST APIs
+                            <p>Implemented client portal to enable sharing reports, purchasing plans, and secure logins using in-house APIs
                             </p>
                             <p>Developed scalable and reusable React.js components to enhance front-end modularity and performance
                             </p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">July 2023 - Present</span></div>
+                        <figure class="message-bubble">
+                            <img src="./assets/img/icons/message_bubble.svg">
+                            <p>Click me for more concrete details!</p>
+                        </figure>
                     </div>
+                    
                     <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">SCU SafeWalk App</h3>
@@ -500,7 +512,7 @@
                             </div>
                         </div>
 
-                        <div class="item img">
+                        <!-- <div class="item img">
                             <div class="content">
                                 <img src="./assets/img/portrait_beach.jpg">
                                 <div class="overlay">
@@ -508,8 +520,8 @@
                                     <p>6/17/23</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item solo img">
+                        </div> -->
+                        <!-- <div class="item solo img">
                             <div class="content">
                                 <img src="./assets/img/wood.jpg">
                                 <div class="overlay">
@@ -517,7 +529,7 @@
                                     <p>6/17/23</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="item solo img">
                             <div class="content">
@@ -531,10 +543,9 @@
                         <div class="item text" id="text1">
                             <div class="content">
                                 <div class="disc">
-                                    <h5>Beachside Eats and Treats</h5>
+                                    <h5>Downtime</h5>
                                     <p>
-                                        I enjoy visiting the beach to unwind, spend time with friends, and prepare
-                                        delicious treats like hot dogs and s'mores.
+                                        When I’m not working on projects, I enjoy going to the beach, and relaxing with my friends.
                                     </p>
                                 </div>
                             </div>
@@ -559,7 +570,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item img">
+                        <!-- <div class="item img">
                             <div class="content">
 
                                 <img src="./assets/img/boat_selfie.jpg">
@@ -568,7 +579,7 @@
                                     <p>6/28/23</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="item img">

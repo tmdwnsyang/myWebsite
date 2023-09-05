@@ -135,7 +135,7 @@ function backgroundChange() {
 
     } else if (CURRENTLY_BROWSING === "education") {
       
-      setNavVisible(0.3);
+      setNavVisible(0);
       /* Reset the bg to white and the nav opacity back to 1 */
       document.querySelector('#copyright').style.opacity = 0;
       setBg(PRIMARY_LIGHT_GREEN_H);
@@ -148,13 +148,13 @@ function backgroundChange() {
       setResumeParagraphColor(PRIMARY_DEFAULT_FONT_COLOR_H);
 
       /* Animation */
-      setContentVisibleNAnimate(0.3);
+      setContentVisibleNAnimate(0);
       setContentInvisibleNUnanimate('skills');
 
     } else if (CURRENTLY_BROWSING === "experience") {
       setNavVisible();
-      // setGradientBgHidden();
-      setGradientBgShowExp();
+      setGradientBgHidden();
+      // setGradientBgShowExp();
       setBg(PRIMARY_LIGHT_GREEN_H);
       
       setNavDividerInvisible();
@@ -168,7 +168,7 @@ function backgroundChange() {
     } else if (CURRENTLY_BROWSING === "skills") {
       setNavVisible();
       setGradientBgHidden();
-      setBg(PRIMARY_LIGHT_GREEN_H);
+      setBg('PRIMARY_LIGHT_GREEN_H');
       setNavAndPrimaryColors(PRIMARY_GREEN);
       setNavDividerInvisible();
       setHeaderColor(3, PRIMARY_DARK_BROWN, true);
@@ -181,8 +181,8 @@ function backgroundChange() {
       setBg();
       setGradientBgHidden();
       setNavDividerInvisible();
-      setBg(PRIMARY_LIGHT_GREEN_H);
-      setNavAndPrimaryColors(PRIMARY_DARK_BROWN);
+      setBg('PRIMARY_LIGHT_GREEN_H');
+      setNavAndPrimaryColors('230, 97, 97');
       
       setColor(`.grid>#text1 .disc h5`, "#E6E6E6");
       setColor(`.grid>#text2 .disc h5`, "#735C5C");
@@ -471,6 +471,11 @@ function isMobile() {
   return false;
 }
 
+function isPortrait(){
+  // Based on min-width of .resume-overlay
+  return window.innerWidth <= 576;
+}
+
 /**
  *
  * Turns on the navbar colors on mobile, and turns it off for desktop
@@ -581,7 +586,7 @@ function setContentVisibleNAnimate(delay = 0){
   let timer = delay;
   for (c of resumeSectionContentElem.children){
     c.style.setProperty('transition', '0.5s');
-    c.style.setProperty('transition-delay', `${timer}s`);
+    // c.style.setProperty('transition-delay', `${timer}s`);
     c.style.setProperty('opacity', '1');
     c.style.setProperty('transform', 'translateY(0rem)');
     timer = timer + 0.15;
@@ -949,8 +954,17 @@ const gridResizeDebounce = debounce(() => resizeGrid(), 1000);
 window.addEventListener("resize", () => {
   transitionDebounce();
   gridResizeDebounce();
-  
+  showRotationWarning();
 });
+
+function showRotationWarning(){
+  if (isViewingGallery() && isPortrait()){
+    document.querySelector('.rotation-warning').classList.add('show');
+  }
+  else {
+    document.querySelector('.rotation-warning').classList.remove('show');
+  }
+}
 
 
 function mySpyScroll(){
@@ -1019,12 +1033,24 @@ function test(){
   let leftArrowElem = document.querySelector('.arrow.left');
   let rightArrowElem = document.querySelector('.arrow.right');
   let innerContentElem = document.querySelectorAll('.inner-content');
-  
+  let galleryContainer = document.querySelector('.gallery-container');
+  let resumeOverlay = document.querySelector('.resume-overlay');
+  let rotationWarning = document.querySelector('.rotation-warning');
+
+
   leftArrowElem.addEventListener('click', (e) => {
-      if ((currentPos == 0)){
+      document.querySelector('.arrow.right').classList.remove('disabled');
+
+      if ((currentPos === 0)){
+
         return;
       }
       else{
+        if (currentPos === 1){
+          document.querySelector('.arrow.left').classList.add('disabled');
+        } else {
+        document.querySelector('.arrow.left').classList.remove('disabled');
+        }
         console.log(currentPos);
         innerContentElem[currentPos].className = 'inner-content'
         currentPos -= 1;
@@ -1036,9 +1062,17 @@ function test(){
      }
   )
   rightArrowElem.addEventListener('click', (e) => {
+    document.querySelector('.arrow.left').classList.remove('disabled');
+
     if (currentPos === maxIndx){
       return;
     } else {
+      if (currentPos === ( maxIndx - 1)){
+        document.querySelector('.arrow.right').classList.add('disabled');
+      } else {
+      document.querySelector('.arrow.right').classList.remove('disabled');
+      }
+
       console.log(currentPos);
       innerContentElem[currentPos].className = 'inner-content';
       currentPos += 1;
@@ -1060,7 +1094,59 @@ function test(){
   //     clientDashImg1.classList.remove('zoom');
   //   }
   // })
+  let closeButton = document.querySelector('.close-popup');
+  closeButton.addEventListener( 'click' , (e) => {
+    hideResumePopup();
+  })
 
+  let firstResumeBlock = document.querySelector('.resume-block:nth-of-type(1)');
+  firstResumeBlock.addEventListener('click', () => {
+    if (!isPortrait()){
+      showResumePopup();
+    } else{
+      // disclaimer to rotate phone
+      // 1. show resume overlay
+      resumeOverlay.classList.add('show');
+      resumeOverlay.classList.add('warning');
+      
+      // 2. show rotation-warning
+      rotationWarning.classList.add('show');
+      // 3. reset it after a bit.
+      setTimeout(() => {
+        resumeOverlay.classList.remove('warning');
+        resumeOverlay.classList.remove('show');
+        rotationWarning.classList.remove('show');
+      }, 3000)
+    }
+  })
+  function showResumePopup(){
+     // 1. show resume overlay
+     resumeOverlay.classList.add('show');
+     galleryContainer.classList.add('show');
+ 
+     // 2. show gradient-bg
+     setGradientBgShowExp();
+     
+     // 3. disable scrolling
+     document.body.classList.add('no-scroll');
+     
+     // 4. show sidenav
+     setNavVisibilityOff();
+  }
+  function hideResumePopup(){
+     // 1. hide resume overlay
+     galleryContainer.classList.remove('show');
+     resumeOverlay.classList.remove('show');
+ 
+     // 2. hide gradient-bg
+     setGradientBgHidden();
+     
+     // 3. enable scrolling
+     document.body.classList.remove('no-scroll');
+
+     // 4. show navbar
+     setNavVisibilityOn();
+  }
   let clientDashImgs = document.querySelectorAll('.triple-card-container > img');
   let tripleCardContainer = document.querySelector('.triple-card-container');
   // for (let elem of clientDashImgs){
@@ -1082,5 +1168,19 @@ function test(){
     //   })
     // })
   // }
+  function isViewingGallery(){
+    return document.querySelector('.gallery-container').classList.contains('show');
+
+  }
+  
+  return {isViewingGallery};
 }
-test();
+const {isViewingGallery} = test();
+function setNavVisibilityOff(){
+  let sideNav = document.querySelector('#sideNav');
+  sideNav.classList.add('hide');
+}
+function setNavVisibilityOn(){
+  let sideNav = document.querySelector('#sideNav');
+  sideNav.classList.remove('hide');
+}
