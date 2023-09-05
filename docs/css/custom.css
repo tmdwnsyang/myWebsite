@@ -582,14 +582,17 @@ li.nav-item .nav-link::before {
   .resume-overlay .gallery-container img.arrow.right {
     transform: translateY(-35px);
   }
+  .resume-overlay .gallery-container img.arrow.right:hover {
+    transform: translateY(-35px) scale(1.1);
+  }
   .resume-overlay .gallery-container img.arrow.left {
     transform: translateY(-35px);
   }
+  .resume-overlay .gallery-container img.arrow.left:hover {
+    transform: translateY(-35px) scale(1.1);
+  }
   .resume-overlay .gallery-container img.arrow.disabled {
     opacity: 0.5;
-  }
-  .resume-overlay .gallery-container img.arrow:hover {
-    transform: translateY(-35px) scale(1.1);
   }
 }
 @media screen and (min-width: 1200px) and (min-height: 600px) {

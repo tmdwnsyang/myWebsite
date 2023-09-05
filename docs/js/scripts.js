@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   mySpyScroll();
 
   //! Debug
-  // window.scrollTo(top);
+  window.scrollTo(top);
 
   backgroundChange();
   window.addEventListener('load', resizeGrid)

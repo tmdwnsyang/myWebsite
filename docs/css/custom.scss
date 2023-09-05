@@ -752,16 +752,20 @@
             & img.arrow{
                 &.right{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.left{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.disabled{
                     opacity: 0.5;
                 }
-                &:hover{
-                    transform:  translateY(-35px) scale(1.1);
-                }
+               
             }
         }
         
