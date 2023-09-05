@@ -42,7 +42,7 @@ section.name-phone-email:hover #email-and-address-container > .subheading.mb-5 {
 /* .name-only>h1:first-of-type+h1::after { */
 #blinking-cursor {
   width: 0.54em;
-  height: 0.07em;
+  height: 3.5px;
   position: relative;
   right: -0.2rem;
   top: 0.84em;
