@@ -156,8 +156,9 @@ function backgroundChange() {
 
     } else if (CURRENTLY_BROWSING === "experience") {
       setNavVisible();
+      // Might wanna come back to this
       setGradientBgHidden();
-      // setGradientBgShowExp();
+      
       setBg(PRIMARY_LIGHT_GREEN_H);
       
       setNavDividerInvisible();
@@ -672,10 +673,26 @@ function setStyleForAll(queryStr, styleObj) {
 }
 
 function setGradientBgHidden(){
-  console.log('heree');
   let l = document.querySelector('section#gradient-bg').classList;
-  l.remove('show');
-  setGradientHelper(l);  // Must be set to restore back the color
+  let copy = [...l];
+  copy.forEach((item) => {
+    console.log(item);
+      l.remove(item);
+  })
+  switch (CURRENTLY_BROWSING){
+    case 'experience': 
+        l.add('first');
+      break;
+    default:
+        setGradientHelper(l);  // Must be set to restore back the color
+        l.add('default');
+
+  }
+  // if (CURRENTLY_BROWSING !== 'experience'){
+  //   l.add('default');
+  // } else{
+  //   l.add('first');
+  // }
   let body = document.body;
   body.classList.remove('no-scroll');
   
@@ -718,8 +735,8 @@ function setGradientBgShowAbout(){
   })
   let body = document.body;
   body.classList.remove('no-scroll');
+  l.add('default');
   l.add('show');
-  l.add('about');
 
 }
 
