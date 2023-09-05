@@ -283,7 +283,7 @@
             img.close-popup{
                 z-index: 2;
                 position: absolute;
-                width: 35px;
+                width: 55px;
                 right: 10px;
                 top: 10px;
                 aspect-ratio: 1/1;
@@ -726,10 +726,12 @@
             //         transform:  translateY(-35px) scale(1.1);
             //     }
             // }
+            img.close-popup{
+                width: 35px;
             .description-container{
                 padding: 40px;
                 & > p{
-                    font-size: normal;
+                    font-size: medium;
                 }
             }
            
@@ -746,6 +748,8 @@
             // Hiding props
             transform: scale(0.80);
             opacity: 0;
+            img.close-popup{
+                width: 35px;
             .description-container{
                 padding:30px;
             }
@@ -772,8 +776,6 @@
         
     }
     
-  
-    
     @media screen and (min-width: 1200px) and (min-height: 600px) {
         .gallery-container{
             &.show{
@@ -785,6 +787,8 @@
             // Hiding props
             transform: scale(1.0);
             opacity: 0;
+            img.close-popup{
+                width: 35px;
             .description-container{
                 padding:30px;
             }
@@ -815,8 +819,16 @@
             // Hiding props
             transform: scale(1.2);
             opacity: 0;
-            .description-container{
-                padding:30px;
+            .inner-content{
+                .description-container{
+                    padding:30px;
+                        & > p{
+                            font-size: medium;
+                        }
+                        & > h1{
+                            font-size: xx-large;
+                        }
+                    }
             }
             & img.arrow{
                 &.right{
@@ -845,9 +857,16 @@
             // Hiding props
             transform: scale(1.5);
             opacity: 0;
-
-            .description-container{
-                padding:30px;
+            .inner-content{
+                .description-container{
+                    padding:30px;
+                        & > p{
+                            font-size: medium;
+                        }
+                        & > h1{
+                            font-size: xx-large;
+                        }
+                    }
             }
 
               & img.arrow{

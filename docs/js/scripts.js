@@ -676,7 +676,7 @@ function setGradientBgHidden(){
   let l = document.querySelector('section#gradient-bg').classList;
   let copy = [...l];
   copy.forEach((item) => {
-    console.log(item);
+    // console.log(item);
       l.remove(item);
   })
   switch (CURRENTLY_BROWSING){
@@ -686,13 +686,7 @@ function setGradientBgHidden(){
     default:
         setGradientHelper(l);  // Must be set to restore back the color
         l.add('default');
-
   }
-  // if (CURRENTLY_BROWSING !== 'experience'){
-  //   l.add('default');
-  // } else{
-  //   l.add('first');
-  // }
   let body = document.body;
   body.classList.remove('no-scroll');
   
@@ -1089,7 +1083,7 @@ function mySpyScroll(){
       }
       let currentSection = Object.keys(sectionsScrollTops)[idx - 1];
       if (CURRENTLY_BROWSING !== currentSection ){
-        console.log(currentSection);
+        // console.log(currentSection);
         CURRENTLY_BROWSING = currentSection;
         backgroundChange();
       }
@@ -1123,7 +1117,7 @@ function methods(){
         } else {
         document.querySelector('.arrow.left').classList.remove('disabled');
         }
-        console.log(currentPos);
+        // console.log(currentPos);
         innerContentElem[currentPos].className = 'inner-content'
         currentPos -= 1;
         innerContentElem[currentPos].className = 'inner-content show';
@@ -1145,7 +1139,7 @@ function methods(){
       document.querySelector('.arrow.right').classList.remove('disabled');
       }
 
-      console.log(currentPos);
+      // console.log(currentPos);
       innerContentElem[currentPos].className = 'inner-content';
       currentPos += 1;
       innerContentElem[currentPos].className = 'inner-content show';
@@ -1223,6 +1217,9 @@ function methods(){
     //  setNavVisibilityOn();
     setNavVisible();
 
+    // This ensures that even if the current page is moved, it will set the 
+    // background to appropriate area.
+    backgroundChange();
   }
   let clientDashImgs = document.querySelectorAll('.triple-card-container > img');
   let tripleCardContainer = document.querySelector('.triple-card-container');
