@@ -1024,6 +1024,11 @@ function tempDisableAllTransitions(){
   enableAllTransitionsDebounce();
 }
 
+/**
+ * Determines if the mobile user has rotated their device to display
+ * the gallery. If not, then it will display the error until the user
+ * rotates the device.
+ */
 const showRotationWarning = debounce ( () => {
   if (isViewingGallery() && isPortrait()){
     document.querySelector('.rotation-warning').classList.add('show');
@@ -1167,23 +1172,27 @@ function methods(){
 
   let firstResumeBlock = document.querySelector('.resume-block:nth-of-type(1)');
   firstResumeBlock.addEventListener('click', () => {
-    if (!isPortrait()){
+
+    // if (!isPortrait()){
       showResumePopup();
-    } else{
-      // disclaimer to rotate phone
-      // 1. show resume overlay
-      resumeOverlay.classList.add('show');
-      resumeOverlay.classList.add('warning');
+    // } 
+    // else{
+
+      // showRotationWarning()
+      // // disclaimer to rotate phone
+      // // 1. show resume overlay
+      // resumeOverlay.classList.add('show');
+      // resumeOverlay.classList.add('warning');
       
-      // 2. show rotation-warning
-      rotationWarning.classList.add('show');
-      // 3. reset it after a bit.
-      setTimeout(() => {
-        resumeOverlay.classList.remove('warning');
-        resumeOverlay.classList.remove('show');
-        rotationWarning.classList.remove('show');
-      }, 3000)
-    }
+      // // 2. show rotation-warning
+      // rotationWarning.classList.add('show');
+      // // 3. reset it after a bit.
+      // setTimeout(() => {
+      //   resumeOverlay.classList.remove('warning');
+      //   resumeOverlay.classList.remove('show');
+      //   rotationWarning.classList.remove('show');
+      // }, 3000)
+    // }
   })
   function showResumePopup(){
     
@@ -1197,9 +1206,10 @@ function methods(){
     gClassList.contains('show')? null : gClassList.add('show');
      // 3. disable scrolling
      document.body.classList.add('no-scroll');
-     
-     // 4. show sidenav
-    //  setNavVisibilityOff();
+   
+     // 4. Check if the user is on mobile
+     showRotationWarning()
+
     setNavInvisible();
   }
   function hideResumePopup(){
@@ -1221,8 +1231,8 @@ function methods(){
     // background to appropriate area.
     backgroundChange();
   }
-  let clientDashImgs = document.querySelectorAll('.triple-card-container > img');
-  let tripleCardContainer = document.querySelector('.triple-card-container');
+  // let clientDashImgs = document.querySelectorAll('.triple-card-container > img');
+  // let tripleCardContainer = document.querySelector('.triple-card-container');
   // for (let elem of clientDashImgs){
   //   elem.addEventListener('click', (e)=>{
 

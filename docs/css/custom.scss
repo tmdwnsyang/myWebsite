@@ -701,8 +701,6 @@
             }
         }
     }
-
-     
     @media screen and (min-width: 768px) and (min-height: 338px) {
         .gallery-container{
             &.show{
@@ -712,20 +710,24 @@
             }
             transform: scale(0.65);
             opacity: 0;
-            // & img.arrow{
-            //     &.right{
-            //         transform: translateY(-35px);
-            //     }
-            //     &.left{
-            //         transform: translateY(-35px);
-            //     }
-            //     &.disabled{
-            //         opacity: 0.5;
-            //     }
-            //     &:hover{
-            //         transform:  translateY(-35px) scale(1.1);
-            //     }
-            // }
+            
+            & img.arrow{
+                &.right{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.left{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.disabled{
+                    opacity: 0.5;
+                }
+            }
             img.close-popup{
                 width: 35px;
             .description-container{
@@ -738,6 +740,7 @@
         }
         }
     }
+    
     @media screen and (min-width: 992px) and (min-height: 496px){
         .gallery-container{
             &.show{
@@ -749,6 +752,17 @@
             // Hiding props
             transform: scale(0.80);
             opacity: 0;
+            .inner-content{
+                .description-container{
+                    padding:30px;
+                        & > p{
+                            font-size: medium;
+                        }
+                        & > h1{
+                            font-size: xx-large;
+                        }
+                    }
+            }
             img.close-popup{
                 width: 35px;
             .description-container{
@@ -789,6 +803,17 @@
             // Hiding props
             transform: scale(1.0);
             opacity: 0;
+            .inner-content{
+                .description-container{
+                    padding:30px;
+                        & > p{
+                            font-size: medium;
+                        }
+                        & > h1{
+                            font-size: xx-large;
+                        }
+                    }
+            }
             img.close-popup{
                 width: 35px;
             .description-container{
@@ -797,16 +822,20 @@
             & img.arrow{
                 &.right{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.left{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.disabled{
                     opacity: 0.5;
                 }
-                &:hover{
-                    transform:  translateY(-35px) scale(1.1);
-                }
+                
             }
         }
     }
@@ -836,20 +865,24 @@
             & img.arrow{
                 &.right{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.left{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.disabled{
                     opacity: 0.5;
                 }
-                &:hover{
-                    transform:  translateY(-35px) scale(1.1);
-                }
+               
             }
         }
     }
-    @media screen and (min-width: 1700px) {
+    @media screen and (min-width: 1700px) and (min-height: 850px) {
         .gallery-container{
             &.show{
                 transform: scale(1.6);
@@ -872,7 +905,7 @@
                     }
             }
 
-              & img.arrow{
+            &img.arrow{
                 &.right{
                     transform: translateY(-35px);
                     &:hover{
@@ -888,7 +921,7 @@
                 &.disabled{
                     opacity: 0.5;
                 }
-                
+            
             }
         }
     }
