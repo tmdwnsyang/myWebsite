@@ -75,6 +75,9 @@ function backgroundChange() {
     //   .slice(1);
     let element = document.querySelector(`#${CURRENTLY_BROWSING}`);
     /* If currently not viewing any of the project pages */
+    if (isViewingGallery()){
+      return;
+    }
     if (!postProj && !currentlyBrowsingProjects()) {
       cleanUpStyling();
     }
@@ -178,10 +181,9 @@ function backgroundChange() {
    
     } else if (CURRENTLY_BROWSING === "interests") {
       setNavVisible();
-      setBg();
-      setGradientBgHidden();
-      setNavDividerInvisible();
       setBg('PRIMARY_LIGHT_GREEN_H');
+      setBg();
+      setNavDividerInvisible();
       setNavAndPrimaryColors('230, 97, 97');
       
       setColor(`.grid>#text1 .disc h5`, "#E6E6E6");
@@ -670,6 +672,7 @@ function setStyleForAll(queryStr, styleObj) {
 }
 
 function setGradientBgHidden(){
+  console.log('heree');
   let l = document.querySelector('section#gradient-bg').classList;
   l.remove('show');
   setGradientHelper(l);  // Must be set to restore back the color
@@ -687,8 +690,7 @@ const setGradientHelper = debounce( (l) => {
   // the bg color, the z-index is different. 
   l.remove('experience'); 
   // Add other future classes that have diff colors...
-}
-  );
+}, 500 );
 function setGradientBgShowExp(){
   
   let l = document.querySelector('section#gradient-bg').classList;
@@ -698,10 +700,10 @@ function setGradientBgShowExp(){
   copy.forEach((prop) => {
     l.remove(prop);
   });
-
-  l.add('show');
-  l.add('experience');
+  
   l.add('first');
+  l.add('experience');
+  l.add('show');
 
   // Disable body scrolling
   let body = document.body;
@@ -1173,15 +1175,15 @@ function methods(){
     }
   })
   function showResumePopup(){
-     // 1. show resume overlay
-     let rClassList = resumeOverlay.classList;
-     let gClassList = galleryContainer.classList;
-     rClassList.contains('show')? null : rClassList.add('show');
-     gClassList.contains('show')? null : gClassList.add('show');
- 
-     // 2. show gradient-bg
-     setGradientBgShowExp();
-     
+    
+    // 2. show gradient-bg
+    setGradientBgShowExp();
+    
+    // 1. show resume overlay
+    let rClassList = resumeOverlay.classList;
+    let gClassList = galleryContainer.classList;
+    rClassList.contains('show')? null : rClassList.add('show');
+    gClassList.contains('show')? null : gClassList.add('show');
      // 3. disable scrolling
      document.body.classList.add('no-scroll');
      

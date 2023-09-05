@@ -269,7 +269,7 @@
             opacity: 0;
             
             transform: scale(0.50);
-            transition: transform .5s, opacity .5s;
+            transition: transform .25s, opacity .25s;
             transition-delay: 0s, 0s;
             width: 1000px;
             height: 500px;
@@ -849,16 +849,20 @@
               & img.arrow{
                 &.right{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.left{
                     transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
                 &.disabled{
                     opacity: 0.5;
                 }
-                &:hover{
-                    transform:  translateY(-35px) scale(1.1);
-                }
+                
             }
         }
     }
@@ -1342,6 +1346,7 @@ opacity: 0;
 &.show{
     // transform: translateY(0%);
     opacity: 1;
+    background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
 }
 &.about{
 }

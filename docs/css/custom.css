@@ -220,7 +220,7 @@ li.nav-item .nav-link::before {
   .resume-overlay .gallery-container {
     opacity: 0;
     transform: scale(0.5);
-    transition: transform 0.5s, opacity 0.5s;
+    transition: transform 0.25s, opacity 0.25s;
     transition-delay: 0s, 0s;
     width: 1000px;
     height: 500px;
@@ -657,14 +657,17 @@ li.nav-item .nav-link::before {
   .resume-overlay .gallery-container img.arrow.right {
     transform: translateY(-35px);
   }
+  .resume-overlay .gallery-container img.arrow.right:hover {
+    transform: translateY(-35px) scale(1.1);
+  }
   .resume-overlay .gallery-container img.arrow.left {
     transform: translateY(-35px);
   }
+  .resume-overlay .gallery-container img.arrow.left:hover {
+    transform: translateY(-35px) scale(1.1);
+  }
   .resume-overlay .gallery-container img.arrow.disabled {
     opacity: 0.5;
-  }
-  .resume-overlay .gallery-container img.arrow:hover {
-    transform: translateY(-35px) scale(1.1);
   }
 }
 
@@ -1026,7 +1029,6 @@ body.resize-animation-stopper *:not(section#gradient-bg,
   animation: none !important;
   transition: none !important;
   transition-delay: none !important;
-  transition-duration: 0s !important;
 }
 body.no-scroll {
   overflow: hidden;
@@ -1078,6 +1080,7 @@ section#gradient-bg {
 }
 section#gradient-bg.show {
   opacity: 1;
+  background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
 }
 section#gradient-bg.experience {
   z-index: 3;
