@@ -985,12 +985,12 @@ const gridResizeDebounce = debounce(() => resizeGrid(), 1000);
 const enableAllTransitionsDebounce = debounce(() => enableAllTransitions(), 400)
 
 window.addEventListener("resize", () => {
-  setPersistentBackground();
   tempDisableAllTransitions();
   transitionDebounce();
   gridResizeDebounce();
   showRotationWarning();
-
+  
+  setPersistentBackground();
 });
 
 /**
