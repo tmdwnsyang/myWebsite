@@ -1364,7 +1364,7 @@ section#gradient-bg{
     min-height: 100vh;
     inset: 0;
     // transform: translateY(-100%);
-    background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
+    // background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
     animation: 17s linear infinite alternate changeGradient;
     transition: opacity 0.5s, background 0.5s;
     transition-delay: 0s, 1s;
@@ -1387,6 +1387,24 @@ section#gradient-bg{
         background: conic-gradient(at top left, rgb(102 230 100) 0deg, var(--c) 270deg);
 
     }
+    // For safari only
+    @supports (font: -apple-system-body) and (-webkit-appearance: none) {
+        &.first{
+            transition-delay: 0s, 0s;
+            background: conic-gradient(at top left, rgb(102 230 100)  0deg, var(--c) 270deg);
+    
+        }
+        &.default{
+            background: conic-gradient(at top left, rgb(102 230 100)  0deg, var(--c) 270deg);
+        }
+        &.show{
+            // transform: translateY(0%);
+            opacity: 1;
+            background: conic-gradient(at top left,rgb(102 230 100)  0deg, var(--c) 270deg);
+        }
+        
+      }
+    
 
 }
 
