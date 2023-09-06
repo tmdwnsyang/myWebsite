@@ -471,7 +471,7 @@
                                 }
                                 &:hover > img{
                                     transform: scale(1.1);
-                                    left: 208px;
+                                    left: 130px;
                                 }
                                 &:hover{
                                     z-index: 4;
@@ -484,7 +484,7 @@
                                 img.single{
                                     position: absolute;
                                     transform: scale(0.9);
-                                    left: 208px;
+                                    left: 130px;
                                     pointer-events: none;
 
                                 }
@@ -501,12 +501,12 @@
                                 z-index: 3;
                                 img.single{
                                     position: absolute;
-                                    left: 464px;
+                                    left: 290px;
                                     pointer-events: none;
 
                                 }
                                 &:hover > img {
-                                    left: 208px;
+                                    left: 130px;
                                     transform: scale(1.1);
                                 }
                                 &:hover{

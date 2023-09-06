@@ -400,7 +400,7 @@ li.nav-item .nav-link::before {
   }
   .resume-overlay .gallery-container .inner-content .photo-container .triple-card-container .hover-container.triple.first:hover > img {
     transform: scale(1.1);
-    left: 208px;
+    left: 130px;
   }
   .resume-overlay .gallery-container .inner-content .photo-container .triple-card-container .hover-container.triple.first:hover {
     z-index: 4;
@@ -412,7 +412,7 @@ li.nav-item .nav-link::before {
   .resume-overlay .gallery-container .inner-content .photo-container .triple-card-container .hover-container.triple.second img.single {
     position: absolute;
     transform: scale(0.9);
-    left: 208px;
+    left: 130px;
     pointer-events: none;
   }
   .resume-overlay .gallery-container .inner-content .photo-container .triple-card-container .hover-container.triple.second:hover > img {
@@ -427,11 +427,11 @@ li.nav-item .nav-link::before {
   }
   .resume-overlay .gallery-container .inner-content .photo-container .triple-card-container .hover-container.triple.third img.single {
     position: absolute;
-    left: 464px;
+    left: 290px;
     pointer-events: none;
   }
   .resume-overlay .gallery-container .inner-content .photo-container .triple-card-container .hover-container.triple.third:hover > img {
-    left: 208px;
+    left: 130px;
     transform: scale(1.1);
   }
   .resume-overlay .gallery-container .inner-content .photo-container .triple-card-container .hover-container.triple.third:hover {
