@@ -1043,6 +1043,7 @@ section#gradient-bg {
   width: 100%;
   min-height: 100vh;
   inset: 0;
+  background: conic-gradient(at top left, rgb(230, 100, 101) 0deg, var(--c) 270deg);
   animation: 17s linear infinite alternate changeGradient;
   transition: opacity 0.5s, background 0.5s;
   transition-delay: 0s, 1s;
@@ -1062,19 +1063,6 @@ section#gradient-bg.experience {
 section#gradient-bg.first {
   transition-delay: 0s, 0s;
   background: conic-gradient(at top left, rgb(102, 230, 100) 0deg, var(--c) 270deg);
-}
-@supports (font: -apple-system-body) and (-webkit-appearance: none) {
-  section#gradient-bg.first {
-    transition-delay: 0s, 0s;
-    background: conic-gradient(at top left, rgb(102, 230, 100) 0deg, var(--c) 270deg);
-  }
-  section#gradient-bg.default {
-    background: conic-gradient(at top left, rgb(102, 230, 100) 0deg, var(--c) 270deg);
-  }
-  section#gradient-bg.show {
-    opacity: 1;
-    background: conic-gradient(at top left, rgb(102, 230, 100) 0deg, var(--c) 270deg);
-  }
 }
 
 #copyright {
