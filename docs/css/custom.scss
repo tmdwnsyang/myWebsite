@@ -262,17 +262,17 @@
         display: flex;
         .gallery-container{
             &.show{
-                transform: scale(0.33);
+                transform: scale(0.55);
                 opacity: 1;
                 
             }
             opacity: 0;
             
-            transform: scale(0.27);
+            transform: scale(0.50);
             transition: transform .25s, opacity .25s;
             transition-delay: 0s, 0s;
-            width: 1600px;
-            height: 800px;
+            width: 1000px;
+            height: 500px;
             // flex-grow: 1;
             // padding: 20px 0;
             background: white;
@@ -283,38 +283,37 @@
             img.close-popup{
                 z-index: 2;
                 position: absolute;
-                width: 40px;
-                right: 20px;
-                top: 20px;
+                width: 55px;
+                right: 10px;
+                top: 10px;
                 aspect-ratio: 1/1;
                 cursor: pointer;
-                transform: scale(1.3);
                 &:hover{
-                    transform: scale(1.4);
+                    transform: scale(1.1);
                 }
             }
             & img.arrow{
                 margin: 0;
-                width: 200px;
-                height: 200px;
+                width: 50px;
+                height: 70px;
                 z-index: 2;
                 cursor: pointer;
                 &.right{
                     position: absolute;
                     top: 50%;
-                    transform: translateX(50px) translateY(-100px) scale(1);
+                    transform: translateX(-10px) translateY(-35px) scale(1.7);
                     right: 0;
                     &:hover{
-                        transform:  translateX(50px) translateY(-100px) scale(1.1);
+                        transform: translateX(-10px) translateY(-35px) scale(1.8);
                     }
                 }
                 &.left{
                     position: absolute;
                     top: 50%;
-                    transform: translateX(-50px) translateY(-100px) scale(1);
+                    transform: translateX(10px) translateY(-35px) scale(1.8);
                     left: 0;
                     &:hover{
-                        transform: translateX(-50px) translateY(-100px) scale(1.1);
+                        transform: translateX(10px) translateY(-35px) scale(1.8);
                     }
                 }
                 &.disabled{
@@ -332,9 +331,9 @@
                 color: #CB3970;
             }
             .tract-logo{
-                width: 250px;
+                width: 150px;
                 top: 0;
-                left: 40px;
+                left: 20px;
                 position: absolute;
             }
             &> div{
@@ -349,20 +348,20 @@
                 .description-container{
                     & > p, h1{
                         text-align: end;
-                        font-size: xx-large;
+                        font-size: larger;
                     }
                     & > h1{
-                        // font-weight: bold;
+                        font-weight: bold;
                         // span{
                         //     color: #1F6B3E;
                         // }
-                        font-size: 64px;
+                        font-size: xxx-large;
                         padding-bottom: 20px;
                         margin: 0;
                     }
                     
                     display: flex;
-                    padding:40px 40px 40px 60px;
+                    padding:40px;
                     align-items: flex-end;
                     flex-direction: column;
                     justify-content: center;
@@ -376,9 +375,9 @@
                 }
                 .gallery-divider{
                     align-self: center;
-                    width: 5px;
+                    width: 3px;
                     height: 90%;
-                    background: rgb(128, 128, 128);
+                    background: var(--primary-font-color);
                 }
                 .photo-container{
                     overscroll-behavior: contain;
@@ -407,7 +406,7 @@
                                             // Photo container is 60%
                         transition: 0.25s;
                         transition-delay: 0.25s;
-                        font-size: x-large;
+                        font-size: small;
                         bottom: 0;
                         transform: translateX(50%); // To center it rel. to 
                                                     // itself.
@@ -656,55 +655,40 @@
                 flex-basis: 0;
             }
         }
-   
     }
     @media screen and (min-width: 768px) and (min-height: 338px) {
         .gallery-container{
             &.show{
-                transform: scale(0.47);
+                transform: scale(0.70);
+                opacity: 1;
                 
             }
-            transform: scale(0.42);
-            // & img.arrow{
-            //     &.right{
-            //         transform: translateY(-35px);
-            //         &:hover{
-            //             transform:  translateY(-35px) scale(1.1);
-            //         }
-            //     }
-            //     &.left{
-            //         transform: translateY(-35px);
-            //         &:hover{
-            //             transform:  translateY(-35px) scale(1.1);
-            //         }
-            //     }
-            //     &.disabled{
-            //         opacity: 0.5;
-            //     }
-            // }
-            .inner-content{
-                // .description-container{
-                    // & > p{
-                    //     font-size: x-large;
-                    // }
-                    // & > h1{
-                    //     font-size: 64px;
-                    //     padding-bottom: 20px;
-                    //     margin: 0;
-                    // }
-                // }
-                
-                &>p{
-                    font-size: small;
+            transform: scale(0.65);
+            opacity: 0;
+            
+            & img.arrow{
+                &.right{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
                 }
-                
+                &.left{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.disabled{
+                    opacity: 0.5;
+                }
             }
             img.close-popup{
-                // width: 35px;
+                width: 35px;
             .description-container{
-                padding: 40px 40px 40px 60px;
+                padding: 40px;
                 & > p{
-                    font-size: smaller;
+                    font-size: medium;
                 }
             }
            
@@ -715,70 +699,23 @@
     @media screen and (min-width: 992px) and (min-height: 496px){
         .gallery-container{
             &.show{
-                transform: scale(0.60);
+                transform: scale(0.9);
+                opacity: 1;
 
             }
             
             // Hiding props
-            transform: scale(0.55);
-            // .inner-content{
-            //     .description-container{
-                    // padding:40px;
-                        // & > p{
-                        //     font-size: x-large;
-                        // }
-                        // & > h1{
-                        //     font-size: xxx-large;
-                        // }
-            //         }
-            // }
-            // img.close-popup{
-            //     width: 35px;
-            // }
-            & img.arrow{
-                &.right{
-                    transform: translateX(50px) translateY(-100px) scale(0.8);
-                    &:hover{
-                        transform:  translateX(50px) translateY(-100px) scale(0.9);
-                    }
-                }
-                &.left{
-                    transform: translateX(-50px) translateY(-100px) scale(0.8);
-                    &:hover{
-                        transform:  translateX(-50px) translateY(-100px) scale(0.9);
-                    }
-                }
-                &.disabled{
-                    opacity: 0.5;
-                }
-               
-            }
-        
-        
-        
-        }
-    }
-    
-    @media screen and (min-width: 1200px) and (min-height: 600px) {
-        .gallery-container{
-            &.show{
-                transform: scale(0.70);
-                // opacity: 1;
-                
-            }
-            
-            // Hiding props
-            transform: scale(0.65);
-            // opacity: 0;
+            transform: scale(0.80);
+            opacity: 0;
             .inner-content{
                 .description-container{
-                    padding:40px 40px 40px 60px;
+                    padding:30px;
                         & > p{
-                            font-size: x-large;
+                            font-size: medium;
                         }
-                        // & > h1{
-                        //     font-size: xx-large;
-                        // }
+                        & > h1{
+                            font-size: xx-large;
+                        }
                     }
             }
             img.close-popup{
@@ -788,15 +725,66 @@
             }
             & img.arrow{
                 &.right{
-                    transform: translateY(-100px);
+                    transform: translateY(-35px);
                     &:hover{
-                        transform:  translateY(-100px) scale(1.0);
+                        transform:  translateY(-35px) scale(1.1);
                     }
                 }
                 &.left{
-                    transform: translateY(-100px);
+                    transform: translateY(-35px);
                     &:hover{
-                        transform:  translateY(-100px) scale(1.1);
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.disabled{
+                    opacity: 0.5;
+                }
+               
+            }
+        }
+        
+        
+        }
+    }
+    
+    @media screen and (min-width: 1200px) and (min-height: 600px) {
+        .gallery-container{
+            &.show{
+                transform: scale(0.70);
+                opacity: 1;
+                
+            }
+            
+            // Hiding props
+            transform: scale(1.0);
+            opacity: 0;
+            .inner-content{
+                .description-container{
+                    padding:30px;
+                        & > p{
+                            font-size: medium;
+                        }
+                        & > h1{
+                            font-size: xx-large;
+                        }
+                    }
+            }
+            img.close-popup{
+                width: 35px;
+            .description-container{
+                padding:30px;
+            }
+            & img.arrow{
+                &.right{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.left{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
                     }
                 }
                 &.disabled{
@@ -810,88 +798,87 @@
     @media screen and (min-width: 1400px) and (min-height: 700px) {
         .gallery-container{
             &.show{
-                transform: scale(0.8);
-                // opacity: 1;
+                transform: scale(1.3);
+                opacity: 1;
                 
             }
             
             // Hiding props
-            transform: scale(0.75);
-            // opacity: 0;
-            // .inner-content{
-                // .description-container{
-                    // padding:30px;
-                        // & > p{
-                        //     font-size: medium;
-                        // }
-                        // & > h1{
-                        //     font-size: xx-large;
-                        // }
-                    // }
-            // }
-            // & img.arrow{
-            //     &.right{
-            //         transform: translateY(-35px);
-            //         &:hover{
-            //             transform:  translateY(-35px) scale(1.1);
-            //         }
-            //     }
-            //     &.left{
-            //         transform: translateY(-35px);
-            //         &:hover{
-            //             transform:  translateY(-35px) scale(1.1);
-            //         }
-            //     }
-            //     &.disabled{
-            //         opacity: 0.5;
-            //     }
+            transform: scale(1.2);
+            opacity: 0;
+            .inner-content{
+                .description-container{
+                    padding:30px;
+                        & > p{
+                            font-size: medium;
+                        }
+                        & > h1{
+                            font-size: xx-large;
+                        }
+                    }
+            }
+            & img.arrow{
+                &.right{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.left{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.disabled{
+                    opacity: 0.5;
+                }
                
-            // }
+            }
         }
     }
     @media screen and (min-width: 1700px) and (min-height: 850px) {
         .gallery-container{
             &.show{
-                transform: scale(0.8);
-                // opacity: 1;
+                transform: scale(1.6);
+                opacity: 1;
                 
             }
             
             // Hiding props
-            transform: scale(0.75);
-            // opacity: 0;
-            // .inner-content{
-                // .description-container{
-                    // padding:30px;
-                    //     & > p{
-                    //         font-size: medium;
-                    //     }
-                    //     & > h1{
-                    //         font-size: xx-large;
-                    //     }
-                    // }
-            // }
-            // & img.arrow{
-            //     &.right{
-            //         transform: translateY(-35px);
-            //         &:hover{
-            //             transform:  translateY(-35px) scale(1.1);
-            //         }
-            //     }
-            //     &.left{
-            //         transform: translateY(-35px);
-            //         &:hover{
-            //             transform:  translateY(-35px) scale(1.1);
-            //         }
-            //     }
-            //     &.disabled{
-            //         opacity: 0.5;
-            //     }
-               
-            // }
+            transform: scale(1.5);
+            opacity: 0;
+            .inner-content{
+                .description-container{
+                    padding:30px;
+                        & > p{
+                            font-size: medium;
+                        }
+                        & > h1{
+                            font-size: xx-large;
+                        }
+                    }
+            }
+
+            &img.arrow{
+                &.right{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.left{
+                    transform: translateY(-35px);
+                    &:hover{
+                        transform:  translateY(-35px) scale(1.1);
+                    }
+                }
+                &.disabled{
+                    opacity: 0.5;
+                }
+            
+            }
         }
-      
-   
     }
     
    
