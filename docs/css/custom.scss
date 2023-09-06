@@ -516,17 +516,6 @@
                                 }
                             }
                             }
-                            &.masonry{
-                                &.first{
-
-                                }
-                                &.second{
-
-                                }
-                                &.third{
-
-                                }
-                            }
                         }
                         
                     }   
@@ -577,40 +566,6 @@
                             }
                         }
                     }
-                    // .masonry-slide-container{
-                    //     justify-content: center;
-                    //     display: flex;
-                    //     align-items: center;
-                    //     min-height: 100%;
-                    //     gap: 20px;
-                    //     padding: 0 0 0 25px;
-                    //     &:hover img.three.horizontal:first-of-type:hover {
-                    //         transform: scale(1.4) translate(-25%, 25%);
-                    //          transition-delay: 0.5s;
-                    //     }
-                    //     &:hover img.three.horizontal:nth-of-type(2):hover {
-                    //         transform: scale(1.4) translate(-25%, -25%);
-                    //          transition-delay: 0.5s;
-                    //     }
-                    //     .column{
-                    //         gap: 20px;
-                    //         display: flex;
-                    //         flex-direction: column;
-                    //     }
-                    //     img{
-                    //         &.three{
-                    //             &.vertical{
-                    //                 // max-height: 80%;
-                    //                 min-width: 40%;
-                    //             }
-                    //             &.horizontal{
-                    //                 max-width: 90%; //Relative to the col container!
-                    //                 max-height: 50%;
-                    //             }
-                    //         }
-                           
-                    //     }
-                    // }
                     .masonry-slide-container{
                         display: grid;
                         padding: 20px;
@@ -707,11 +662,9 @@
         .gallery-container{
             &.show{
                 transform: scale(0.47);
-                opacity: 1;
                 
             }
             transform: scale(0.42);
-            opacity: 0;
             // & img.arrow{
             //     &.right{
             //         transform: translateY(-35px);
@@ -730,7 +683,7 @@
             //     }
             // }
             .inner-content{
-                .description-container{
+                // .description-container{
                     // & > p{
                     //     font-size: x-large;
                     // }
@@ -739,7 +692,7 @@
                     //     padding-bottom: 20px;
                     //     margin: 0;
                     // }
-                }
+                // }
                 
                 &>p{
                     font-size: small;
@@ -763,15 +716,13 @@
         .gallery-container{
             &.show{
                 transform: scale(0.60);
-                opacity: 1;
 
             }
             
             // Hiding props
             transform: scale(0.55);
-            opacity: 0;
-            .inner-content{
-                .description-container{
+            // .inner-content{
+            //     .description-container{
                     // padding:40px;
                         // & > p{
                         //     font-size: x-large;
@@ -779,8 +730,8 @@
                         // & > h1{
                         //     font-size: xxx-large;
                         // }
-                    }
-            }
+            //         }
+            // }
             // img.close-popup{
             //     width: 35px;
             // }
@@ -812,13 +763,13 @@
         .gallery-container{
             &.show{
                 transform: scale(0.70);
-                opacity: 1;
+                // opacity: 1;
                 
             }
             
             // Hiding props
             transform: scale(0.65);
-            opacity: 0;
+            // opacity: 0;
             .inner-content{
                 .description-container{
                     padding:40px 40px 40px 60px;
@@ -860,15 +811,15 @@
         .gallery-container{
             &.show{
                 transform: scale(0.8);
-                opacity: 1;
+                // opacity: 1;
                 
             }
             
             // Hiding props
-            transform: scale(1.2);
-            opacity: 0;
-            .inner-content{
-                .description-container{
+            transform: scale(0.75);
+            // opacity: 0;
+            // .inner-content{
+                // .description-container{
                     // padding:30px;
                         // & > p{
                         //     font-size: medium;
@@ -876,8 +827,8 @@
                         // & > h1{
                         //     font-size: xx-large;
                         // }
-                    }
-            }
+                    // }
+            // }
             // & img.arrow{
             //     &.right{
             //         transform: translateY(-35px);
@@ -899,47 +850,46 @@
         }
     }
     @media screen and (min-width: 1700px) and (min-height: 850px) {
-        // .gallery-container{
-        //     &.show{
-        //         transform: scale(1.6);
-        //         opacity: 1;
+        .gallery-container{
+            &.show{
+                transform: scale(0.8);
+                // opacity: 1;
                 
-        //     }
+            }
             
-        //     // Hiding props
-        //     transform: scale(1.5);
-        //     opacity: 0;
-        //     .inner-content{
-        //         .description-container{
-        //             padding:30px;
-        //                 & > p{
-        //                     font-size: medium;
-        //                 }
-        //                 & > h1{
-        //                     font-size: xx-large;
-        //                 }
-        //             }
-        //     }
-
-        //     &img.arrow{
-        //         &.right{
-        //             transform: translateY(-35px);
-        //             &:hover{
-        //                 transform:  translateY(-35px) scale(1.1);
-        //             }
-        //         }
-        //         &.left{
-        //             transform: translateY(-35px);
-        //             &:hover{
-        //                 transform:  translateY(-35px) scale(1.1);
-        //             }
-        //         }
-        //         &.disabled{
-        //             opacity: 0.5;
-        //         }
-            
-        //     }
-        // }
+            // Hiding props
+            transform: scale(0.75);
+            // opacity: 0;
+            // .inner-content{
+                // .description-container{
+                    // padding:30px;
+                    //     & > p{
+                    //         font-size: medium;
+                    //     }
+                    //     & > h1{
+                    //         font-size: xx-large;
+                    //     }
+                    // }
+            // }
+            // & img.arrow{
+            //     &.right{
+            //         transform: translateY(-35px);
+            //         &:hover{
+            //             transform:  translateY(-35px) scale(1.1);
+            //         }
+            //     }
+            //     &.left{
+            //         transform: translateY(-35px);
+            //         &:hover{
+            //             transform:  translateY(-35px) scale(1.1);
+            //         }
+            //     }
+            //     &.disabled{
+            //         opacity: 0.5;
+            //     }
+               
+            // }
+        }
       
    
     }
