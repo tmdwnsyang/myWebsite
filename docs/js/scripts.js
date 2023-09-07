@@ -182,6 +182,7 @@ function backgroundChange() {
    
     } else if (CURRENTLY_BROWSING === "interests") {
       setNavVisible();
+      setGradientBgHidden();
       setBg('PRIMARY_LIGHT_GREEN_H');
       setBg();
       setNavDividerInvisible();
@@ -207,6 +208,7 @@ function backgroundChange() {
       /* Everything that should apply to ALL project subsections once user is in the projects page. */
       setBg(PRIMARY_DARK_H);
       setNavInvisible();
+      setGradientBgHidden();
       /* Now per page behavior */
       if (CURRENTLY_BROWSING === "projects") {
         projectsIntroAnimate();
