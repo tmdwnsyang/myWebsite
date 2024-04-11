@@ -10,6 +10,10 @@
   transition: 1s;
   margin: 0.5em 0;
 }
+#email-and-address-container a {
+  color: white;
+  text-decoration: unset;
+}
 
 section.name-phone-email:hover #email-and-address-container {
   height: 5.3em;
@@ -705,31 +709,35 @@ li.nav-item .nav-link::before {
 }
 
 @media screen and (min-width: 0px) {
-  .resume-section .resume-block:nth-of-type(1):hover figure.message-bubble {
+  .resume-section .resume-block:nth-of-type(2):hover figure.message-bubble {
     opacity: 1;
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px)) scale(0.85);
   }
-  .resume-section .resume-block:nth-of-type(1) .message-bubble {
+  .resume-section .resume-block:nth-of-type(2) .message-bubble {
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px)) scale(0.8);
   }
 }
 @media screen and (min-width: 576px) {
-  .resume-section .resume-block:nth-of-type(1):hover figure.message-bubble {
+  .resume-section .resume-block:nth-of-type(2):hover figure.message-bubble {
     opacity: 1;
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px)) scale(0.98);
   }
-  .resume-section .resume-block:nth-of-type(1) .message-bubble {
+  .resume-section .resume-block:nth-of-type(2) .message-bubble {
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px)) scale(0.95);
   }
 }
 @media screen and (min-width: 992px) {
-  .resume-section .resume-block:nth-of-type(1):hover figure.message-bubble {
+  .resume-section .resume-block:nth-of-type(2):hover figure.message-bubble {
     opacity: 1;
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px)) scale(1.1);
   }
-  .resume-section .resume-block:nth-of-type(1) .message-bubble {
+  .resume-section .resume-block:nth-of-type(2) .message-bubble {
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px));
   }
+}
+.resume-section a.resume-block {
+  text-decoration: unset;
+  color: unset;
 }
 .resume-section .resume-block {
   padding: 2rem;
@@ -742,7 +750,7 @@ li.nav-item .nav-link::before {
   background: white;
   box-shadow: 0px 0px 30px 0px rgba(41, 255, 255, 0.2);
 }
-.resume-section .resume-block:nth-of-type(1) figure.message-bubble {
+.resume-section .resume-block:nth-of-type(2) figure.message-bubble {
   position: absolute;
   transition: 0.5s;
   transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px));
@@ -754,16 +762,16 @@ li.nav-item .nav-link::before {
   opacity: 0.7;
 }
 @media screen and (min-width: 0px) {
-  .resume-section .resume-block:nth-of-type(1) figure.message-bubble {
+  .resume-section .resume-block:nth-of-type(2) figure.message-bubble {
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px)) scale(0.8);
   }
 }
 @media screen and (min-width: 992px) {
-  .resume-section .resume-block:nth-of-type(1) figure.message-bubble {
+  .resume-section .resume-block:nth-of-type(2) figure.message-bubble {
     transform: translateX(calc(30px - 5%)) translateY(calc(-100% - 15px));
   }
 }
-.resume-section .resume-block:nth-of-type(1) figure.message-bubble p {
+.resume-section .resume-block:nth-of-type(2) figure.message-bubble p {
   position: absolute;
   inset: 30px 30px 45px 30px;
   text-align: center;
@@ -1106,7 +1114,7 @@ section#gradient-bg {
   min-height: 100vh;
   inset: 0;
   animation: 17s linear infinite alternate changeGradient;
-  transition: opacity 0.5s, background 0.5s;
+  transition: opacity 0.5s;
   transition-delay: 0s, 1s;
   z-index: 1;
   opacity: 0;

@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   mySpyScroll();
 
   //! Debug
-  window.scrollTo(top);
+  // window.scrollTo(top);
 
   backgroundChange();
   window.addEventListener('load', resizeGrid)
@@ -1172,8 +1172,8 @@ function methods(){
     hideResumePopup();
   })
 
-  let firstResumeBlock = document.querySelector('.resume-block:nth-of-type(1)');
-  firstResumeBlock.addEventListener('click', () => {
+  let resumePopup = document.querySelector('.resume-block:nth-of-type(2)');
+  resumePopup.addEventListener('click', () => {
 
     // if (!isPortrait()){
       showResumePopup();

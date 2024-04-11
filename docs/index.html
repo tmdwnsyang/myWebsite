@@ -213,19 +213,15 @@
                         </div>
                         <div id="email-and-address-container">
                             <div class="subheading mb-5">
-                                San Jose, CA· (626) 660-5126 ·
+                                AKA: Sam · San Jose, CA· (626) 660-5126 ·
                                 <a href="mailto:tmdwns.yang@gmail.com">tmdwns.yang@gmail.com</a>
                             </div>
                         </div>
 
                     </section>
                     <h3 class="mb-3">Hi. It's a pleasure to meet you.</h3>
-                    <p class="lead mb-5">I'm a web developer based in San Jose, CA. I'm passionate about using
-                        coding to
-                        enhance user experience and accessibility for web applications, and I have experience in HTML,
-                        CSS,
-                        JavaScript, Python scripting, Firebase, Bootstrap, and Google Cloud APIs. Check out my projects
-                        and
+                    <p class="lead mb-5">I'm a developer and a software tester based in San Jose, CA. I enjoy writing
+                        code to bring better accessibility for creating and testing applications. Check out my projects and
                         contact me if you're interested in working together.</p>
                     <div class="social-icons">
                         <a class="social-icon" href="https://www.linkedin.com/in/tmdwns/"><svg
@@ -250,7 +246,7 @@
 
                     </div>
 
-                    <p id="copyright">© 2023 SeungJoon Yang</p>
+                    <p id="copyright">© 2024 SeungJoon Yang</p>
                 </div>
             </section>
             <hr class="m-0">
@@ -284,7 +280,21 @@
                 
                 <div class="resume-section-content">
                     <h2 class="mb-5">Experience</h2>
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <!-- Adding a new experience? Be sure to change the two things (use scss compiler). 1. The .scss file, .resume-block:nth-of-type(2), then the js code `resume-block:nth-of-type(2)`-->
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Software Tester - Validation Engineer</h3>
+                            <div class="subheading mb-3">LG Electronics - Contractor: BTI Solutions</div>
+                            <p>Spearheaded the assembly of core and peripheral hardware components for Volkswagen infotainment system test benches, ensuring comprehensive environment simulation
+                            </p>
+                            <p>Employed diagnostic tools like ODIS and BluePirat, alongside PuTTy and WinSCP, for vehicle system diagnostics, log retrieval, metadata access, and file management</p>
+                            <p>Integrated simulation tools such as CANSim4 to replicate vehicle data, enhancing the fidelity of test scenarios and ensuring accurate system responses
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary">October 2023 - Present</span></div>
+                    </div> 
+                  
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                            
                             <h3 class="mb-0">Front-End Web Developer - Intern</h3>
@@ -296,14 +306,14 @@
                             <p>Developed scalable and reusable React.js components to enhance front-end modularity and performance
                             </p>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">July 2023 - Present</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">July 2023 - September 2023</span></div>
                         <figure class="message-bubble">
                             <img src="./assets/img/icons/message_bubble.svg">
                             <p>Click me for more concrete details!</p>
                         </figure>
                     </div>
                     
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">SCU SafeWalk App</h3>
                             <div class="subheading mb-3">Santa Clara University</div>
@@ -318,7 +328,36 @@
                     </div>
                     <h2 class="mb-5">Research Experience</h2>
                     
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <a class="resume-block d-flex flex-column flex-md-row justify-content-between" href="https://github.com/tmdwnsyang/codeBeamerALM_TSP">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">codeBeamer ALM Test Suite Pilot (April 2024)</h3>
+                            <div class="subheading mb-3">Personal Project</div>
+                            <p>Developed an innovative codeBeamer automation tool using Selenium, Pandas, and Python to streamline the creation and execution of test sets for Volkswagen infotainment systems</p>
+                            <p>Engineered a solution to automate test runs and result entry, significantly reducing manual effort and error potential</p>
+                            <p>Implemented effective algorithms to check, filter, and manage bulk test cases based on priorities and tester inputs from spreadsheets</p>
+                            <p>
+                                Achieved a drastic reduction in time spent on test set creation and test runs, completing processes that previously took hours
+                            </p>
+                            <p>
+                                Facilitated team collaboration by making the tool usable across different team members responsible for various components
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </a>
+
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">codeBeamer ALM Ticket Scraper (March 2024)</h3>
+                            <div class="subheading mb-3">Personal Project</div>
+                            <p>Developed a comprehensive ticket management automation script for codeBeamer ALM, streamlining the tracking and closure of development tickets</p>
+                            <p>Implemented a system that extracts ticket data from spreadsheets, and evaluates ticket status, severity, and external links to ensure adherence to closure protocols</p>
+                            <p>Enhanced operational efficiency by automating the follow-up process for tickets requiring additional actions, such as third-party vendor involvement or internal 5 phase reports
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0"><span class="text-primary"></span></div>
+                    </div>
+
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">www.seungjoonyang.com</h3>
                             <div class="subheading mb-3">Personal Project</div>
@@ -328,7 +367,7 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     </div>
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">You Tube, I List – Python Script (June 2023) </h3>
                             <div class="subheading mb-3">Personal Project</div>
@@ -338,7 +377,7 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     </div>
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             
                             <h3 class="mb-0">SCUACM – Summer Website Upgrade (August 2022)
@@ -358,7 +397,7 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     </div>
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Poppers — The Game (July 2022) </h3>
                             <div class="subheading mb-3">Personal Project</div>
@@ -371,7 +410,7 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary"></span></div>
                     </div>
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Share That Produce! – Google Sheets</h3>
                             <div class="subheading mb-3">Personal Project</div>
@@ -390,7 +429,7 @@
                     </div>
                     <h2 class="mb-5"> Supplemental Experiences</h2>
                     <!-- Very last row does not have the mb-5 attribute -->
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Association for Computing Machinery
                             </h3>
@@ -407,7 +446,7 @@
                                 May 2022 – May 2023</span></div>
                     </div>
 
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Elevate Tutoring
 
@@ -432,7 +471,7 @@
                         <div class="flex-shrink-0"><span class="text-primary">
                                 October 2021 – April 2023</span></div>
                     </div>
-                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="resume-block d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Pasadena City College</h3>
                             <div class="subheading mb-3">STEM Tutor</div>
@@ -472,7 +511,7 @@
                     <ul class="fa-ul mb-0">
                         <li>
                             <span class="fa-li"><i class="fas fa-check"></i></span>
-                          TypeScript, JavaScript, HTML/CSS, Python, Java, C/C++, Scala, Google Apps Scripts
+                            Python, TypeScript, JavaScript, HTML/CSS, Java, C/C++, Scala, Google Apps Scripts
                         </li>
                        
                     </ul>
@@ -491,7 +530,7 @@
                     <div class="subheading mb-3">Libraries</div>
                     <ul class="fa-ul mb-0">
                         <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>Google API, Google OAuth, yt-dlp, pandas, NumPy, Matplotlib
+                            <span class="fa-li"><i class="fas fa-check"></i></span>Selenium, pandas, NumPy, Matplotlib
                         </li>
                     </ul>
                 </div>

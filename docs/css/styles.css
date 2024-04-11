@@ -274,8 +274,8 @@ sup {
 }
 
 a {
-  color: var(--bs-link-color);
-  text-decoration: underline;
+  /* color: var(--bs-link-color);
+  text-decoration: underline; */
   transition: 0.5s;
 }
 
